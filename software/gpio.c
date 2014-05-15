@@ -36,7 +36,6 @@ gpio_t gpio_export(uint8_t num)
 	char *tmp_gpio_path = default_folder_path;
 	char *tmp_num = "";
 
-
 	// Open export file and write GPIO num
 	fd = open(export_file, O_RDONLY);
 
@@ -46,7 +45,7 @@ gpio_t gpio_export(uint8_t num)
 		abort();
 	}
 
-	write(fd, &num, 1);
+	write(fd, num, 1);
 	close(fd);
 
 
