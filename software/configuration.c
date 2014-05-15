@@ -58,9 +58,9 @@ int configuration_get_yaesu_2800dxc_position_angle_min()
 /**
  * Create ERC5-A position sensor
  */
-static float create_erc5a_position_gain = 0.08;
-static float create_erc5a_position_offset = 0.;
-static int create_erc5a_position_angle_max = 360;
+static float create_erc5a_position_gain = 0.048;
+static float create_erc5a_position_offset = -6.9;
+static int create_erc5a_position_angle_max = 90;
 static int create_erc5a_position_angle_min = 0;
 
 float configuration_get_create_erc5a_position_gain()
