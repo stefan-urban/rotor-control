@@ -110,7 +110,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Down
 	if (strcmp(cmd_str, "D" HAMLIB_EOM) == 0) {
-		fprintf(stdout, "Go UP\n");
+		fprintf(stdout, "Go DOWN\n");
 		fflush(stdout);
 
 		gpio_down_set();
@@ -121,7 +121,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Left (Counter Clockwise / CCW)
 	if (strcmp(cmd_str, "L" HAMLIB_EOM) == 0) {
-		fprintf(stdout, "Go UP\n");
+		fprintf(stdout, "Go LEFT\n");
 		fflush(stdout);
 
 		gpio_left_set();
@@ -132,7 +132,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Right (Clockwise / CW)
 	if (strcmp(cmd_str, "R" HAMLIB_EOM) == 0) {
-		fprintf(stdout, "Go UP\n");
+		fprintf(stdout, "Go RIGHT\n");
 		fflush(stdout);
 
 		gpio_right_set();
