@@ -88,7 +88,11 @@ char* gs232_command(char *cmd_str) {
 
 		char retstr[50];
 
-		sprintf(retstr, "+0%d+0%d", read_adc_ain5()/10, read_adc_ain6()/10);
+		// AIN6 = Azimuth
+		// AIN5 = Elevation
+		sprintf(retstr, "+0%03d+0%03d", read_adc_ain6()/12, read_adc_ain5()/12);
+		fprintf(stdout, retstr);
+		fprintf(stdout, "\n");
 
 		return retstr; // HAMLIB_REPLY_EOM;
 	}
