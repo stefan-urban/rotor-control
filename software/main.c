@@ -24,13 +24,22 @@
 #include "gpio.h"
 
 
+#define GPIO_NR_UP (47)
+#define GPIO_NR_DOWN (27)
+#define GPIO_NR_LEFT (45)
+#define GPIO_NR_RIGHT (23)
+
+
 int main(int argc, char** argv) {
 
-	// Setup GPIOs
-	*rot_e_up_gpio = gpio_export(48);
+    // Setup GPIOs
+    rot_up_gpio = gpio_export(GPIO_NR_UP);
+    rot_down_gpio = gpio_export(GPIO_NR_DOWN);
+    rot_left_gpio = gpio_export(GPIO_NR_LEFT);
+    rot_right_gpio = gpio_export(GPIO_NR_RIGHT);
 
-	// Setup pseudoterminal
-	pseudoterminal_t pts = pts_open();
+    // Setup pseudoterminal
+    pseudoterminal_t pts = pts_open();
 
     if (pts.fd < 0) {
     	fprintf(stderr, "Could not open pseudo terminal");
@@ -67,7 +76,11 @@ int main(int argc, char** argv) {
     }
 
 
-    gpio_unexport(*rot_e_up_gpio);
+    gpio_unexport(&rot_up_gpio);
+    gpio_unexport(&rot_down_gpio);
+    gpio_unexport(&rot_left_gpio);
+    gpio_unexport(&rot_right_gpio);
+
     pts_close(pts);
 
     return 0;

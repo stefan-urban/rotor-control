@@ -18,7 +18,10 @@ typedef struct {
 } gpio_t;
 
 
-extern gpio_t *rot_e_up_gpio;
+extern gpio_t rot_up_gpio;
+extern gpio_t rot_down_gpio;
+extern gpio_t rot_left_gpio;
+extern gpio_t rot_right_gpio;
 
 
 /**
@@ -32,17 +35,17 @@ gpio_t gpio_export(uint8_t num);
 /**
  * Closes the gpio
  */
-void gpio_unexport(gpio_t gpio);
+void gpio_unexport(gpio_t *gpio);
 
 /**
  * Set value to 1
  */
-void gpio_set(gpio_t gpio);
+void gpio_set(gpio_t *gpio);
 
 /**
  * Set value to 0
  */
-void gpio_reset(gpio_t gpio);
+void gpio_reset(gpio_t *gpio);
 
 
 

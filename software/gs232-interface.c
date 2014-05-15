@@ -93,7 +93,7 @@ char* gs232_command(char *cmd_str) {
 		fprintf(stdout, "Go UP\n");
 		fflush(stdout);
 
-		gpio_set(*rot_e_up_gpio);
+		gpio_set(&rot_up_gpio);
 
 		return "?" HAMLIB_REPLY_EOM;
 	}
@@ -103,7 +103,7 @@ char* gs232_command(char *cmd_str) {
 		fprintf(stdout, "Go UP\n");
 		fflush(stdout);
 
-		gpio_set(*rot_e_up_gpio);
+		gpio_set(&rot_down_gpio);
 
 		return "?" HAMLIB_REPLY_EOM;
 	}
@@ -113,7 +113,7 @@ char* gs232_command(char *cmd_str) {
 		fprintf(stdout, "Go UP\n");
 		fflush(stdout);
 
-		//gpio_set(*rot_e_up_gpio);
+		gpio_set(&rot_left_gpio);
 
 		return "?" HAMLIB_REPLY_EOM;
 	}
@@ -123,7 +123,7 @@ char* gs232_command(char *cmd_str) {
 		fprintf(stdout, "Go UP\n");
 		fflush(stdout);
 
-		//gpio_set(*rot_e_up_gpio);
+		gpio_set(&rot_right_gpio);
 
 		return "?" HAMLIB_REPLY_EOM;
 	}
@@ -132,6 +132,8 @@ char* gs232_command(char *cmd_str) {
 	if (strcmp(cmd_str, "S" HAMLIB_EOM) == 0) {
 		fprintf(stdout, "Stopping rotor control!\n");
 		fflush(stdout);
+
+		gpio_reset(&rot_right_gpio);
 
 		return "?" HAMLIB_REPLY_EOM;
 	}

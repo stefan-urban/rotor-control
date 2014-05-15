@@ -17,7 +17,11 @@
 #include "gpio.h"
 
 
-gpio_t *rot_e_up_gpio;
+gpio_t rot_up_gpio;
+gpio_t rot_down_gpio;
+gpio_t rot_left_gpio;
+gpio_t rot_right_gpio;
+
 
 static char *export_file = "/sys/class/gpio/export";
 static char *unexport_file = "/sys/class/gpio/unexport";
@@ -61,9 +65,10 @@ gpio_t gpio_export(uint8_t num)
 	return gpio;
 }
 
-void gpio_unexport(gpio_t gpio)
+void gpio_unexport(gpio_t *gpio)
 {
 	intptr_t fd;
+	char *tmp_num = "";
 
 	// Open unexport file and write GPIO num
 	fd = open(unexport_file, O_RDONLY);
@@ -74,17 +79,20 @@ void gpio_unexport(gpio_t gpio)
 		abort();
 	}
 
-	write(fd, &(gpio.num), 1);
+	// Convert num to string
+	sprintf(tmp_num, "%d",gpio->num);
+
+	write(fd, tmp_num, 1);
 	close(fd);
 }
 
-void gpio_set_value(gpio_t gpio, bool value)
+void gpio_set_value(gpio_t *gpio, bool value)
 {
 	intptr_t fd;
 
 	char *tmp_value_path = "";
 
-	strcat(tmp_value_path, gpio.gpio_path);
+	strcat(tmp_value_path, gpio->gpio_path);
 	strcat(tmp_value_path, "/value");
 
 	// Open value file
@@ -101,12 +109,12 @@ void gpio_set_value(gpio_t gpio, bool value)
 	close(fd);
 }
 
-void gpio_set(gpio_t gpio)
+void gpio_set(gpio_t *gpio)
 {
 	gpio_set_value(gpio, true);
 }
 
-void gpio_reset(gpio_t gpio)
+void gpio_reset(gpio_t *gpio)
 {
 	gpio_set_value(gpio, false);
 }
