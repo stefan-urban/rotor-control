@@ -10,10 +10,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define GPIO_UP_NUM (45)
-#define GPIO_DOWN_NUM (45)
+#define GPIO_UP_NUM (47)
+#define GPIO_DOWN_NUM (27)
 #define GPIO_LEFT_NUM (45)
-#define GPIO_RIGHT_NUM (45)
+#define GPIO_RIGHT_NUM (23)
 
 
 int gpio_export(int pin)
