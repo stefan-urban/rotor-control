@@ -10,7 +10,7 @@
 
 
 int read_adc_ain5(void);
-int read_adc_ain6(void);
+int read_adc_ain3(void);
 
 
 #endif /* ADC_H_ */

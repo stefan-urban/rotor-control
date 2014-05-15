@@ -8,14 +8,14 @@
 #include <stdio.h>
 
 
-int read_adc_ain6()
+int read_adc_ain3()
 {
 	FILE *fp = NULL;
 	int adc_value = 0;
 
-	if ((fp = fopen("/sys/bus/iio/devices/iio:device0/in_voltage6_raw", "r")) == NULL)
+	if ((fp = fopen("/sys/bus/iio/devices/iio:device0/in_voltage3_raw", "r")) == NULL)
         {
-                fprintf(stderr, "Could not open ADC / AIN6 file");
+                fprintf(stderr, "Could not open ADC / AIN3 file");
                 return -1;
         }
 

@@ -88,9 +88,9 @@ char* gs232_command(char *cmd_str) {
 
 		char retstr[50];
 
-		// AIN6 = Azimuth
+		// AIN3 = Azimuth
 		// AIN5 = Elevation
-		sprintf(retstr, "+0%03d+0%03d", read_adc_ain6()/12, read_adc_ain5()/12);
+		sprintf(retstr, "+0%03d+0%03d", read_adc_ain3()/12, read_adc_ain5()/12);
 		fprintf(stdout, retstr);
 		fprintf(stdout, "\n");
 
