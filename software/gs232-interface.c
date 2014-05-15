@@ -11,6 +11,7 @@
 
 #include "dac.h"
 #include "gpio.h"
+#include "adc.h"
 
 
 /**
@@ -85,7 +86,11 @@ char* gs232_command(char *cmd_str) {
 		fprintf(stdout, "Get the current rotor position\n");
 		fflush(stdout);
 
-		return "AZ=123   EL=010"; // HAMLIB_REPLY_EOM;
+		char retstr[50];
+
+		sprintf(retstr, "+0%d+0%d", read_adc_ain5()/10, read_adc_ain6()/10);
+
+		return retstr; // HAMLIB_REPLY_EOM;
 	}
 
 	// Up
