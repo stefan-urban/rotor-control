@@ -8,9 +8,14 @@
 #include <stdint.h>
 
 #include "dac.h"
+#include "microchip_mcp4901.h"
 
+dac_t rot_a_dac = {
+	.set_value_function = &mcp4901_set_value,
+	.reference_voltage = 3300,
+	.resolution = 8,
+};
 
-dac_t rot_a_dac;
 dac_t rot_e_dac;
 
 
