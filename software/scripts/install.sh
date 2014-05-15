@@ -3,6 +3,12 @@
 CONFIG_FILE=/etc/rotor_control.conf
 DIRECTORY=/opt/rotor-control
 
+printf " ------------------------------------------------------------------------------------------------- \n"
+printf "  Install dependencies ..."
+printf "\n"
+
+apt-get install libpcre3-dev libconfig-dev libhamlib-utils > /dev/null
+printf "       ... Finished!\n"
 
 printf " ------------------------------------------------------------------------------------------------- \n"
 printf "  Building software ..."
@@ -39,7 +45,7 @@ then
 	    case $yn in
 		[Yy]* )
                     cp rotor-control $DIRECTORY/
-                    printf "       Executable copied!\n"
+                    printf "       ... Executable copied!\n"
                     break;;
 		[Nn]* ) break;;
 		* ) echo "Please answer yes or no.";;
@@ -47,7 +53,7 @@ then
 	done
 else
 	cp rotor-control $DIRECTORY/
-	printf "       Executable copied!\n"
+	printf "       ... Executable copied!\n"
 fi
 
 
@@ -86,7 +92,7 @@ then
 	    case $yn in
 		[Yy]* )
                     sudo cp ../scripts/rotor-control /etc/init.d/rotor-control
-                    printf "       Daemon script installed!\n"
+                    printf "       ... Daemon script installed!\n"
                     break;;
 		[Nn]* ) break;;
 		* ) echo "Please answer yes or no.";;
@@ -94,13 +100,12 @@ then
 	done
 else
 	sudo cp ../scripts/rotor-control /etc/init.d/rotor-control
-	printf "       Daemon script installed!\n"
+	printf "       ... Daemon script installed!\n"
 fi
 
 
 
 
-printf "       ... Finished!\n"
 printf " ------------------------------------------------------------------------------------------------- \n"
 printf "  Install configuration file $CONFIG_FILE ...\n"
 
