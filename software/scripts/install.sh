@@ -56,5 +56,11 @@ printf "  Install rotor-control daemon!\n"
 sudo cp ../scripts/rotor-control /etc/init.d/rotor-control
 
 printf "       ... Finished!"
+printf " ------------------------------------------------------------------------------------------------- \n"
+printf "  Install configuration file!\n"
+
+sudo cp ../docs/rotor_control.conf.sample /etc/rotor_control.conf.sample
+
+printf "       ... Finished!"
 
 printf "\n\n"
