@@ -42,7 +42,7 @@ int main(int argc, char** argv) {
     }
 
     sprintf(debug_str, "Pseudoterminal is open at: %s", pts.name);
-    debug_msg(LOG_NOTICE, debug_str);
+    debug_msg(LOG_INFO, debug_str);
 
     // Read line by line from serial port
     char buffer[255], *ret_str;

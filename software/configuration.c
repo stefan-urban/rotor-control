@@ -20,7 +20,7 @@ static char configuration_file_path[] = "/etc/rotor_control.conf";
 /**
  * Logging level
  */
-static int log_level = LOG_INFO;
+static int log_level = LOG_DEBUG;
 
 int configuration_get_log_level()
 {
@@ -112,12 +112,14 @@ void get_configuration_file_options()
 		sprintf(debug_str, "CONFIGURATON: file: found log_level = %d", log_level);
 		debug_msg(LOG_DEBUG, debug_str);
 	}
+
+	config_destroy(&cfg);
 }
 
 void get_command_line_options(int argc, char** argv)
 {
 	char debug_str[100];
-	char c;
+	int c;
 
 	while ((c = getopt(argc, argv, "v:")) != -1)
 	{
