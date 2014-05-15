@@ -73,7 +73,7 @@ int main(int argc, char** argv) {
 
 
 	// Open terminal to listen from
-	intptr_t f = NULL;
+	intptr_t f;
 	pseudoterminal_t pts;
 
 	if (configuration_get_listen_console_enabled())
