@@ -27,62 +27,62 @@ char speed = 1;
 
 
 char *command(char *input) {
-	// All stop
-	if (strcmp(input, "S\r") == 0) {
-		return "stop";
-	}
-	// Get current position
-	else if (strcmp(input, "C2\r") == 0) {
-		return "get_pos";
-	}
-	// Set speed
-	else if (input[0] == 'X') {
+    // All stop
+    if (strcmp(input, "S\r") == 0) {
+        return "stop";
+    }
+    // Get current position
+    else if (strcmp(input, "C2\r") == 0) {
+        return "get_pos";
+    }
+    // Set speed
+    else if (input[0] == 'X') {
 
-		// Size has to be 3
-		if (strlen(input) != 3) {
-			// error
-			return "?";
-		}
+        // Size has to be 3
+        if (strlen(input) != 3) {
+            // error
+            return "?";
+        }
 
-		// Second character contains speed value
-		switch (input[1]) {
-		case '1':
-			speed = 1;
-			break;
-		case '2':
-			speed = 2;
-			break;
-		case '3':
-			speed = 3;
-			break;
-		case '4':
-			speed = 4;
-			break;
-		default:
-			return "?";
-			break;
-		}
+        // Second character contains speed value
+        switch (input[1]) {
+        case '1':
+            speed = 1;
+            break;
+        case '2':
+            speed = 2;
+            break;
+        case '3':
+            speed = 3;
+            break;
+        case '4':
+            speed = 4;
+            break;
+        default:
+            return "?";
+            break;
+        }
 
-		return "set_speed";
-	}
+        return "set_speed";
+    }
 
-	return "?";
+    return "?";
 }
 
 int main(int argc, char** argv) {
 
-	// File descriptor
-	intptr_t fd = 0;
+    // File descriptor
+    intptr_t fd = 0;
 
-	// Open pseudo terminal
-	fd = open("/dev/ptmx", O_RDWR | O_NOCTTY);
+    // Open pseudo terminal
+    fd = open("/dev/ptmx", O_RDWR | O_NOCTTY);
 
-	if (fd == -1) {
-		fprintf(stderr, "%s\n", "opening pseudo terminal not possible");
+    if (fd == -1) {
+        fprintf(stderr, "%s\n", "opening pseudo terminal not possible");
         return -1;
     }
 
-	// Set permissions
+    // Set permissions
     grantpt(fd);
     unlockpt(fd);
 
@@ -94,40 +94,40 @@ int main(int argc, char** argv) {
     struct termios newtio;
     memset(&newtio, 0, sizeof(newtio)); /* clear struct for new port settings */
 
-	/*
-		BAUDRATE: Set bps rate. You could also use cfsetispeed and cfsetospeed.
-		CRTSCTS : output hardware flow control (only used if the cable has
-		          all necessary lines. See sect. 7 of Serial-HOWTO)
-		CS8     : 8n1 (8bit,no parity,1 stopbit)
-		CLOCAL  : local connection, no modem contol
-		CREAD   : enable receiving characters
-	*/
+    /*
+        BAUDRATE: Set bps rate. You could also use cfsetispeed and cfsetospeed.
+        CRTSCTS : output hardware flow control (only used if the cable has
+                  all necessary lines. See sect. 7 of Serial-HOWTO)
+        CS8     : 8n1 (8bit,no parity,1 stopbit)
+        CLOCAL  : local connection, no modem contol
+        CREAD   : enable receiving characters
+    */
     newtio.c_cflag = BAUDRATE | CS8 | CLOCAL | CREAD;
 
-	/*
-		IGNPAR  : ignore bytes with parity errors
-		ICRNL   : map CR to NL (otherwise a CR input on the other computer
-		          will not terminate input)
-		otherwise make device raw (no other input processing)
-	*/
+    /*
+        IGNPAR  : ignore bytes with parity errors
+        ICRNL   : map CR to NL (otherwise a CR input on the other computer
+                  will not terminate input)
+        otherwise make device raw (no other input processing)
+    */
     newtio.c_iflag = IGNPAR; // | ICRNL;
 
-	/*
-		Raw output.
-	*/
+    /*
+        Raw output.
+    */
     newtio.c_oflag = 0;
 
-	/*
-		ICANON  : enable canonical input
-		disable all echo functionality, and don't send signals to calling program
-	*/
+    /*
+        ICANON  : enable canonical input
+        disable all echo functionality, and don't send signals to calling program
+    */
     newtio.c_lflag = ICANON;
 
-	/*
-		initialize all control characters
-		default values can be found in /usr/include/termios.h, and are given
-		in the comments, but we don't need them here
-	*/
+    /*
+        initialize all control characters
+        default values can be found in /usr/include/termios.h, and are given
+        in the comments, but we don't need them here
+    */
     newtio.c_cc[VINTR]    = 0;     /* Ctrl-c */
     newtio.c_cc[VQUIT]    = 0;     /* Ctrl-\ */
     newtio.c_cc[VERASE]   = 0;     /* del */
@@ -146,7 +146,7 @@ int main(int argc, char** argv) {
     newtio.c_cc[VLNEXT]   = 0;     /* Ctrl-v */
     newtio.c_cc[VEOL2]    = 0;     /* '\0' */
 
-	//	now clean the modem line and activate the settings for the port
+    //    now clean the modem line and activate the settings for the port
     tcflush(fd, TCIFLUSH);
     tcsetattr(fd,TCSANOW,&newtio);
 
@@ -158,10 +158,10 @@ int main(int argc, char** argv) {
     int res;
 
     while (stop == false) {
-    	res = read(fd, input, 255);
-    	input[res]=0;             /* set end of string, so we can printf */
+        res = read(fd, input, 255);
+        input[res]=0;             /* set end of string, so we can printf */
 
-    	output = command(input);
+        output = command(input);
 
         fprintf(stdout, "input command: %s (%d bytes)\n > return: %s (%d bytes)", input, (int) sizeof(input), output, (int) sizeof(output));
 
@@ -176,11 +176,11 @@ int main(int argc, char** argv) {
 
         // Stop on 'q'
         if (input[0]=='q') {
-        	stop = true;
+            stop = true;
         }
     }
 
-	close(fd);
+    close(fd);
 
-	return 0;
+    return 0;
 }
