@@ -1,0 +1,24 @@
+IC Samples;;;;
+;;;;
+Manufacturer;Partnumber;Quantity;Package;Description
+Vishay;SQ2348ES-T1-GE3;25;SOT-23;Automotive N-Channel 30 V (D-S) 175 °C MOSFET
+TI;MAX232ID;3;SOIC-16;Dual EIA-232 Driver/Receiver
+TI;TLC2264CN;3;DIP-14;Quad Rail-to-Rail OpAmp
+TI;TLC2264CD;3;SOIC-14;Quad Rail-to-Rail OpAmp
+TI;TLV5616CP;3;DIP-8;12-bit DAC, SPI
+TI;SN65HVD1782DR;3;SOIC-8;RS485 Driver/Receiver, Fault-Prot.
+TI;TPL0501-100DCNR;3;SOT-23/8;Digital Potentiometer
+TI;ADS1110A0IDBVT;3;SOT-23/6;16-bit self-calib. ADC
+TI;REF3233AIDBVTG4;3;SOT-23/6;LDO Voltage-Reference 3.3V
+TI;MAX232IN;3;DIP-16;Dual EIA-232 Driver/Receiver
+TI;SN65HVD30DR;3;SOIC-8;RS485 Driver/Receiver, 3.3V
+Microchip;MCP4901;3;DIP-8;DAC, SPI, 8-bit
+Microchip;MCP4901;3;SOIC-8;DAC, SPI, 8-bit
+MAXIM;MAX3232ESE+;10;Narrow SO-16;RS232 DRV/RCV, 3.3V compliant
+Vishay;BAS40-04-HE3-08;15;SOT-23;Dual schottky diode, serial
+MAXIM;MAX3232EPE+;5;DIP-16;RS232 DRV/RCV, 3.3V compliant
+;;;;
+;;;;
+;;;;
+bestellt;;;;
+TI;TLV5616CDR;3;SOIC-14;12-Bit, 3 us DAC, Serial Input
