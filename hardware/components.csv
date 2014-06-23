@@ -17,8 +17,6 @@ Microchip;MCP4901;3;SOIC-8;DAC, SPI, 8-bit
 MAXIM;MAX3232ESE+;10;Narrow SO-16;RS232 DRV/RCV, 3.3V compliant
 Vishay;BAS40-04-HE3-08;15;SOT-23;Dual schottky diode, serial
 MAXIM;MAX3232EPE+;5;DIP-16;RS232 DRV/RCV, 3.3V compliant
-;;;;
-;;;;
-;;;;
-bestellt;;;;
-TI;TLV5616CDR;3;SOIC-14;12-Bit, 3 us DAC, Serial Input
+TI;TLV5616CDR;3;SOIC-8;12-Bit, 3 us DAC, Serial Input
+TI;TLC2264CD;3;SOIC-14;Quad Rail-to-Rail OpAmp
+TI;SN65HVD78DR;3;SOIC-8;TXRX RS485 3.3V ESD
