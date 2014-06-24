@@ -6896,81 +6896,6 @@ reflow soldering</description>
 </deviceset>
 </devicesets>
 </library>
-<library name="ti-tlv5616">
-<packages>
-<package name="SO08">
-<description>&lt;b&gt;Small Outline Package 8&lt;/b&gt;&lt;br&gt;
-NS Package M08A</description>
-<wire x1="2.4" y1="1.9" x2="2.4" y2="-1.4" width="0.2032" layer="51"/>
-<wire x1="2.4" y1="-1.4" x2="2.4" y2="-1.9" width="0.2032" layer="51"/>
-<wire x1="2.4" y1="-1.9" x2="-2.4" y2="-1.9" width="0.2032" layer="51"/>
-<wire x1="-2.4" y1="-1.9" x2="-2.4" y2="-1.4" width="0.2032" layer="51"/>
-<wire x1="-2.4" y1="-1.4" x2="-2.4" y2="1.9" width="0.2032" layer="51"/>
-<wire x1="-2.4" y1="1.9" x2="2.4" y2="1.9" width="0.2032" layer="51"/>
-<wire x1="2.4" y1="-1.4" x2="-2.4" y2="-1.4" width="0.2032" layer="51"/>
-<smd name="2" x="-0.635" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="7" x="-0.635" y="2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="1" x="-1.905" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="3" x="0.635" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="4" x="1.905" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="8" x="-1.905" y="2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="6" x="0.635" y="2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="5" x="1.905" y="2.6" dx="0.6" dy="2.2" layer="1"/>
-<text x="-2.667" y="-1.905" size="1.27" layer="25" rot="R90">&gt;NAME</text>
-<text x="3.937" y="-1.905" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
-<rectangle x1="-2.15" y1="-3.1" x2="-1.66" y2="-2" layer="51"/>
-<rectangle x1="-0.88" y1="-3.1" x2="-0.39" y2="-2" layer="51"/>
-<rectangle x1="0.39" y1="-3.1" x2="0.88" y2="-2" layer="51"/>
-<rectangle x1="1.66" y1="-3.1" x2="2.15" y2="-2" layer="51"/>
-<rectangle x1="1.66" y1="2" x2="2.15" y2="3.1" layer="51"/>
-<rectangle x1="0.39" y1="2" x2="0.88" y2="3.1" layer="51"/>
-<rectangle x1="-0.88" y1="2" x2="-0.39" y2="3.1" layer="51"/>
-<rectangle x1="-2.15" y1="2" x2="-1.66" y2="3.1" layer="51"/>
-<circle x="-1.524" y="-0.508" radius="0.508" width="0.127" layer="21"/>
-</package>
-</packages>
-<symbols>
-<symbol name="TLV5616">
-<wire x1="-12.7" y1="-20.32" x2="12.7" y2="-20.32" width="0.254" layer="94"/>
-<wire x1="12.7" y1="-20.32" x2="12.7" y2="20.32" width="0.254" layer="94"/>
-<wire x1="12.7" y1="20.32" x2="-12.7" y2="20.32" width="0.254" layer="94"/>
-<wire x1="-12.7" y1="20.32" x2="-12.7" y2="-20.32" width="0.254" layer="94"/>
-<pin name="VDD" x="0" y="25.4" length="middle" rot="R270"/>
-<pin name="AGND" x="0" y="-25.4" length="middle" rot="R90"/>
-<pin name="SCLK" x="-17.78" y="-7.62" length="middle"/>
-<pin name="/CS" x="-17.78" y="-2.54" length="middle"/>
-<pin name="DIN" x="-17.78" y="-12.7" length="middle"/>
-<pin name="FS" x="-17.78" y="7.62" length="middle"/>
-<pin name="OUT" x="17.78" y="0" length="middle" rot="R180"/>
-<pin name="REFIN" x="-17.78" y="12.7" length="middle"/>
-<text x="-12.7" y="21.59" size="1.778" layer="95">&gt;NAME</text>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="TLV5616" prefix="IC">
-<gates>
-<gate name="G$1" symbol="TLV5616" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="SO08">
-<connects>
-<connect gate="G$1" pin="/CS" pad="3"/>
-<connect gate="G$1" pin="AGND" pad="5"/>
-<connect gate="G$1" pin="DIN" pad="1"/>
-<connect gate="G$1" pin="FS" pad="4"/>
-<connect gate="G$1" pin="OUT" pad="7"/>
-<connect gate="G$1" pin="REFIN" pad="6"/>
-<connect gate="G$1" pin="SCLK" pad="2"/>
-<connect gate="G$1" pin="VDD" pad="8"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="maxim">
 <description>&lt;b&gt;Maxim Components&lt;/b&gt;&lt;p&gt;
 
@@ -8766,6 +8691,85 @@ General-purpose diode for high-speed switching</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="microchip_mcp4901">
+<packages>
+<package name="SO-08">
+<description>&lt;B&gt;Small Outline Narrow Plastic Gull Wing&lt;/B&gt;&lt;p&gt;
+150-mil body, package type SN</description>
+<wire x1="-2.9" y1="3.9" x2="2.9" y2="3.9" width="0.1998" layer="39"/>
+<wire x1="2.9" y1="3.9" x2="2.9" y2="-3.9" width="0.1998" layer="39"/>
+<wire x1="2.9" y1="-3.9" x2="-2.9" y2="-3.9" width="0.1998" layer="39"/>
+<wire x1="-2.9" y1="-3.9" x2="-2.9" y2="3.9" width="0.1998" layer="39"/>
+<wire x1="2.4" y1="1.9" x2="2.4" y2="-1.4" width="0.2032" layer="51"/>
+<wire x1="2.4" y1="-1.4" x2="2.4" y2="-1.9" width="0.2032" layer="51"/>
+<wire x1="2.4" y1="-1.9" x2="-2.4" y2="-1.9" width="0.2032" layer="51"/>
+<wire x1="-2.4" y1="-1.9" x2="-2.4" y2="-1.4" width="0.2032" layer="51"/>
+<wire x1="-2.4" y1="-1.4" x2="-2.4" y2="1.9" width="0.2032" layer="51"/>
+<wire x1="-2.4" y1="1.9" x2="2.4" y2="1.9" width="0.2032" layer="51"/>
+<wire x1="2.4" y1="-1.4" x2="-2.4" y2="-1.4" width="0.2032" layer="51"/>
+<smd name="2" x="-0.635" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
+<smd name="7" x="-0.635" y="2.6" dx="0.6" dy="2.2" layer="1"/>
+<smd name="1" x="-1.905" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
+<smd name="3" x="0.635" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
+<smd name="4" x="1.905" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
+<smd name="8" x="-1.905" y="2.6" dx="0.6" dy="2.2" layer="1"/>
+<smd name="6" x="0.635" y="2.6" dx="0.6" dy="2.2" layer="1"/>
+<smd name="5" x="1.905" y="2.6" dx="0.6" dy="2.2" layer="1"/>
+<text x="-2.667" y="-1.905" size="1.27" layer="25" rot="R90">&gt;NAME</text>
+<rectangle x1="-2.1501" y1="-3.1001" x2="-1.6599" y2="-2" layer="51"/>
+<rectangle x1="-0.8801" y1="-3.1001" x2="-0.3899" y2="-2" layer="51"/>
+<rectangle x1="0.3899" y1="-3.1001" x2="0.8801" y2="-2" layer="51"/>
+<rectangle x1="1.6599" y1="-3.1001" x2="2.1501" y2="-2" layer="51"/>
+<rectangle x1="1.6599" y1="2" x2="2.1501" y2="3.1001" layer="51"/>
+<rectangle x1="0.3899" y1="2" x2="0.8801" y2="3.1001" layer="51"/>
+<rectangle x1="-0.8801" y1="2" x2="-0.3899" y2="3.1001" layer="51"/>
+<rectangle x1="-2.1501" y1="2" x2="-1.6599" y2="3.1001" layer="51"/>
+<rectangle x1="-1" y1="-1" x2="1" y2="1" layer="35"/>
+<circle x="-1.524" y="-0.508" radius="0.508" width="0.127" layer="21"/>
+</package>
+</packages>
+<symbols>
+<symbol name="MCP49X1">
+<wire x1="-15.24" y1="20.32" x2="15.24" y2="20.32" width="0.254" layer="94"/>
+<wire x1="15.24" y1="20.32" x2="15.24" y2="-20.32" width="0.254" layer="94"/>
+<wire x1="15.24" y1="-20.32" x2="-15.24" y2="-20.32" width="0.254" layer="94"/>
+<wire x1="-15.24" y1="-20.32" x2="-15.24" y2="20.32" width="0.254" layer="94"/>
+<pin name="VDD" x="0" y="25.4" length="middle" rot="R270"/>
+<pin name="VSS" x="0" y="-25.4" length="middle" rot="R90"/>
+<pin name="!CS" x="-20.32" y="10.16" length="middle"/>
+<pin name="SCK" x="-20.32" y="5.08" length="middle"/>
+<pin name="SDI" x="-20.32" y="0" length="middle"/>
+<pin name="VREF" x="-5.08" y="25.4" length="middle" rot="R270"/>
+<pin name="VOUT" x="20.32" y="0" length="middle" rot="R180"/>
+<pin name="!LDAC" x="-20.32" y="-10.16" length="middle"/>
+<text x="-17.78" y="22.86" size="1.778" layer="95">&gt;NAME</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="MCP4901" prefix="IC">
+<gates>
+<gate name="G$1" symbol="MCP49X1" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="SO-08">
+<connects>
+<connect gate="G$1" pin="!CS" pad="2"/>
+<connect gate="G$1" pin="!LDAC" pad="5"/>
+<connect gate="G$1" pin="SCK" pad="3"/>
+<connect gate="G$1" pin="SDI" pad="4"/>
+<connect gate="G$1" pin="VDD" pad="1"/>
+<connect gate="G$1" pin="VOUT" pad="8"/>
+<connect gate="G$1" pin="VREF" pad="6"/>
+<connect gate="G$1" pin="VSS" pad="7"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -8798,7 +8802,6 @@ General-purpose diode for high-speed switching</description>
 <part name="IC1" library="ti-tlc2264cd" deviceset="TLC2264CD" device="U"/>
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
 <part name="P+1" library="supply1" deviceset="+5V" device=""/>
-<part name="IC2" library="ti-tlv5616" deviceset="TLV5616" device=""/>
 <part name="P+2" library="supply1" deviceset="+5V" device=""/>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
 <part name="FRAME3" library="frames_2" deviceset="A4L-LOC" device=""/>
@@ -8832,6 +8835,7 @@ General-purpose diode for high-speed switching</description>
 <part name="C7" library="rcl" deviceset="C-EU" device="C0603" value="100n"/>
 <part name="GND17" library="supply1" deviceset="GND" device=""/>
 <part name="GND18" library="supply1" deviceset="GND" device=""/>
+<part name="IC2" library="microchip_mcp4901" deviceset="MCP4901" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -9127,7 +9131,7 @@ General-purpose diode for high-speed switching</description>
 Signal geht bis 5V (???)
 &gt;&gt; nachmessen!</text>
 <text x="76.2" y="116.84" size="1.778" layer="97">Vcc=5V</text>
-<text x="17.78" y="76.2" size="1.778" layer="97">no need for high accurancy,
+<text x="12.7" y="71.12" size="1.778" layer="97">no need for high accurancy,
 maybe read this voltage for
 reference with ADC?</text>
 <text x="218.44" y="127" size="1.778" layer="97">wie open collector
@@ -9149,9 +9153,8 @@ kurzschlussfest machen</text>
 <instance part="IC1" gate="P" x="101.6" y="43.18"/>
 <instance part="GND10" gate="1" x="101.6" y="22.86"/>
 <instance part="P+1" gate="1" x="101.6" y="60.96"/>
-<instance part="IC2" gate="G$1" x="71.12" y="45.72"/>
-<instance part="P+2" gate="1" x="71.12" y="81.28"/>
-<instance part="GND11" gate="1" x="71.12" y="15.24"/>
+<instance part="P+2" gate="1" x="63.5" y="81.28"/>
+<instance part="GND11" gate="1" x="63.5" y="15.24"/>
 <instance part="IC1" gate="B" x="76.2" y="124.46" rot="R180"/>
 <instance part="R10" gate="G$1" x="111.76" y="121.92"/>
 <instance part="D1" gate="G$1" x="93.98" y="121.92" rot="R90"/>
@@ -9162,9 +9165,10 @@ kurzschlussfest machen</text>
 <instance part="R9" gate="G$1" x="132.08" y="43.18"/>
 <instance part="R7" gate="G$1" x="177.8" y="96.52"/>
 <instance part="R6" gate="G$1" x="175.26" y="147.32"/>
-<instance part="C7" gate="G$1" x="40.64" y="68.58"/>
-<instance part="GND17" gate="1" x="40.64" y="58.42"/>
+<instance part="C7" gate="G$1" x="86.36" y="68.58"/>
+<instance part="GND17" gate="1" x="86.36" y="58.42"/>
 <instance part="GND18" gate="1" x="231.14" y="45.72"/>
+<instance part="IC2" gate="G$1" x="63.5" y="45.72"/>
 </instances>
 <busses>
 </busses>
@@ -9206,9 +9210,9 @@ kurzschlussfest machen</text>
 <pinref part="GND10" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="IC2" gate="G$1" pin="AGND"/>
 <pinref part="GND11" gate="1" pin="GND"/>
-<wire x1="71.12" y1="17.78" x2="71.12" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="63.5" y1="17.78" x2="63.5" y2="20.32" width="0.1524" layer="91"/>
+<pinref part="IC2" gate="G$1" pin="VSS"/>
 </segment>
 <segment>
 <pinref part="D1" gate="G$1" pin="A1"/>
@@ -9223,7 +9227,7 @@ kurzschlussfest machen</text>
 <segment>
 <pinref part="C7" gate="G$1" pin="2"/>
 <pinref part="GND17" gate="1" pin="GND"/>
-<wire x1="40.64" y1="60.96" x2="40.64" y2="63.5" width="0.1524" layer="91"/>
+<wire x1="86.36" y1="60.96" x2="86.36" y2="63.5" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ROT_H_LEFT" class="0">
@@ -9286,19 +9290,17 @@ kurzschlussfest machen</text>
 <pinref part="P+1" gate="1" pin="+5V"/>
 </segment>
 <segment>
-<pinref part="IC2" gate="G$1" pin="VDD"/>
 <pinref part="P+2" gate="1" pin="+5V"/>
-<wire x1="71.12" y1="78.74" x2="71.12" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="63.5" y1="78.74" x2="63.5" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="C7" gate="G$1" pin="1"/>
-<wire x1="71.12" y1="73.66" x2="71.12" y2="71.12" width="0.1524" layer="91"/>
-<wire x1="40.64" y1="71.12" x2="40.64" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="40.64" y1="73.66" x2="50.8" y2="73.66" width="0.1524" layer="91"/>
-<junction x="71.12" y="73.66"/>
-<pinref part="IC2" gate="G$1" pin="REFIN"/>
-<wire x1="50.8" y1="73.66" x2="71.12" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="53.34" y1="58.42" x2="50.8" y2="58.42" width="0.1524" layer="91"/>
-<wire x1="50.8" y1="58.42" x2="50.8" y2="73.66" width="0.1524" layer="91"/>
-<junction x="50.8" y="73.66"/>
+<wire x1="63.5" y1="73.66" x2="63.5" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="86.36" y1="71.12" x2="86.36" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="86.36" y1="73.66" x2="63.5" y2="73.66" width="0.1524" layer="91"/>
+<junction x="63.5" y="73.66"/>
+<pinref part="IC2" gate="G$1" pin="VDD"/>
+<pinref part="IC2" gate="G$1" pin="VREF"/>
+<wire x1="58.42" y1="71.12" x2="58.42" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="58.42" y1="73.66" x2="63.5" y2="73.66" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="D1" gate="G$1" pin="C2"/>
@@ -9322,37 +9324,9 @@ kurzschlussfest machen</text>
 </net>
 <net name="N$2" class="0">
 <segment>
-<pinref part="IC2" gate="G$1" pin="OUT"/>
-<wire x1="88.9" y1="45.72" x2="93.98" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="83.82" y1="45.72" x2="93.98" y2="45.72" width="0.1524" layer="91"/>
 <pinref part="IC1" gate="A" pin="+IN"/>
-</segment>
-</net>
-<net name="N$4" class="0">
-<segment>
-<pinref part="IC2" gate="G$1" pin="/CS"/>
-<wire x1="53.34" y1="43.18" x2="30.48" y2="43.18" width="0.1524" layer="91"/>
-<label x="30.48" y="43.18" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="N$7" class="0">
-<segment>
-<pinref part="IC2" gate="G$1" pin="SCLK"/>
-<wire x1="30.48" y1="38.1" x2="53.34" y2="38.1" width="0.1524" layer="91"/>
-<label x="30.48" y="38.1" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="N$8" class="0">
-<segment>
-<pinref part="IC2" gate="G$1" pin="DIN"/>
-<wire x1="53.34" y1="33.02" x2="30.48" y2="33.02" width="0.1524" layer="91"/>
-<label x="30.48" y="33.02" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="N$9" class="0">
-<segment>
-<pinref part="IC2" gate="G$1" pin="FS"/>
-<wire x1="53.34" y1="53.34" x2="30.48" y2="53.34" width="0.1524" layer="91"/>
-<label x="30.48" y="53.34" size="1.778" layer="95"/>
+<pinref part="IC2" gate="G$1" pin="VOUT"/>
 </segment>
 </net>
 <net name="N$12" class="0">
@@ -9425,6 +9399,34 @@ kurzschlussfest machen</text>
 <segment>
 <wire x1="190.5" y1="43.18" x2="220.98" y2="43.18" width="0.1524" layer="91"/>
 <label x="190.5" y="43.18" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="N$3" class="0">
+<segment>
+<pinref part="IC2" gate="G$1" pin="!CS"/>
+<wire x1="43.18" y1="55.88" x2="15.24" y2="55.88" width="0.1524" layer="91"/>
+<label x="15.24" y="55.88" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="N$4" class="0">
+<segment>
+<pinref part="IC2" gate="G$1" pin="SCK"/>
+<wire x1="15.24" y1="50.8" x2="43.18" y2="50.8" width="0.1524" layer="91"/>
+<label x="15.24" y="50.8" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="N$6" class="0">
+<segment>
+<pinref part="IC2" gate="G$1" pin="SDI"/>
+<wire x1="43.18" y1="45.72" x2="15.24" y2="45.72" width="0.1524" layer="91"/>
+<label x="15.24" y="45.72" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="N$7" class="0">
+<segment>
+<pinref part="IC2" gate="G$1" pin="!LDAC"/>
+<wire x1="15.24" y1="35.56" x2="43.18" y2="35.56" width="0.1524" layer="91"/>
+<label x="15.24" y="35.56" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>

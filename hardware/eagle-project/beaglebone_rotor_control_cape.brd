@@ -1833,40 +1833,6 @@ reflow soldering</description>
 </package>
 </packages>
 </library>
-<library name="ti-tlv5616">
-<packages>
-<package name="SO08">
-<description>&lt;b&gt;Small Outline Package 8&lt;/b&gt;&lt;br&gt;
-NS Package M08A</description>
-<wire x1="2.4" y1="1.9" x2="2.4" y2="-1.4" width="0.2032" layer="51"/>
-<wire x1="2.4" y1="-1.4" x2="2.4" y2="-1.9" width="0.2032" layer="51"/>
-<wire x1="2.4" y1="-1.9" x2="-2.4" y2="-1.9" width="0.2032" layer="51"/>
-<wire x1="-2.4" y1="-1.9" x2="-2.4" y2="-1.4" width="0.2032" layer="51"/>
-<wire x1="-2.4" y1="-1.4" x2="-2.4" y2="1.9" width="0.2032" layer="51"/>
-<wire x1="-2.4" y1="1.9" x2="2.4" y2="1.9" width="0.2032" layer="51"/>
-<wire x1="2.4" y1="-1.4" x2="-2.4" y2="-1.4" width="0.2032" layer="51"/>
-<smd name="2" x="-0.635" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="7" x="-0.635" y="2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="1" x="-1.905" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="3" x="0.635" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="4" x="1.905" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="8" x="-1.905" y="2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="6" x="0.635" y="2.6" dx="0.6" dy="2.2" layer="1"/>
-<smd name="5" x="1.905" y="2.6" dx="0.6" dy="2.2" layer="1"/>
-<text x="-2.667" y="-1.905" size="1.27" layer="25" rot="R90">&gt;NAME</text>
-<text x="3.937" y="-1.905" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
-<rectangle x1="-2.15" y1="-3.1" x2="-1.66" y2="-2" layer="51"/>
-<rectangle x1="-0.88" y1="-3.1" x2="-0.39" y2="-2" layer="51"/>
-<rectangle x1="0.39" y1="-3.1" x2="0.88" y2="-2" layer="51"/>
-<rectangle x1="1.66" y1="-3.1" x2="2.15" y2="-2" layer="51"/>
-<rectangle x1="1.66" y1="2" x2="2.15" y2="3.1" layer="51"/>
-<rectangle x1="0.39" y1="2" x2="0.88" y2="3.1" layer="51"/>
-<rectangle x1="-0.88" y1="2" x2="-0.39" y2="3.1" layer="51"/>
-<rectangle x1="-2.15" y1="2" x2="-1.66" y2="3.1" layer="51"/>
-<circle x="-1.524" y="-0.508" radius="0.508" width="0.127" layer="21"/>
-</package>
-</packages>
-</library>
 <library name="maxim">
 <description>&lt;b&gt;Maxim Components&lt;/b&gt;&lt;p&gt;
 
@@ -2046,6 +2012,44 @@ Based on the following sources:
 <rectangle x1="-0.2286" y1="0.7112" x2="0.2286" y2="1.2954" layer="51"/>
 <rectangle x1="0.7112" y1="-1.2954" x2="1.1684" y2="-0.7112" layer="51"/>
 <rectangle x1="-1.1684" y1="-1.2954" x2="-0.7112" y2="-0.7112" layer="51"/>
+</package>
+</packages>
+</library>
+<library name="microchip_mcp4901">
+<packages>
+<package name="SO-08">
+<description>&lt;B&gt;Small Outline Narrow Plastic Gull Wing&lt;/B&gt;&lt;p&gt;
+150-mil body, package type SN</description>
+<wire x1="-2.9" y1="3.9" x2="2.9" y2="3.9" width="0.1998" layer="39"/>
+<wire x1="2.9" y1="3.9" x2="2.9" y2="-3.9" width="0.1998" layer="39"/>
+<wire x1="2.9" y1="-3.9" x2="-2.9" y2="-3.9" width="0.1998" layer="39"/>
+<wire x1="-2.9" y1="-3.9" x2="-2.9" y2="3.9" width="0.1998" layer="39"/>
+<wire x1="2.4" y1="1.9" x2="2.4" y2="-1.4" width="0.2032" layer="51"/>
+<wire x1="2.4" y1="-1.4" x2="2.4" y2="-1.9" width="0.2032" layer="51"/>
+<wire x1="2.4" y1="-1.9" x2="-2.4" y2="-1.9" width="0.2032" layer="51"/>
+<wire x1="-2.4" y1="-1.9" x2="-2.4" y2="-1.4" width="0.2032" layer="51"/>
+<wire x1="-2.4" y1="-1.4" x2="-2.4" y2="1.9" width="0.2032" layer="51"/>
+<wire x1="-2.4" y1="1.9" x2="2.4" y2="1.9" width="0.2032" layer="51"/>
+<wire x1="2.4" y1="-1.4" x2="-2.4" y2="-1.4" width="0.2032" layer="51"/>
+<smd name="2" x="-0.635" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
+<smd name="7" x="-0.635" y="2.6" dx="0.6" dy="2.2" layer="1"/>
+<smd name="1" x="-1.905" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
+<smd name="3" x="0.635" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
+<smd name="4" x="1.905" y="-2.6" dx="0.6" dy="2.2" layer="1"/>
+<smd name="8" x="-1.905" y="2.6" dx="0.6" dy="2.2" layer="1"/>
+<smd name="6" x="0.635" y="2.6" dx="0.6" dy="2.2" layer="1"/>
+<smd name="5" x="1.905" y="2.6" dx="0.6" dy="2.2" layer="1"/>
+<text x="-2.667" y="-1.905" size="1.27" layer="25" rot="R90">&gt;NAME</text>
+<rectangle x1="-2.1501" y1="-3.1001" x2="-1.6599" y2="-2" layer="51"/>
+<rectangle x1="-0.8801" y1="-3.1001" x2="-0.3899" y2="-2" layer="51"/>
+<rectangle x1="0.3899" y1="-3.1001" x2="0.8801" y2="-2" layer="51"/>
+<rectangle x1="1.6599" y1="-3.1001" x2="2.1501" y2="-2" layer="51"/>
+<rectangle x1="1.6599" y1="2" x2="2.1501" y2="3.1001" layer="51"/>
+<rectangle x1="0.3899" y1="2" x2="0.8801" y2="3.1001" layer="51"/>
+<rectangle x1="-0.8801" y1="2" x2="-0.3899" y2="3.1001" layer="51"/>
+<rectangle x1="-2.1501" y1="2" x2="-1.6599" y2="3.1001" layer="51"/>
+<rectangle x1="-1" y1="-1" x2="1" y2="1" layer="35"/>
+<circle x="-1.524" y="-0.508" radius="0.508" width="0.127" layer="21"/>
 </package>
 </packages>
 </library>
@@ -2236,7 +2240,6 @@ Use 0.85mm drill for vias.</description>
 <element name="R4" library="rcl" package="R0805" value="10k" x="-2.54" y="-64.77"/>
 <element name="R5" library="rcl" package="R0805" value="5k6" x="-2.54" y="-69.85"/>
 <element name="IC1" library="ti-tlc2264cd" package="SO14" value="TLC2264CDU" x="1.27" y="-77.47"/>
-<element name="IC2" library="ti-tlv5616" package="SO08" value="TLV5616" x="-10.16" y="-77.47"/>
 <element name="IC3" library="maxim" package="SO16" value="MAX3232ESE" x="59.055" y="35.56">
 <attribute name="OC_NEWARK" value="79C3880" x="59.055" y="35.56" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="MAX3232ESE" x="59.055" y="35.56" size="1.778" layer="27" display="off"/>
@@ -2263,6 +2266,7 @@ Use 0.85mm drill for vias.</description>
 <element name="R7" library="rcl" package="R0805" value="100" x="-12.065" y="-177.165"/>
 <element name="R6" library="rcl" package="R0805" value="100" x="-12.065" y="-183.515"/>
 <element name="C7" library="rcl" package="C0603" value="100n" x="-12.7" y="-189.23"/>
+<element name="IC2" library="microchip_mcp4901" package="SO-08" value="MCP4901" x="-17.78" y="-187.325"/>
 </elements>
 <signals>
 <signal name="SYS_5V">
@@ -2299,7 +2303,6 @@ Use 0.85mm drill for vias.</description>
 <contactref element="R5" pad="1"/>
 <contactref element="C2" pad="2"/>
 <contactref element="IC1" pad="11"/>
-<contactref element="IC2" pad="5"/>
 <contactref element="IC3" pad="15"/>
 <contactref element="C4" pad="2"/>
 <contactref element="C5" pad="2"/>
@@ -2309,12 +2312,13 @@ Use 0.85mm drill for vias.</description>
 <contactref element="C6" pad="2"/>
 <contactref element="X2" pad="5"/>
 <contactref element="C7" pad="2"/>
-<wire x1="-12.38" y1="-164.93" x2="-11.85" y2="-189.23" width="0" layer="19" extent="1-1"/>
+<contactref element="IC2" pad="7"/>
+<wire x1="-11.85" y1="-189.23" x2="-18.415" y2="-184.725" width="0" layer="19" extent="1-1"/>
+<wire x1="-12.38" y1="-164.93" x2="-18.415" y2="-184.725" width="0" layer="19" extent="1-1"/>
 <wire x1="-12.38" y1="-157.31" x2="-12.38" y2="-164.93" width="0" layer="19" extent="1-1"/>
 <wire x1="4.9276" y1="-128.6764" x2="-12.38" y2="-157.31" width="0" layer="19" extent="1-1"/>
 <wire x1="1.27" y1="-74.87" x2="4.9276" y2="-128.6764" width="0" layer="19" extent="1-1"/>
 <wire x1="-3.49" y1="-69.85" x2="1.27" y2="-74.87" width="0" layer="19" extent="1-1"/>
-<wire x1="-8.255" y1="-74.87" x2="-3.49" y2="-69.85" width="0" layer="19" extent="1-1"/>
 <wire x1="-3.49" y1="-58.42" x2="-3.49" y2="-69.85" width="0" layer="19" extent="1-1"/>
 <wire x1="-1.59" y1="-51.9" x2="-3.49" y2="-58.42" width="0" layer="19" extent="1-1"/>
 <wire x1="-1.59" y1="-44.28" x2="-1.59" y2="-51.9" width="0" layer="19" extent="1-1"/>
@@ -2355,16 +2359,16 @@ Use 0.85mm drill for vias.</description>
 </signal>
 <signal name="+5V">
 <contactref element="IC1" pad="4"/>
-<contactref element="IC2" pad="8"/>
 <contactref element="D1" pad="2"/>
 <contactref element="X1" pad="51"/>
 <contactref element="X1" pad="52"/>
 <contactref element="C7" pad="1"/>
+<contactref element="IC2" pad="1"/>
 <contactref element="IC2" pad="6"/>
-<wire x1="-10.48" y1="-157.31" x2="-13.55" y2="-189.23" width="0" layer="19" extent="1-1"/>
+<wire x1="-17.145" y1="-184.725" x2="-19.685" y2="-189.925" width="0" layer="19" extent="1-1"/>
+<wire x1="-13.55" y1="-189.23" x2="-17.145" y2="-184.725" width="0" layer="19" extent="1-1"/>
+<wire x1="-10.48" y1="-157.31" x2="-17.145" y2="-184.725" width="0" layer="19" extent="1-1"/>
 <wire x1="1.27" y1="-80.07" x2="-10.48" y2="-157.31" width="0" layer="19" extent="1-1"/>
-<wire x1="-9.525" y1="-74.87" x2="1.27" y2="-80.07" width="0" layer="19" extent="1-1"/>
-<wire x1="-12.065" y1="-74.87" x2="-9.525" y2="-74.87" width="0" layer="19" extent="1-1"/>
 <wire x1="63.5" y1="51.435" x2="1.27" y2="-80.07" width="0" layer="19" extent="1-1"/>
 <wire x1="63.5" y1="53.975" x2="63.5" y2="51.435" width="0" layer="19" extent="1-1"/>
 </signal>
@@ -2376,21 +2380,9 @@ Use 0.85mm drill for vias.</description>
 <wire x1="-1.27" y1="-80.07" x2="-2.54" y2="-80.07" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$2">
-<contactref element="IC2" pad="7"/>
 <contactref element="IC1" pad="3"/>
-<wire x1="0" y1="-80.07" x2="-10.795" y2="-74.87" width="0" layer="19" extent="1-1"/>
-</signal>
-<signal name="N$4">
-<contactref element="IC2" pad="3"/>
-</signal>
-<signal name="N$7">
-<contactref element="IC2" pad="2"/>
-</signal>
-<signal name="N$8">
-<contactref element="IC2" pad="1"/>
-</signal>
-<signal name="N$9">
-<contactref element="IC2" pad="4"/>
+<contactref element="IC2" pad="8"/>
+<wire x1="0" y1="-80.07" x2="-19.685" y2="-184.725" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$12">
 <contactref element="IC1" pad="5"/>
@@ -2510,6 +2502,18 @@ Use 0.85mm drill for vias.</description>
 </signal>
 <signal name="N$15">
 <contactref element="R6" pad="1"/>
+</signal>
+<signal name="N$3">
+<contactref element="IC2" pad="2"/>
+</signal>
+<signal name="N$4">
+<contactref element="IC2" pad="3"/>
+</signal>
+<signal name="N$6">
+<contactref element="IC2" pad="4"/>
+</signal>
+<signal name="N$7">
+<contactref element="IC2" pad="5"/>
 </signal>
 </signals>
 </board>
