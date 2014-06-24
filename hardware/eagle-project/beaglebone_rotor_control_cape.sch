@@ -8836,6 +8836,11 @@ General-purpose diode for high-speed switching</description>
 <part name="GND17" library="supply1" deviceset="GND" device=""/>
 <part name="GND18" library="supply1" deviceset="GND" device=""/>
 <part name="IC2" library="microchip_mcp4901" deviceset="MCP4901" device=""/>
+<part name="R11" library="rcl" deviceset="R-EU_" device="R0805" value="0"/>
+<part name="GND19" library="supply1" deviceset="GND" device=""/>
+<part name="R12" library="rcl" deviceset="R-EU_" device="R0805" value="5k"/>
+<part name="R13" library="rcl" deviceset="R-EU_" device="R0805" value="10k"/>
+<part name="GND20" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -8844,6 +8849,12 @@ General-purpose diode for high-speed switching</description>
 <text x="147.32" y="147.32" size="1.778" layer="97">- Power supply is provided by BeagleBone Black</text>
 <text x="147.32" y="152.4" size="2.54" layer="97">Information:</text>
 <text x="147.32" y="142.24" size="1.778" layer="97">- BeagleBone Black cape layout is provided by Adafruit</text>
+<text x="10.16" y="63.5" size="1.778" layer="97">P9.17</text>
+<text x="149.86" y="63.5" size="1.778" layer="97">P9.18</text>
+<text x="149.86" y="58.42" size="1.778" layer="97">P9.22</text>
+<text x="10.16" y="58.42" size="1.778" layer="97">P9.21</text>
+<text x="10.16" y="68.58" size="1.778" layer="97">P9.13</text>
+<text x="10.16" y="71.12" size="1.778" layer="97">P9.11</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
@@ -8948,6 +8959,34 @@ General-purpose diode for high-speed switching</description>
 <pinref part="X1" gate="G$1" pin="UART4_TXD"/>
 <wire x1="22.86" y1="68.58" x2="53.34" y2="68.58" width="0.1524" layer="91"/>
 <label x="22.86" y="68.58" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="BB_SPI0_CS0" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="I2C1_SCL"/>
+<wire x1="53.34" y1="63.5" x2="22.86" y2="63.5" width="0.1524" layer="91"/>
+<label x="22.86" y="63.5" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="BB_SPI0_D1" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="I2C1_SDA"/>
+<wire x1="109.22" y1="63.5" x2="142.24" y2="63.5" width="0.1524" layer="91"/>
+<label x="119.38" y="63.5" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="BB_SPI0_D0" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="UART2_TXD"/>
+<wire x1="53.34" y1="58.42" x2="22.86" y2="58.42" width="0.1524" layer="91"/>
+<label x="22.86" y="58.42" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="BB_SPI0_SCLK" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="UART2_RXD"/>
+<wire x1="109.22" y1="58.42" x2="142.24" y2="58.42" width="0.1524" layer="91"/>
+<label x="119.38" y="58.42" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>
@@ -9136,6 +9175,12 @@ maybe read this voltage for
 reference with ADC?</text>
 <text x="218.44" y="127" size="1.778" layer="97">wie open collector
 kurzschlussfest machen</text>
+<text x="104.14" y="50.8" size="1.778" layer="97">todo: Verstärker von 3.3V auf 5V range</text>
+<text x="30.48" y="33.02" size="1.778" layer="97" rot="R180">tie to GND for
+immediate
+refresh of Vout</text>
+<text x="129.54" y="30.48" size="1.778" layer="97">v = 1 + (R12 / R13)
+  = 1.5</text>
 </plain>
 <instances>
 <instance part="FRAME2" gate="G$1" x="0" y="0"/>
@@ -9151,7 +9196,7 @@ kurzschlussfest machen</text>
 <instance part="GND9" gate="1" x="45.72" y="104.14"/>
 <instance part="IC1" gate="A" x="101.6" y="43.18"/>
 <instance part="IC1" gate="P" x="101.6" y="43.18"/>
-<instance part="GND10" gate="1" x="101.6" y="22.86"/>
+<instance part="GND10" gate="1" x="101.6" y="20.32"/>
 <instance part="P+1" gate="1" x="101.6" y="60.96"/>
 <instance part="P+2" gate="1" x="63.5" y="81.28"/>
 <instance part="GND11" gate="1" x="63.5" y="15.24"/>
@@ -9169,6 +9214,11 @@ kurzschlussfest machen</text>
 <instance part="GND17" gate="1" x="86.36" y="58.42"/>
 <instance part="GND18" gate="1" x="231.14" y="45.72"/>
 <instance part="IC2" gate="G$1" x="63.5" y="45.72"/>
+<instance part="R11" gate="G$1" x="35.56" y="27.94" rot="R90"/>
+<instance part="GND19" gate="1" x="35.56" y="17.78"/>
+<instance part="R12" gate="G$1" x="121.92" y="35.56" rot="R90"/>
+<instance part="R13" gate="G$1" x="121.92" y="20.32" rot="R90"/>
+<instance part="GND20" gate="1" x="121.92" y="10.16"/>
 </instances>
 <busses>
 </busses>
@@ -9206,7 +9256,7 @@ kurzschlussfest machen</text>
 </segment>
 <segment>
 <pinref part="IC1" gate="P" pin="V-"/>
-<wire x1="101.6" y1="35.56" x2="101.6" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="101.6" y1="35.56" x2="101.6" y2="22.86" width="0.1524" layer="91"/>
 <pinref part="GND10" gate="1" pin="GND"/>
 </segment>
 <segment>
@@ -9228,6 +9278,16 @@ kurzschlussfest machen</text>
 <pinref part="C7" gate="G$1" pin="2"/>
 <pinref part="GND17" gate="1" pin="GND"/>
 <wire x1="86.36" y1="60.96" x2="86.36" y2="63.5" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R11" gate="G$1" pin="1"/>
+<pinref part="GND19" gate="1" pin="GND"/>
+<wire x1="35.56" y1="20.32" x2="35.56" y2="22.86" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R13" gate="G$1" pin="1"/>
+<pinref part="GND20" gate="1" pin="GND"/>
+<wire x1="121.92" y1="12.7" x2="121.92" y2="15.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ROT_H_LEFT" class="0">
@@ -9310,16 +9370,15 @@ kurzschlussfest machen</text>
 </net>
 <net name="N$5" class="0">
 <segment>
-<pinref part="IC1" gate="A" pin="OUT"/>
-<wire x1="109.22" y1="43.18" x2="121.92" y2="43.18" width="0.1524" layer="91"/>
 <pinref part="IC1" gate="A" pin="-IN"/>
-<wire x1="121.92" y1="43.18" x2="127" y2="43.18" width="0.1524" layer="91"/>
 <wire x1="93.98" y1="40.64" x2="91.44" y2="40.64" width="0.1524" layer="91"/>
-<wire x1="91.44" y1="40.64" x2="91.44" y2="33.02" width="0.1524" layer="91"/>
-<wire x1="91.44" y1="33.02" x2="121.92" y2="33.02" width="0.1524" layer="91"/>
-<wire x1="121.92" y1="33.02" x2="121.92" y2="43.18" width="0.1524" layer="91"/>
-<junction x="121.92" y="43.18"/>
-<pinref part="R9" gate="G$1" pin="1"/>
+<wire x1="91.44" y1="40.64" x2="91.44" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="27.94" x2="121.92" y2="27.94" width="0.1524" layer="91"/>
+<pinref part="R12" gate="G$1" pin="1"/>
+<wire x1="121.92" y1="30.48" x2="121.92" y2="27.94" width="0.1524" layer="91"/>
+<pinref part="R13" gate="G$1" pin="2"/>
+<wire x1="121.92" y1="27.94" x2="121.92" y2="25.4" width="0.1524" layer="91"/>
+<junction x="121.92" y="27.94"/>
 </segment>
 </net>
 <net name="N$2" class="0">
@@ -9401,21 +9460,21 @@ kurzschlussfest machen</text>
 <label x="190.5" y="43.18" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="N$3" class="0">
+<net name="BB_SPI0_CS0" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="!CS"/>
 <wire x1="43.18" y1="55.88" x2="15.24" y2="55.88" width="0.1524" layer="91"/>
 <label x="15.24" y="55.88" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="N$4" class="0">
+<net name="BB_SPI0_SCLK" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="SCK"/>
 <wire x1="15.24" y1="50.8" x2="43.18" y2="50.8" width="0.1524" layer="91"/>
 <label x="15.24" y="50.8" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="N$6" class="0">
+<net name="BB_SPI0_D0" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="SDI"/>
 <wire x1="43.18" y1="45.72" x2="15.24" y2="45.72" width="0.1524" layer="91"/>
@@ -9425,8 +9484,23 @@ kurzschlussfest machen</text>
 <net name="N$7" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="!LDAC"/>
-<wire x1="15.24" y1="35.56" x2="43.18" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="15.24" y1="35.56" x2="35.56" y2="35.56" width="0.1524" layer="91"/>
 <label x="15.24" y="35.56" size="1.778" layer="95"/>
+<pinref part="R11" gate="G$1" pin="2"/>
+<wire x1="35.56" y1="35.56" x2="43.18" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="35.56" y1="33.02" x2="35.56" y2="35.56" width="0.1524" layer="91"/>
+<junction x="35.56" y="35.56"/>
+</segment>
+</net>
+<net name="N$3" class="0">
+<segment>
+<pinref part="R9" gate="G$1" pin="1"/>
+<pinref part="IC1" gate="A" pin="OUT"/>
+<wire x1="109.22" y1="43.18" x2="121.92" y2="43.18" width="0.1524" layer="91"/>
+<pinref part="R12" gate="G$1" pin="2"/>
+<wire x1="121.92" y1="43.18" x2="127" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="121.92" y1="43.18" x2="121.92" y2="40.64" width="0.1524" layer="91"/>
+<junction x="121.92" y="43.18"/>
 </segment>
 </net>
 </nets>

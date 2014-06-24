@@ -2267,6 +2267,9 @@ Use 0.85mm drill for vias.</description>
 <element name="R6" library="rcl" package="R0805" value="100" x="-12.065" y="-183.515"/>
 <element name="C7" library="rcl" package="C0603" value="100n" x="-12.7" y="-189.23"/>
 <element name="IC2" library="microchip_mcp4901" package="SO-08" value="MCP4901" x="-17.78" y="-187.325"/>
+<element name="R11" library="rcl" package="R0805" value="0" x="-19.685" y="-194.945"/>
+<element name="R12" library="rcl" package="R0805" value="5k" x="-19.685" y="-201.295"/>
+<element name="R13" library="rcl" package="R0805" value="10k" x="-19.685" y="-207.645"/>
 </elements>
 <signals>
 <signal name="SYS_5V">
@@ -2313,6 +2316,10 @@ Use 0.85mm drill for vias.</description>
 <contactref element="X2" pad="5"/>
 <contactref element="C7" pad="2"/>
 <contactref element="IC2" pad="7"/>
+<contactref element="R11" pad="1"/>
+<contactref element="R13" pad="1"/>
+<wire x1="-20.635" y1="-194.945" x2="-20.635" y2="-207.645" width="0" layer="19" extent="1-1"/>
+<wire x1="-18.415" y1="-184.725" x2="-20.635" y2="-194.945" width="0" layer="19" extent="1-1"/>
 <wire x1="-11.85" y1="-189.23" x2="-18.415" y2="-184.725" width="0" layer="19" extent="1-1"/>
 <wire x1="-12.38" y1="-164.93" x2="-18.415" y2="-184.725" width="0" layer="19" extent="1-1"/>
 <wire x1="-12.38" y1="-157.31" x2="-12.38" y2="-164.93" width="0" layer="19" extent="1-1"/>
@@ -2373,11 +2380,11 @@ Use 0.85mm drill for vias.</description>
 <wire x1="63.5" y1="53.975" x2="63.5" y2="51.435" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$5">
-<contactref element="IC1" pad="1"/>
 <contactref element="IC1" pad="2"/>
-<contactref element="R9" pad="1"/>
-<wire x1="-2.54" y1="-80.07" x2="-13.015" y2="-170.815" width="0" layer="19" extent="1-1"/>
-<wire x1="-1.27" y1="-80.07" x2="-2.54" y2="-80.07" width="0" layer="19" extent="1-1"/>
+<contactref element="R12" pad="1"/>
+<contactref element="R13" pad="2"/>
+<wire x1="-20.635" y1="-201.295" x2="-18.735" y2="-207.645" width="0" layer="19" extent="1-1"/>
+<wire x1="-1.27" y1="-80.07" x2="-20.635" y2="-201.295" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$2">
 <contactref element="IC1" pad="3"/>
@@ -2503,17 +2510,35 @@ Use 0.85mm drill for vias.</description>
 <signal name="N$15">
 <contactref element="R6" pad="1"/>
 </signal>
-<signal name="N$3">
-<contactref element="IC2" pad="2"/>
-</signal>
-<signal name="N$4">
-<contactref element="IC2" pad="3"/>
-</signal>
-<signal name="N$6">
-<contactref element="IC2" pad="4"/>
-</signal>
 <signal name="N$7">
 <contactref element="IC2" pad="5"/>
+<contactref element="R11" pad="2"/>
+<wire x1="-15.875" y1="-184.725" x2="-18.735" y2="-194.945" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="BB_SPI0_CS0">
+<contactref element="X1" pad="63"/>
+<contactref element="IC2" pad="2"/>
+<wire x1="48.26" y1="53.975" x2="-18.415" y2="-189.925" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="BB_SPI0_D1">
+<contactref element="X1" pad="64"/>
+</signal>
+<signal name="BB_SPI0_D0">
+<contactref element="X1" pad="67"/>
+<contactref element="IC2" pad="4"/>
+<wire x1="43.18" y1="53.975" x2="-15.875" y2="-189.925" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="BB_SPI0_SCLK">
+<contactref element="X1" pad="68"/>
+<contactref element="IC2" pad="3"/>
+<wire x1="43.18" y1="51.435" x2="-17.145" y2="-189.925" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$3">
+<contactref element="IC1" pad="1"/>
+<contactref element="R9" pad="1"/>
+<contactref element="R12" pad="2"/>
+<wire x1="-13.015" y1="-170.815" x2="-18.735" y2="-201.295" width="0" layer="19" extent="1-1"/>
+<wire x1="-2.54" y1="-80.07" x2="-13.015" y2="-170.815" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 </board>
