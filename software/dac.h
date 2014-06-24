@@ -19,7 +19,7 @@ typedef struct {
 	void (*init_function)(void);
 	void (*enable_function)(void);
 	void (*disable_function)(void);
-	void (*set_value_function)(void);
+	void (*set_value_function)(uint16_t new_dac_value);
 	uint16_t (*get_value_function)(void);
 	
 	/**
@@ -49,7 +49,7 @@ void dac_init(dac_t dac);
 void dac_disable(dac_t dac);
 
 /**
- * Set the new output value
+ * Set the new output voltage
  *
  * @param new_voltage
  */
@@ -57,11 +57,11 @@ void dac_set_voltage(dac_t dac, uint16_t new_voltage);
 
 
 /**
- * Set the new output value
+ * Get the output voltage
  *
  * @return voltage, in mV
  */
-uint16_t dac_set_voltage(dac_t dac);
+uint16_t dac_get_voltage(dac_t dac);
 
 
 

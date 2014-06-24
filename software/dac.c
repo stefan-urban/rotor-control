@@ -7,6 +7,7 @@
 
 #include <stdint.h>
 
+#include "dac.h"
 
 void dac_init(dac_t dac)
 {
@@ -29,7 +30,7 @@ void dac_set_voltage(dac_t dac, uint16_t new_voltage)
 	
 	// new_dac_value = (new_voltage / reference_voltage) * 2 ^ resolution;
 	uint32_t tmp = new_voltage << dac.resolution;
-	new_dav_value = (uint16_t) (tmp / reference_voltage);
+	new_dac_value = (uint16_t) (tmp / dac.reference_voltage);
 	
 	(*(dac.set_value_function))(new_dac_value);
 }
@@ -40,7 +41,7 @@ uint16_t dac_get_voltage(dac_t dac)
 	
 	// voltage = dac_value / (2^resolution) * reference_voltage
 	uint32_t tmp = (*(dac.get_value_function))() * dac.reference_voltage;
-	voltage = tmp >> resolution;
+	voltage = tmp >> dac.resolution;
 	
 	return voltage;
 }
