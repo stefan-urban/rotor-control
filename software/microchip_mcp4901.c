@@ -24,3 +24,12 @@
  * |  0  | BUF | /GA | /SD |               New DAC value (12-bits)         |  X  |  X  |  X  |  X  |
  * -------------------------------------------------------------------------------------------------
  */
+
+#include <stdio.h>
+#include <stdint.h>
+
+
+void mcp4901_set_value(uint16_t new_dac_value)
+{
+	
+}

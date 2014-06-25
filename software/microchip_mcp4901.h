@@ -5,8 +5,9 @@
  *      Author: Stefan Urban
  */
 
-#ifndef TI_TLV5616_H_
-#define TI_TLV5616_H_
+#ifndef MICROCHIP_MCP4901_H_
+#define MICROCHIP_MCP4901_H_
+
 
 #include <stdint.h>
 
@@ -14,33 +15,27 @@
 
 
 /**
- * DAC device representation for azimuth and elevation rotor
+ * Initialize chip, bus leaves it disabled, call mcp4901_enable() before using
  */
-extern dac_t rot_a_dac;
-extern dac_t rot_e_dac;
-
-/**
- * Initialize chip, bus leaves it disabled, call tlv5616_enable() before using
- */
-void tlv5616_init(void);
+void mcp4901_init(void);
 
 /**
  * Enable output
  */
- void tlv5616_enable(void);
+ void mcp4901_enable(void);
 
 /**
  * Disable output
  */
-void tlv5616_disable(void);
+void mcp4901_disable(void);
 
 /**
  * Set the new output value
  *
  * @param new_dac_value: 12-bit!
  */
-void tlv5616_set_value(uint16_t new_dac_value);
+void mcp4901_set_value(uint16_t new_dac_value);
 
 
 
-#endif /* TI_TLV5616_H_ */
+#endif /* MICROCHIP_MCP4901_H_ */

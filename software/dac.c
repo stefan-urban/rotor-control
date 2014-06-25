@@ -9,6 +9,11 @@
 
 #include "dac.h"
 
+
+dac_t rot_a_dac;
+dac_t rot_e_dac;
+
+
 void dac_init(dac_t dac)
 {
 	(*(dac.init_function))();

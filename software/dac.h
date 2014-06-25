@@ -11,6 +11,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#include "microchip_mcp4901.h"
+
 
 typedef struct {
 	/**
@@ -32,6 +34,12 @@ typedef struct {
 	 */
 	uint8_t resolution;
 } dac_t;
+
+/**
+ * DAC devices representation for azimuth and elevation rotor
+ */
+extern dac_t rot_a_dac;
+extern dac_t rot_e_dac;
 
 /**
  * Initialize function
