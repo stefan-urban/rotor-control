@@ -11,28 +11,19 @@
 #include "microchip_mcp4901.h"
 
 dac_t rot_a_dac = {
+	.device = "/dev/spidev1.0",
 	.set_value_function = &mcp4901_set_value,
 	.reference_voltage = 3300,
 	.resolution = 8,
 };
 
-dac_t rot_e_dac;
+dac_t rot_e_dac = {
+	.device = "/dev/spidev1.0",
+	.set_value_function = &mcp4901_set_value,
+	.reference_voltage = 3300,
+	.resolution = 8,
+};
 
-
-void dac_init(dac_t dac)
-{
-	(*(dac.init_function))();
-}
-
-void dac_enable(dac_t dac)
-{
-	(*(dac.enable_function))();
-}
-
-void dac_disable(dac_t dac)
-{
-	(*(dac.disable_function))();
-}
 
 void dac_set_voltage(dac_t dac, uint16_t new_voltage)
 {

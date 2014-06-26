@@ -16,11 +16,13 @@
 
 typedef struct {
 	/**
+	 * File name of the SPI bus
+	 */
+	char *device;
+
+	/**
 	 * Function pointers
 	 */
-	void (*init_function)(void);
-	void (*enable_function)(void);
-	void (*disable_function)(void);
 	void (*set_value_function)(uint16_t new_dac_value);
 	uint16_t (*get_value_function)(void);
 	
