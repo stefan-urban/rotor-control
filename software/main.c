@@ -55,7 +55,7 @@ int main(int argc, char** argv) {
     	write(pts.fd, ret_str, size);
 
 	// Quit
-	if( ret_str[0] == 'q' )
+	if( buffer[0] == 'q' )
 	{
 		break;
 	}
