@@ -53,6 +53,12 @@ int main(int argc, char** argv) {
     	// Write answer back to serial port
     	size = strlen(ret_str);
     	write(pts.fd, ret_str, size);
+
+	// Quit
+	if( ret_str[0] == 'q' )
+	{
+		break;
+	}
     }
 
 
