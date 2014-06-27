@@ -14,13 +14,20 @@
 
 
 /**
+ * The DAC can only provide a maximum voltage of 3.3V. Therefore a non-inverting amplifier
+ * is used to be able to output 5V signals. This macro converts the demanded voltage levels
+ * to the DAC's levels.
+ */
+#define DAC_OUTPUT(voltage) (voltage / 1.5)
+
+/**
  * The rotor speed is controlled by an analog signal from 0 to 5 V, the rotor contol unit
  * then converts it to 4 speed steps, steps in mV
  */
-#define SPEED_1 1000
-#define SPEED_2 2000
-#define SPEED_3 3000
-#define SPEED_4 4000
+#define SPEED_1 DAC_OUTPUT(1000)
+#define SPEED_2 DAC_OUTPUT(2000)
+#define SPEED_3 DAC_OUTPUT(3000)
+#define SPEED_4 DAC_OUTPUT(4000)
 
 
 /**

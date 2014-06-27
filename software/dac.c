@@ -18,7 +18,7 @@ dac_t rot_a_dac = {
 };
 
 dac_t rot_e_dac = {
-	.device = "/dev/spidev1.0",
+	.device = "/dev/spidev1.1",
 	.set_value_function = &mcp4901_set_value,
 	.reference_voltage = 3300,
 	.resolution = 8,

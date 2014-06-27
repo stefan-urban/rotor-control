@@ -35,6 +35,7 @@ typedef struct {
 	 * Resolution
 	 */
 	uint8_t resolution;
+
 } dac_t;
 
 /**
