@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-c -Wall
 LDFLAGS=
-SOURCES=main.c dac.c gs232-interface.c microchip_mcp4901.c pseudoterminal.c
+SOURCES=main.c dac.c gs232-interface.c microchip_mcp4901.c pseudoterminal.c gpio.c
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE=rotor_control
 
