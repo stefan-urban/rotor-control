@@ -15,9 +15,11 @@
 
 #include "gpio.h"
 
+
+gpio_t *rot_e_up_gpio;
+
 static char *export_file = "/sys/class/gpio/export";
 static char *unexport_file = "/sys/class/gpio/unexport";
-
 static char *default_folder_path = "/sys/class/gpio/gpio";
 
 
@@ -85,7 +87,7 @@ void gpio_set_value(gpio_t gpio, bool value)
 	strcat(tmp_value_path, "/value");
 
 	// Open value file
-	fd = open(unexport_file, O_WRONLY);
+	fd = open(tmp_value_path, O_WRONLY);
 
 	if (fd < 0)
 	{

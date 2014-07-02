@@ -10,7 +10,7 @@
 #include <stdio.h>
 
 #include "dac.h"
-#include "microchip_mcp4901.h"
+#include "gpio.h"
 
 
 /**
@@ -66,6 +66,16 @@ char* gs232_command(char *cmd_str) {
 		fflush(stdout);
 
 		return "AZ=123   EL=010"; // HAMLIB_REPLY_EOM;
+	}
+
+	// Up
+	if (strcmp(cmd_str, "U" HAMLIB_EOM) == 0) {
+		fprintf(stdout, "Go UP\n");
+		fflush(stdout);
+
+		gpio_set(*rot_e_up_gpio);
+
+		return "?" HAMLIB_REPLY_EOM;
 	}
 
 	// Stop

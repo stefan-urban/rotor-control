@@ -21,11 +21,16 @@
 #include "gs232-interface.h"
 
 
+#include "gpio.h"
 
 
 int main(int argc, char** argv) {
 
-    pseudoterminal_t pts = pts_open();
+	// Setup GPIOs
+	*rot_e_up_gpio = gpio_export(48);
+
+	// Setup pseudoterminal
+	pseudoterminal_t pts = pts_open();
 
     if (pts.fd < 0) {
     	fprintf(stderr, "Could not open pseudo terminal");
@@ -62,6 +67,7 @@ int main(int argc, char** argv) {
     }
 
 
+    gpio_unexport(*rot_e_up_gpio);
     pts_close(pts);
 
     return 0;

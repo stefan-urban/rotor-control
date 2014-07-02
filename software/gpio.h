@@ -17,6 +17,10 @@ typedef struct {
 	intptr_t fd;
 } gpio_t;
 
+
+extern gpio_t *rot_e_up_gpio;
+
+
 /**
  * Creates new gpio
  *
