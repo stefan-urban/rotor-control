@@ -8896,6 +8896,10 @@ General-purpose diode for high-speed switching</description>
 <text x="10.16" y="58.42" size="1.778" layer="97">P9.21</text>
 <text x="10.16" y="68.58" size="1.778" layer="97">P9.13</text>
 <text x="10.16" y="71.12" size="1.778" layer="97">P9.11</text>
+<text x="10.16" y="48.26" size="1.778" layer="97">P9.29</text>
+<text x="149.86" y="48.26" size="1.778" layer="97">P9.30</text>
+<text x="10.16" y="45.72" size="1.778" layer="97">P9.31</text>
+<text x="149.86" y="50.8" size="1.778" layer="97">P9.28</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
@@ -9028,6 +9032,41 @@ General-purpose diode for high-speed switching</description>
 <pinref part="X1" gate="G$1" pin="UART2_RXD"/>
 <wire x1="109.22" y1="58.42" x2="142.24" y2="58.42" width="0.1524" layer="91"/>
 <label x="119.38" y="58.42" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="BB_USB_VCC" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="GPIO2_1"/>
+<wire x1="109.22" y1="129.54" x2="149.86" y2="129.54" width="0.1524" layer="91"/>
+<label x="124.46" y="129.54" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="BB_SPI1_CS0" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="SPI1_CS0"/>
+<wire x1="109.22" y1="50.8" x2="142.24" y2="50.8" width="0.1524" layer="91"/>
+<label x="119.38" y="50.8" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="BB_SPI1_SCLK" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="SPI1_SCLK"/>
+<wire x1="53.34" y1="45.72" x2="22.86" y2="45.72" width="0.1524" layer="91"/>
+<label x="22.86" y="45.72" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="BB_SPI1_D1" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="SPI1_DI"/>
+<wire x1="109.22" y1="48.26" x2="142.24" y2="48.26" width="0.1524" layer="91"/>
+<label x="119.38" y="48.26" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="BB_SPI1_D0" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="SPI1_DO"/>
+<wire x1="53.34" y1="48.26" x2="22.86" y2="48.26" width="0.1524" layer="91"/>
+<label x="22.86" y="48.26" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>
@@ -9745,21 +9784,21 @@ kurzschlussfest machen</text>
 <pinref part="R22" gate="G$1" pin="2"/>
 </segment>
 </net>
-<net name="N$23" class="0">
+<net name="BB_SPI1_CS0" class="0">
 <segment>
 <pinref part="R25" gate="G$1" pin="1"/>
 <wire x1="38.1" y1="60.96" x2="12.7" y2="60.96" width="0.1524" layer="91"/>
 <label x="12.7" y="60.96" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="N$24" class="0">
+<net name="BB_SPI1_SCLK" class="0">
 <segment>
 <pinref part="R24" gate="G$1" pin="1"/>
 <wire x1="12.7" y1="55.88" x2="30.48" y2="55.88" width="0.1524" layer="91"/>
 <label x="12.7" y="55.88" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="N$26" class="0">
+<net name="BB_SPI1_D0" class="0">
 <segment>
 <pinref part="R23" gate="G$1" pin="1"/>
 <wire x1="12.7" y1="50.8" x2="38.1" y2="50.8" width="0.1524" layer="91"/>

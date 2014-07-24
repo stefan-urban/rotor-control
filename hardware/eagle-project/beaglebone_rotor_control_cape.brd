@@ -2632,15 +2632,6 @@ Use 0.85mm drill for vias.</description>
 <signal name="N$8">
 <contactref element="R21" pad="1"/>
 </signal>
-<signal name="N$23">
-<contactref element="R25" pad="1"/>
-</signal>
-<signal name="N$24">
-<contactref element="R24" pad="1"/>
-</signal>
-<signal name="N$26">
-<contactref element="R23" pad="1"/>
-</signal>
 <signal name="N$27">
 <contactref element="R23" pad="2"/>
 <contactref element="IC5" pad="4"/>
@@ -2738,6 +2729,27 @@ Use 0.85mm drill for vias.</description>
 </signal>
 <signal name="ROT_E_UP">
 <contactref element="Q3" pad="3"/>
+</signal>
+<signal name="BB_USB_VCC">
+<contactref element="X1" pad="18"/>
+</signal>
+<signal name="BB_SPI1_CS0">
+<contactref element="X1" pad="74"/>
+<contactref element="R25" pad="1"/>
+<wire x1="-20.635" y1="-287.02" x2="35.56" y2="51.435" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="BB_SPI1_SCLK">
+<contactref element="X1" pad="77"/>
+<contactref element="R24" pad="1"/>
+<wire x1="-20.635" y1="-280.67" x2="30.48" y2="53.975" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="BB_SPI1_D1">
+<contactref element="X1" pad="76"/>
+</signal>
+<signal name="BB_SPI1_D0">
+<contactref element="X1" pad="75"/>
+<contactref element="R23" pad="1"/>
+<wire x1="-20.635" y1="-274.32" x2="33.02" y2="53.975" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 </board>
