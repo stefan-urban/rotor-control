@@ -125,7 +125,7 @@ char* gs232_command(char *cmd_str) {
 
 char* gs232_command(char *cmd_str) {
 
-	// Set speed to "Low"
+	// Set speed to "Low" (horizontal)
 	if (strcmp(cmd_str, "X1" HAMLIB_EOM) == 0) {
 		fprintf(stdout, "Set speed 1\n");
 		fflush(stdout);
@@ -135,12 +135,32 @@ char* gs232_command(char *cmd_str) {
 		return "ok"; // HAMLIB_REPLY_EOM;
 	}
 
-	// Set speed to "Middle 1"
+	// Set speed to "Middle 1" (horizontal)
 	if (strcmp(cmd_str, "X2" HAMLIB_EOM) == 0) {
 		fprintf(stdout, "Set speed 2\n");
 		fflush(stdout);
 
 		dac_set_voltage(rot_a_dac, (uint16_t) SPEED_2);
+
+		return "ok"; // HAMLIB_REPLY_EOM;
+	}
+
+	// Set speed to "Middle 2" (horizontal)
+	if (strcmp(cmd_str, "X3" HAMLIB_EOM) == 0) {
+		fprintf(stdout, "Set speed 3\n");
+		fflush(stdout);
+
+		dac_set_voltage(rot_a_dac, (uint16_t) SPEED_3);
+
+		return "ok"; // HAMLIB_REPLY_EOM;
+	}
+
+	// Set speed to "High" (horizontal)
+	if (strcmp(cmd_str, "X4" HAMLIB_EOM) == 0) {
+		fprintf(stdout, "Set speed 4\n");
+		fflush(stdout);
+
+		dac_set_voltage(rot_a_dac, (uint16_t) SPEED_4);
 
 		return "ok"; // HAMLIB_REPLY_EOM;
 	}
@@ -159,6 +179,36 @@ char* gs232_command(char *cmd_str) {
 		fflush(stdout);
 
 		gpio_set(*rot_e_up_gpio);
+
+		return "?" HAMLIB_REPLY_EOM;
+	}
+
+	// Down
+	if (strcmp(cmd_str, "D" HAMLIB_EOM) == 0) {
+		fprintf(stdout, "Go UP\n");
+		fflush(stdout);
+
+		gpio_set(*rot_e_up_gpio);
+
+		return "?" HAMLIB_REPLY_EOM;
+	}
+
+	// Left (Counter Clockwise / CCW)
+	if (strcmp(cmd_str, "L" HAMLIB_EOM) == 0) {
+		fprintf(stdout, "Go UP\n");
+		fflush(stdout);
+
+		//gpio_set(*rot_e_up_gpio);
+
+		return "?" HAMLIB_REPLY_EOM;
+	}
+
+	// Right (Clockwise / CW)
+	if (strcmp(cmd_str, "R" HAMLIB_EOM) == 0) {
+		fprintf(stdout, "Go UP\n");
+		fflush(stdout);
+
+		//gpio_set(*rot_e_up_gpio);
 
 		return "?" HAMLIB_REPLY_EOM;
 	}
