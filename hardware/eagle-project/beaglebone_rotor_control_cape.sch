@@ -8193,6 +8193,58 @@ General-purpose diode for high-speed switching</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="con-usbbuchse">
+<packages>
+<package name="USB">
+<pad name="P$1" x="-6.57" y="0" drill="2.3"/>
+<pad name="P$2" x="6.57" y="0" drill="2.3"/>
+<pad name="1-VCC" x="-3.5" y="2.71" drill="1"/>
+<pad name="2-D-" x="-1" y="2.71" drill="1"/>
+<pad name="2-D+" x="1" y="2.71" drill="1"/>
+<pad name="GND" x="3.5" y="2.71" drill="1"/>
+<wire x1="-7.25" y1="2.71" x2="7.25" y2="2.71" width="0.127" layer="21"/>
+<wire x1="7.25" y1="2.71" x2="7.25" y2="-10.54" width="0.127" layer="21"/>
+<wire x1="7.25" y1="-10.54" x2="-7.25" y2="-10.54" width="0.127" layer="21"/>
+<wire x1="-7.25" y1="-10.54" x2="-7.25" y2="2.71" width="0.127" layer="21"/>
+<wire x1="-7.75" y1="1.27" x2="-7.75" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="7.75" y1="1.27" x2="7.75" y2="-1.27" width="0.127" layer="21"/>
+</package>
+</packages>
+<symbols>
+<symbol name="USBSYM">
+<pin name="VCC" x="-7.62" y="7.62" visible="pin" length="middle"/>
+<pin name="GND" x="-7.62" y="-7.62" visible="pin" length="middle"/>
+<pin name="D+" x="-7.62" y="2.54" visible="pin" length="middle"/>
+<pin name="D-" x="-7.62" y="-2.54" visible="pin" length="middle"/>
+<wire x1="-2.54" y1="12.7" x2="-2.54" y2="-12.7" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="-12.7" x2="12.7" y2="-12.7" width="0.254" layer="94"/>
+<wire x1="12.7" y1="-12.7" x2="12.7" y2="12.7" width="0.254" layer="94"/>
+<wire x1="12.7" y1="12.7" x2="-2.54" y2="12.7" width="0.254" layer="94"/>
+<text x="-2.54" y="15.24" size="1.778" layer="95">&gt;NAME</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="USBDEV" prefix="X">
+<description>http://www.conrad.de/ce/de/product/738805/USB-Steckverbinder-20-Buchse-Einbau-2410-02-Einbaukupplung-Typ-A-abgewinkelt-Lumberg-Inhalt-1-St?</description>
+<gates>
+<gate name="G$1" symbol="USBSYM" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="USB">
+<connects>
+<connect gate="G$1" pin="D+" pad="2-D+"/>
+<connect gate="G$1" pin="D-" pad="2-D-"/>
+<connect gate="G$1" pin="GND" pad="GND"/>
+<connect gate="G$1" pin="VCC" pad="1-VCC"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -8308,6 +8360,10 @@ General-purpose diode for high-speed switching</description>
 <part name="X3" library="con-te-dsub" deviceset="DSUB9" device=""/>
 <part name="X4" library="con-te-dsub" deviceset="DSUB9" device=""/>
 <part name="GND31" library="supply1" deviceset="GND" device=""/>
+<part name="FRAME5" library="frames_2" deviceset="A4L-LOC" device=""/>
+<part name="X5" library="con-usbbuchse" deviceset="USBDEV" device=""/>
+<part name="GND32" library="supply1" deviceset="GND" device=""/>
+<part name="P+7" library="supply1" deviceset="+5V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -9458,6 +9514,30 @@ kurzschlussfest machen</text>
 <pinref part="X4" gate="G$1" pin="1"/>
 <wire x1="195.58" y1="40.64" x2="226.06" y2="40.64" width="0.1524" layer="91"/>
 <label x="195.58" y="40.64" size="1.778" layer="95"/>
+</segment>
+</net>
+</nets>
+</sheet>
+<sheet>
+<plain>
+<text x="179.07" y="20.32" size="2.54" layer="94">Rotor controller supply control</text>
+<text x="30.48" y="139.7" size="2.54" layer="95">USB-Buchse für Master-Slave Steckdosenleiste</text>
+</plain>
+<instances>
+<instance part="FRAME5" gate="G$1" x="0" y="0"/>
+<instance part="X5" gate="G$1" x="83.82" y="101.6"/>
+<instance part="GND32" gate="1" x="71.12" y="88.9"/>
+<instance part="P+7" gate="1" x="71.12" y="116.84"/>
+</instances>
+<busses>
+</busses>
+<nets>
+<net name="GND" class="0">
+<segment>
+<pinref part="X5" gate="G$1" pin="GND"/>
+<wire x1="76.2" y1="93.98" x2="71.12" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="71.12" y1="93.98" x2="71.12" y2="91.44" width="0.1524" layer="91"/>
+<pinref part="GND32" gate="1" pin="GND"/>
 </segment>
 </net>
 </nets>
