@@ -93,8 +93,8 @@ char* gs232_command(char *cmd_str) {
 		fprintf(stdout, "Go UP\n");
 		fflush(stdout);
 
-		gpio_set(&rot_up_gpio);
-		gpio_reset(&rot_down_gpio);
+		gpio_up_set();
+		gpio_down_reset();
 
 		return "?" HAMLIB_REPLY_EOM;
 	}
@@ -104,8 +104,8 @@ char* gs232_command(char *cmd_str) {
 		fprintf(stdout, "Go UP\n");
 		fflush(stdout);
 
-		gpio_set(&rot_down_gpio);
-		gpio_reset(&rot_up_gpio);
+		gpio_down_set();
+		gpio_up_reset();
 
 		return "?" HAMLIB_REPLY_EOM;
 	}
@@ -115,8 +115,8 @@ char* gs232_command(char *cmd_str) {
 		fprintf(stdout, "Go UP\n");
 		fflush(stdout);
 
-		gpio_set(&rot_left_gpio);
-		gpio_reset(&rot_right_gpio);
+		gpio_left_set();
+		gpio_right_reset();
 
 		return "?" HAMLIB_REPLY_EOM;
 	}
@@ -126,8 +126,8 @@ char* gs232_command(char *cmd_str) {
 		fprintf(stdout, "Go UP\n");
 		fflush(stdout);
 
-		gpio_set(&rot_right_gpio);
-		gpio_reset(&rot_left_gpio);
+		gpio_right_set();
+		gpio_left_reset();
 
 		return "?" HAMLIB_REPLY_EOM;
 	}
@@ -137,8 +137,8 @@ char* gs232_command(char *cmd_str) {
 		fprintf(stdout, "Stopping azimuth rotor!\n");
 		fflush(stdout);
 
-		gpio_reset(&rot_left_gpio);
-		gpio_reset(&rot_right_gpio);
+		gpio_left_reset();
+		gpio_right_reset();
 
 		return "?" HAMLIB_REPLY_EOM;
 	}
@@ -148,8 +148,8 @@ char* gs232_command(char *cmd_str) {
 		fprintf(stdout, "Stopping elevation rotor!\n");
 		fflush(stdout);
 
-		gpio_reset(&rot_up_gpio);
-		gpio_reset(&rot_down_gpio);
+		gpio_up_reset();
+		gpio_down_reset();
 
 		return "?" HAMLIB_REPLY_EOM;
 	}
@@ -158,10 +158,10 @@ char* gs232_command(char *cmd_str) {
 		fprintf(stdout, "Stopping all rotors!\n");
 		fflush(stdout);
 
-		gpio_reset(&rot_up_gpio);
-		gpio_reset(&rot_down_gpio);
-		gpio_reset(&rot_left_gpio);
-		gpio_reset(&rot_right_gpio);
+		gpio_up_reset();
+		gpio_down_reset();
+		gpio_left_reset();
+		gpio_right_reset();
 
 		return "?" HAMLIB_REPLY_EOM;
 	}

@@ -6,114 +6,140 @@
  *      Author: stefan
  */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <stdint.h>
-#include <stdbool.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-#include "gpio.h"
-
-
-gpio_t rot_up_gpio;
-gpio_t rot_down_gpio;
-gpio_t rot_left_gpio;
-gpio_t rot_right_gpio;
+#define GPIO_UP_NUM (45)
+#define GPIO_DOWN_NUM (45)
+#define GPIO_LEFT_NUM (45)
+#define GPIO_RIGHT_NUM (45)
 
 
-static char *export_file = "/sys/class/gpio/export";
-static char *unexport_file = "/sys/class/gpio/unexport";
-static char *default_folder_path = "/sys/class/gpio/gpio";
-
-
-gpio_t gpio_export(uint8_t num)
+int gpio_export(int pin)
 {
-	gpio_t gpio;
-	intptr_t fd;
+	FILE *fp = NULL;
 
-	char *tmp_gpio_path = default_folder_path;
-	char *tmp_num = "";
-
-	// Open export file and write GPIO num
-	fd = open(export_file, O_RDONLY);
-
-	if (fd < 0)
+	if ((fp = fopen("/sys/class/gpio/export", "w")) == NULL)
 	{
-		perror("Could not gpio/export file. (Permissions set right?)");
-		abort();
+		perror("Problem exporting GPIO!\n");
+		return -1;
 	}
 
-	write(fd, num, 1);
-	close(fd);
+	fprintf(fp, "%d", pin);
+	fclose(fp);
 
 
-	// Convert num to string
-	sprintf(tmp_num, "%d", num);
+	// Set direction to out
+	char gpio_direction[50];
 
-	// Create GPIO folder path
-	strcat(tmp_gpio_path, tmp_num);
+	sprintf(gpio_direction, "/sys/class/gpio/gpio%d/direction", pin); 
 
-
-	// Populate struct
-	gpio.fd = fd;
-	gpio.gpio_path = tmp_gpio_path;
-	gpio.num = num;
-
-	return gpio;
-}
-
-void gpio_unexport(gpio_t *gpio)
-{
-	intptr_t fd;
-	char *tmp_num = "";
-
-	// Open unexport file and write GPIO num
-	fd = open(unexport_file, O_RDONLY);
-
-	if (fd < 0)
+	if ((fp = fopen(gpio_direction, "w")) == NULL)
 	{
-		perror("Could not open gpio/unexport file. (Permissions set right?)");
-		abort();
+		perror("Problem setting direction!\n");
+		return -1;
 	}
 
-	// Convert num to string
-	sprintf(tmp_num, "%d",gpio->num);
+	fprintf(fp, "out");
+	fclose(fp);
 
-	write(fd, tmp_num, 1);
-	close(fd);
+	return 0;
 }
 
-void gpio_set_value(gpio_t *gpio, bool value)
+int gpio_unexport(int pin)
 {
-	intptr_t fd;
+	FILE *fp = NULL;
 
-	char *tmp_value_path = "";
-
-	strcat(tmp_value_path, gpio->gpio_path);
-	strcat(tmp_value_path, "/value");
-
-	// Open value file
-	fd = open(tmp_value_path, O_WRONLY);
-
-	if (fd < 0)
+	if ((fp = fopen("/sys/class/gpio/unexport", "w")) == NULL)
 	{
-		perror("Could not open gpio/value file. (Permissions set right?)");
-		abort();
+		perror("Problem unexporting GPIO!\n");
+		return -1;
 	}
 
-	// Write value
-	write(fd, value ? "1" : "0", 1);
-	close(fd);
+	fprintf(fp, "%d", pin);
+	fclose(fp);
+
+	return 0;
 }
 
-void gpio_set(gpio_t *gpio)
+int gpio_set(int pin, int value)
 {
-	gpio_set_value(gpio, true);
+	FILE *fp = NULL;
+	char gpio_value[50];
+
+	sprintf(gpio_value, "/sys/class/gpio/gpio%d/value", pin); 
+
+	if ((fp = fopen(gpio_value, "w")) == NULL)
+	{
+		perror("Problem setting value!\n");
+		return -1;
+	}
+
+	fprintf(fp, value ? "1" : "0");
+	fclose(fp);
+
+	return 0;
 }
 
-void gpio_reset(gpio_t *gpio)
+uint8_t gpio_init()
 {
-	gpio_set_value(gpio, false);
+	gpio_export(GPIO_UP_NUM);
+	gpio_export(GPIO_DOWN_NUM);
+	gpio_export(GPIO_LEFT_NUM);
+	gpio_export(GPIO_RIGHT_NUM);
+
+	return 0;
 }
+
+uint8_t gpio_clean()
+{
+	gpio_unexport(GPIO_UP_NUM);
+	gpio_unexport(GPIO_DOWN_NUM);
+	gpio_unexport(GPIO_LEFT_NUM);
+	gpio_unexport(GPIO_RIGHT_NUM);
+
+	return 0;
+}
+
+
+void gpio_up_set()
+{
+	gpio_set(GPIO_UP_NUM, 1);
+}
+
+void gpio_up_reset()
+{
+	gpio_set(GPIO_UP_NUM, 0);
+}
+
+void gpio_down_set()
+{
+	gpio_set(GPIO_DOWN_NUM, 1);
+}
+
+void gpio_down_reset()
+{
+	gpio_set(GPIO_DOWN_NUM, 0);
+}
+
+void gpio_left_set()
+{
+	gpio_set(GPIO_LEFT_NUM, 1);
+}
+
+void gpio_left_reset()
+{
+	gpio_set(GPIO_LEFT_NUM, 0);
+}
+
+void gpio_right_set()
+{
+	gpio_set(GPIO_RIGHT_NUM, 1);
+}
+
+void gpio_right_reset()
+{
+	gpio_set(GPIO_RIGHT_NUM, 0);
+}
+

@@ -11,43 +11,26 @@
 
 #include <stdint.h>
 
-typedef struct {
-	char *gpio_path;
-	uint8_t num;
-	intptr_t fd;
-} gpio_t;
-
-
-extern gpio_t rot_up_gpio;
-extern gpio_t rot_down_gpio;
-extern gpio_t rot_left_gpio;
-extern gpio_t rot_right_gpio;
-
+/**
+ * Initialization performs exports on all required GPIOs
+ */
+uint8_t gpio_init();
+uint8_t gpio_clean();
 
 /**
- * Creates new gpio
- *
- * @param uint8_t num: Number of GPIO = GPIO_MODULE * 32 + GPIO_NUM
- *                     i.e. P9_14 = gpio1[18] >> num = 1 * 32 + 18 = 50
+ * Rotor GPIOs
  */
-gpio_t gpio_export(uint8_t num);
+void gpio_up_set();
+void gpio_up_reset();
 
-/**
- * Closes the gpio
- */
-void gpio_unexport(gpio_t *gpio);
+void gpio_down_set();
+void gpio_down_reset();
 
-/**
- * Set value to 1
- */
-void gpio_set(gpio_t *gpio);
+void gpio_left_set();
+void gpio_left_reset();
 
-/**
- * Set value to 0
- */
-void gpio_reset(gpio_t *gpio);
-
-
+void gpio_right_set();
+void gpio_right_reset();
 
 #endif /* GPIO_H_ */
 
