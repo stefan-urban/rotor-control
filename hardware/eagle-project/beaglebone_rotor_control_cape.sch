@@ -3,7 +3,7 @@
 <eagle version="6.5.0">
 <drawing>
 <settings>
-<setting alwaysvectorfont="no"/>
+<setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
@@ -8368,10 +8368,10 @@ General-purpose diode for high-speed switching</description>
 <sheets>
 <sheet>
 <plain>
-<text x="179.07" y="20.32" size="2.54" layer="94">BeagleBone Headers</text>
-<text x="147.32" y="147.32" size="1.778" layer="97">- Power supply is provided by BeagleBone Black</text>
-<text x="147.32" y="152.4" size="2.54" layer="97">Information:</text>
-<text x="147.32" y="142.24" size="1.778" layer="97">- BeagleBone Black cape layout is provided by Adafruit</text>
+<text x="179.07" y="20.32" size="2.54" layer="94">BeagleBone headers</text>
+<text x="162.56" y="93.98" size="1.778" layer="97">- Power supply is provided by BeagleBone Black</text>
+<text x="162.56" y="99.06" size="2.54" layer="97">Information:</text>
+<text x="162.56" y="88.9" size="1.778" layer="97">- BeagleBone Black cape layout is provided by Adafruit</text>
 <text x="10.16" y="63.5" size="1.778" layer="97">P9.17</text>
 <text x="149.86" y="63.5" size="1.778" layer="97">P9.18</text>
 <text x="149.86" y="58.42" size="1.778" layer="97">P9.22</text>
@@ -8382,6 +8382,17 @@ General-purpose diode for high-speed switching</description>
 <text x="149.86" y="48.26" size="1.778" layer="97">P9.30</text>
 <text x="10.16" y="45.72" size="1.778" layer="97">P9.31</text>
 <text x="149.86" y="50.8" size="1.778" layer="97">P9.28</text>
+<text x="17.78" y="137.16" size="1.778" layer="97">P8.11</text>
+<text x="17.78" y="134.62" size="1.778" layer="97">P8.13</text>
+<text x="17.78" y="132.08" size="1.778" layer="97">P8.15</text>
+<text x="17.78" y="129.54" size="1.778" layer="97">P8.17</text>
+<text x="17.78" y="127" size="1.778" layer="97">P8.19</text>
+<text x="152.4" y="137.16" size="1.778" layer="97">P8.12</text>
+<text x="152.4" y="134.62" size="1.778" layer="97">P8.14</text>
+<text x="152.4" y="132.08" size="1.778" layer="97">P8.16</text>
+<text x="152.4" y="129.54" size="1.778" layer="97">P8.18</text>
+<text x="149.86" y="40.64" size="1.778" layer="97">P9.36</text>
+<text x="149.86" y="38.1" size="1.778" layer="97">P9.38</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
@@ -8549,6 +8560,76 @@ General-purpose diode for high-speed switching</description>
 <pinref part="X1" gate="G$1" pin="SPI1_DO"/>
 <wire x1="53.34" y1="48.26" x2="22.86" y2="48.26" width="0.1524" layer="91"/>
 <label x="22.86" y="48.26" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="BB_DOUT_RIGHT" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="EHRPWM2B"/>
+<wire x1="53.34" y1="134.62" x2="25.4" y2="134.62" width="0.1524" layer="91"/>
+<label x="25.4" y="134.62" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="BB_DOUT_DOWN" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="GPIO0_27"/>
+<wire x1="25.4" y1="129.54" x2="53.34" y2="129.54" width="0.1524" layer="91"/>
+<label x="25.4" y="129.54" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="N$41" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="EHRPWM2A"/>
+<wire x1="53.34" y1="127" x2="25.4" y2="127" width="0.1524" layer="91"/>
+<label x="25.4" y="127" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="N$42" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="GPIO1_14"/>
+<wire x1="109.22" y1="132.08" x2="149.86" y2="132.08" width="0.1524" layer="91"/>
+<label x="124.46" y="132.08" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="N$43" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="GPIO0_26"/>
+<wire x1="149.86" y1="134.62" x2="109.22" y2="134.62" width="0.1524" layer="91"/>
+<label x="124.46" y="134.62" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="N$44" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="GPIO1_12"/>
+<wire x1="109.22" y1="137.16" x2="149.86" y2="137.16" width="0.1524" layer="91"/>
+<label x="124.46" y="137.16" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="BB_DOUT_LEFT" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="GPIO1_13"/>
+<wire x1="25.4" y1="137.16" x2="53.34" y2="137.16" width="0.1524" layer="91"/>
+<label x="25.4" y="137.16" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="BB_DOUT_UP" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="GPIO1_15"/>
+<wire x1="53.34" y1="132.08" x2="25.4" y2="132.08" width="0.1524" layer="91"/>
+<label x="25.4" y="132.08" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="BB_AIN_H" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="AIN5"/>
+<wire x1="109.22" y1="40.64" x2="142.24" y2="40.64" width="0.1524" layer="91"/>
+<label x="119.38" y="40.64" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="BB_AIN_E" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="AIN3"/>
+<wire x1="142.24" y1="38.1" x2="109.22" y2="38.1" width="0.1524" layer="91"/>
+<label x="119.38" y="38.1" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>
@@ -8908,7 +8989,7 @@ refresh of Vout</text>
 <junction x="60.96" y="124.46"/>
 </segment>
 </net>
-<net name="BB_AIN1" class="0">
+<net name="BB_AIN_H" class="0">
 <segment>
 <pinref part="C2" gate="G$1" pin="1"/>
 <wire x1="35.56" y1="119.38" x2="35.56" y2="124.46" width="0.1524" layer="91"/>
@@ -8991,14 +9072,14 @@ refresh of Vout</text>
 <pinref part="R6" gate="G$1" pin="2"/>
 </segment>
 </net>
-<net name="N$14" class="0">
+<net name="BB_DOUT_RIGHT" class="0">
 <segment>
 <wire x1="172.72" y1="96.52" x2="144.78" y2="96.52" width="0.1524" layer="91"/>
 <label x="144.78" y="96.52" size="1.778" layer="95"/>
 <pinref part="R7" gate="G$1" pin="1"/>
 </segment>
 </net>
-<net name="N$15" class="0">
+<net name="BB_DOUT_LEFT" class="0">
 <segment>
 <wire x1="170.18" y1="147.32" x2="144.78" y2="147.32" width="0.1524" layer="91"/>
 <label x="144.78" y="147.32" size="1.778" layer="95"/>
@@ -9398,7 +9479,7 @@ kurzschlussfest machen</text>
 <label x="195.58" y="48.26" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="BB_AIN2" class="0">
+<net name="BB_AIN_E" class="0">
 <segment>
 <pinref part="R26" gate="G$1" pin="1"/>
 <wire x1="33.02" y1="127" x2="35.56" y2="127" width="0.1524" layer="91"/>
@@ -9454,14 +9535,14 @@ kurzschlussfest machen</text>
 <label x="195.58" y="50.8" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="N$34" class="0">
+<net name="BB_DOUT_DOWN" class="0">
 <segment>
 <pinref part="R31" gate="G$1" pin="1"/>
 <wire x1="172.72" y1="91.44" x2="144.78" y2="91.44" width="0.1524" layer="91"/>
 <label x="144.78" y="91.44" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="N$37" class="0">
+<net name="BB_DOUT_UP" class="0">
 <segment>
 <pinref part="R32" gate="G$1" pin="1"/>
 <wire x1="144.78" y1="142.24" x2="170.18" y2="142.24" width="0.1524" layer="91"/>
