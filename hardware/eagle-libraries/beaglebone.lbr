@@ -124,9 +124,9 @@
 <library>
 <packages>
 <package name="BEAGLEBONE_SHIELD">
-<wire x1="54.61" y1="86.36" x2="54.61" y2="13.335" width="0.127" layer="20"/>
+<wire x1="58.61" y1="86.36" x2="58.61" y2="13.335" width="0.127" layer="20"/>
 <wire x1="54.61" y1="14.605" x2="54.61" y2="6.35" width="0.127" layer="51" style="shortdash"/>
-<wire x1="-8" y1="86.36" x2="54.61" y2="86.36" width="0.127" layer="20"/>
+<wire x1="-8" y1="86.36" x2="58.61" y2="86.36" width="0.127" layer="20"/>
 <wire x1="5.08" y1="17.78" x2="5.715" y2="18.415" width="0.1524" layer="21"/>
 <wire x1="5.715" y1="18.415" x2="5.715" y2="19.685" width="0.1524" layer="21"/>
 <wire x1="5.715" y1="19.685" x2="5.08" y2="20.32" width="0.1524" layer="21"/>
@@ -353,19 +353,6 @@
 <wire x1="53.975" y1="64.135" x2="53.975" y2="65.405" width="0.1524" layer="21"/>
 <wire x1="53.975" y1="64.135" x2="53.34" y2="63.5" width="0.1524" layer="21"/>
 <wire x1="49.53" y1="66.04" x2="53.34" y2="66.04" width="0.1524" layer="21"/>
-<wire x1="49.53" y1="66.04" x2="48.895" y2="66.675" width="0.1524" layer="21"/>
-<wire x1="48.895" y1="67.945" x2="48.895" y2="66.675" width="0.1524" layer="21"/>
-<wire x1="48.895" y1="67.945" x2="49.53" y2="68.58" width="0.1524" layer="21"/>
-<wire x1="53.34" y1="68.58" x2="53.975" y2="67.945" width="0.1524" layer="21"/>
-<wire x1="53.975" y1="66.675" x2="53.975" y2="67.945" width="0.1524" layer="21"/>
-<wire x1="53.975" y1="66.675" x2="53.34" y2="66.04" width="0.1524" layer="21"/>
-<wire x1="49.53" y1="68.58" x2="53.34" y2="68.58" width="0.1524" layer="21"/>
-<wire x1="49.53" y1="68.58" x2="48.895" y2="69.215" width="0.1524" layer="21"/>
-<wire x1="48.895" y1="70.485" x2="48.895" y2="69.215" width="0.1524" layer="21"/>
-<wire x1="48.895" y1="70.485" x2="49.53" y2="71.12" width="0.1524" layer="21"/>
-<wire x1="53.34" y1="71.12" x2="53.975" y2="70.485" width="0.1524" layer="21"/>
-<wire x1="53.975" y1="69.215" x2="53.975" y2="70.485" width="0.1524" layer="21"/>
-<wire x1="53.975" y1="69.215" x2="53.34" y2="68.58" width="0.1524" layer="21"/>
 <wire x1="49.53" y1="71.12" x2="53.34" y2="71.12" width="0.1524" layer="21"/>
 <wire x1="49.53" y1="71.12" x2="48.895" y2="71.755" width="0.1524" layer="21"/>
 <wire x1="48.895" y1="73.025" x2="48.895" y2="71.755" width="0.1524" layer="21"/>
@@ -387,7 +374,7 @@
 <wire x1="6.35" y1="0" x2="48.26" y2="0" width="0.127" layer="51" style="shortdash"/>
 <wire x1="0" y1="72.605" x2="0" y2="6.35" width="0.127" layer="51" style="shortdash"/>
 <wire x1="-8" y1="2.605" x2="12.7" y2="2.605" width="0.127" layer="20"/>
-<wire x1="37.465" y1="13.335" x2="54.61" y2="13.335" width="0.127" layer="20"/>
+<wire x1="37.465" y1="13.335" x2="58.61" y2="13.335" width="0.127" layer="20"/>
 <wire x1="12.7" y1="20.32" x2="37.465" y2="20.32" width="0.127" layer="20"/>
 <pad name="1" x="4.445" y="19.05" drill="0.85" shape="square" rot="R90"/>
 <pad name="2" x="1.905" y="19.05" drill="0.85" rot="R90"/>
@@ -453,10 +440,6 @@
 <pad name="82" x="50.165" y="62.23" drill="0.85" rot="R90"/>
 <pad name="83" x="52.705" y="64.77" drill="0.85" rot="R90"/>
 <pad name="84" x="50.165" y="64.77" drill="0.85" rot="R90"/>
-<pad name="85" x="52.705" y="67.31" drill="0.85" rot="R90"/>
-<pad name="86" x="50.165" y="67.31" drill="0.85" rot="R90"/>
-<pad name="87" x="52.705" y="69.85" drill="0.85" rot="R90"/>
-<pad name="88" x="50.165" y="69.85" drill="0.85" rot="R90"/>
 <pad name="89" x="52.705" y="72.39" drill="0.85" rot="R90"/>
 <pad name="90" x="50.165" y="72.39" drill="0.85" rot="R90"/>
 <pad name="91" x="52.705" y="74.93" drill="0.85" rot="R90"/>
@@ -530,15 +513,11 @@
 <rectangle x1="52.451" y1="61.976" x2="52.959" y2="62.484" layer="51" rot="R90"/>
 <rectangle x1="49.911" y1="64.516" x2="50.419" y2="65.024" layer="51" rot="R90"/>
 <rectangle x1="52.451" y1="64.516" x2="52.959" y2="65.024" layer="51" rot="R90"/>
-<rectangle x1="49.911" y1="67.056" x2="50.419" y2="67.564" layer="51" rot="R90"/>
-<rectangle x1="52.451" y1="67.056" x2="52.959" y2="67.564" layer="51" rot="R90"/>
-<rectangle x1="49.911" y1="69.596" x2="50.419" y2="70.104" layer="51" rot="R90"/>
-<rectangle x1="52.451" y1="69.596" x2="52.959" y2="70.104" layer="51" rot="R90"/>
 <rectangle x1="49.911" y1="72.136" x2="50.419" y2="72.644" layer="51" rot="R90"/>
 <rectangle x1="52.451" y1="72.136" x2="52.959" y2="72.644" layer="51" rot="R90"/>
 <rectangle x1="49.911" y1="74.676" x2="50.419" y2="75.184" layer="51" rot="R90"/>
 <rectangle x1="52.451" y1="74.676" x2="52.959" y2="75.184" layer="51" rot="R90"/>
-<rectangle x1="28.575" y1="69.215" x2="43.815" y2="86.36" layer="39"/>
+<rectangle x1="28.575" y1="69.215" x2="43.815" y2="86.36" layer="40"/>
 <rectangle x1="40.005" y1="0" x2="50.165" y2="11.43" layer="39"/>
 <rectangle x1="15.875" y1="0" x2="34.29" y2="17.78" layer="39"/>
 <wire x1="12.7" y1="2.605" x2="12.7" y2="20.32" width="0.127" layer="20"/>
@@ -601,10 +580,6 @@
 <pin name="AIN5" x="27.94" y="-48.26" visible="pin" length="short" direction="pas" function="dot" rot="R180"/>
 <pin name="AIN2" x="-27.94" y="-50.8" visible="pin" length="short" direction="pas" function="dot"/>
 <pin name="AIN3" x="27.94" y="-50.8" visible="pin" length="short" direction="pas" function="dot" rot="R180"/>
-<pin name="AIN0" x="-27.94" y="-53.34" visible="pin" length="short" direction="pwr" function="dot"/>
-<pin name="AIN1" x="27.94" y="-53.34" visible="pin" length="short" direction="pas" function="dot" rot="R180"/>
-<pin name="CLKOUT2" x="-27.94" y="-55.88" visible="pin" length="short" direction="in" function="dot"/>
-<pin name="GPIO0_7" x="27.94" y="-55.88" visible="pin" length="short" direction="pas" function="dot" rot="R180"/>
 <pin name="GND@3" x="-27.94" y="-58.42" visible="pin" length="short" direction="pwr" function="dot"/>
 <pin name="GND@5" x="27.94" y="-58.42" visible="pin" length="short" direction="pwr" function="dot" rot="R180"/>
 <pin name="GND@4" x="-27.94" y="-60.96" visible="pin" length="short" direction="pwr" function="dot"/>
@@ -648,14 +623,11 @@ Should match A3 pinout - but not completely tested</description>
 <devices>
 <device name="" package="BEAGLEBONE_SHIELD">
 <connects>
-<connect gate="G$1" pin="AIN0" pad="85"/>
-<connect gate="G$1" pin="AIN1" pad="86"/>
 <connect gate="G$1" pin="AIN2" pad="83"/>
 <connect gate="G$1" pin="AIN3" pad="84"/>
 <connect gate="G$1" pin="AIN4" pad="79"/>
 <connect gate="G$1" pin="AIN5" pad="82"/>
 <connect gate="G$1" pin="AIN6" pad="81"/>
-<connect gate="G$1" pin="CLKOUT2" pad="87"/>
 <connect gate="G$1" pin="EHRPWM1A" pad="60"/>
 <connect gate="G$1" pin="EHRPWM1B" pad="62"/>
 <connect gate="G$1" pin="EHRPWM2A" pad="19"/>
@@ -671,7 +643,6 @@ Should match A3 pinout - but not completely tested</description>
 <connect gate="G$1" pin="GNDA_ADC" pad="80"/>
 <connect gate="G$1" pin="GPIO0_26" pad="14"/>
 <connect gate="G$1" pin="GPIO0_27" pad="17"/>
-<connect gate="G$1" pin="GPIO0_7" pad="88"/>
 <connect gate="G$1" pin="GPIO1_0" pad="25"/>
 <connect gate="G$1" pin="GPIO1_1" pad="24"/>
 <connect gate="G$1" pin="GPIO1_12" pad="12"/>
