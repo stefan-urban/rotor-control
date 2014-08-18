@@ -186,7 +186,7 @@ DIN A4, landscape with location and doc. field</description>
 <packages>
 <package name="BEAGLEBONE_SHIELD">
 <wire x1="58.61" y1="86.36" x2="58.61" y2="13.335" width="0.127" layer="20"/>
-<wire x1="54.61" y1="14.605" x2="54.61" y2="6.35" width="0.127" layer="51" style="shortdash"/>
+<wire x1="54.61" y1="72.605" x2="54.61" y2="6.35" width="0.127" layer="51" style="shortdash"/>
 <wire x1="-8" y1="86.36" x2="58.61" y2="86.36" width="0.127" layer="20"/>
 <wire x1="5.08" y1="17.78" x2="5.715" y2="18.415" width="0.1524" layer="21"/>
 <wire x1="5.715" y1="18.415" x2="5.715" y2="19.685" width="0.1524" layer="21"/>
@@ -435,7 +435,8 @@ DIN A4, landscape with location and doc. field</description>
 <wire x1="6.35" y1="0" x2="48.26" y2="0" width="0.127" layer="51" style="shortdash"/>
 <wire x1="0" y1="72.605" x2="0" y2="6.35" width="0.127" layer="51" style="shortdash"/>
 <wire x1="-8" y1="2.605" x2="12.7" y2="2.605" width="0.127" layer="20"/>
-<wire x1="37.465" y1="13.335" x2="58.61" y2="13.335" width="0.127" layer="20"/>
+<wire x1="37.465" y1="13.335" x2="49.335" y2="13.335" width="0.127" layer="20"/>
+<wire x1="53.535" y1="13.335" x2="58.61" y2="13.335" width="0.127" layer="20"/>
 <wire x1="12.7" y1="20.32" x2="37.465" y2="20.32" width="0.127" layer="20"/>
 <pad name="1" x="4.445" y="19.05" drill="0.85" shape="square" rot="R90"/>
 <pad name="2" x="1.905" y="19.05" drill="0.85" rot="R90"/>
@@ -584,9 +585,12 @@ DIN A4, landscape with location and doc. field</description>
 <wire x1="12.7" y1="2.605" x2="12.7" y2="20.32" width="0.127" layer="20"/>
 <wire x1="12.7" y1="86.36" x2="0" y2="73.66" width="0.127" layer="51" style="shortdash" curve="90"/>
 <hole x="6.35" y="80.645" drill="4.2"/>
-<hole x="51.435" y="14.605" drill="4.2"/>
 <wire x1="37.465" y1="20.32" x2="37.465" y2="13.335" width="0.127" layer="20"/>
 <hole x="48.26" y="80.645" drill="4.2"/>
+<wire x1="49.335" y1="13.335" x2="49.335" y2="14.605" width="0.127" layer="20"/>
+<wire x1="53.535" y1="14.605" x2="53.535" y2="13.335" width="0.127" layer="20"/>
+<wire x1="49.335" y1="14.605" x2="53.535" y2="14.605" width="0.127" layer="20" curve="-180"/>
+<wire x1="41.91" y1="86.36" x2="54.61" y2="72.605" width="0.127" layer="51" style="shortdash" curve="-90"/>
 </package>
 </packages>
 <symbols>
