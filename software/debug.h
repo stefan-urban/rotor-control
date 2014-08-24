@@ -2,7 +2,7 @@
  * debug.h
  *
  *  Created on: 24.08.2014
- *      Author: stefan
+ *      Author: Stefan Urban <stefan.urban@live.de>
  */
 
 #ifndef DEBUG_H_
@@ -30,7 +30,7 @@ void debug_msg(int log_level, const char *msg);
 /**
  * Set log mask
  */
-void debug_setmask(uint8_t log_level);
+void debug_setmask(int log_level);
 
 
 

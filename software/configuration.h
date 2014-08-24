@@ -2,7 +2,7 @@
  * config.h
  *
  *  Created on: 24.08.2014
- *      Author: stefan
+ *      Author: Stefan Urban <stefan.urban@live.de>
  */
 
 #ifndef CONFIG_H_

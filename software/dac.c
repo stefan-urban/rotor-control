@@ -2,7 +2,7 @@
  * dac.c
  *
  *  Created on: 26.06.2014
- *      Author: Stefan Urban
+ *      Author: Stefan Urban <stefan.urban@live.de>
  */
 
 #include <stdint.h>
@@ -25,23 +25,23 @@ dac_t rot_e_dac = {
 };
 
 
-void dac_set_voltage(dac_t dac, uint16_t new_voltage)
+void dac_set_voltage(dac_t dac, int new_voltage)
 {
-	uint16_t new_dac_value;
+	int new_dac_value;
 	
 	// new_dac_value = (new_voltage / reference_voltage) * 2 ^ resolution;
-	uint32_t tmp = new_voltage << dac.resolution;
-	new_dac_value = (uint16_t) (tmp / dac.reference_voltage);
+	int tmp = new_voltage << dac.resolution;
+	new_dac_value = (int) (tmp / dac.reference_voltage);
 	
 	(*(dac.set_value_function))(new_dac_value);
 }
 
-uint16_t dac_get_voltage(dac_t dac)
+int dac_get_voltage(dac_t dac)
 {
-	uint16_t voltage;
+	int voltage;
 	
 	// voltage = dac_value / (2^resolution) * reference_voltage
-	uint32_t tmp = (*(dac.get_value_function))() * dac.reference_voltage;
+	int tmp = (*(dac.get_value_function))() * dac.reference_voltage;
 	voltage = tmp >> dac.resolution;
 	
 	return voltage;

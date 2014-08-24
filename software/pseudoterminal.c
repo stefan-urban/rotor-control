@@ -2,7 +2,7 @@
  * pseudoterminal.c
  *
  *  Created on: 13.06.2014
- *      Author: stefan
+ *      Author: Stefan Urban <stefan.urban@live.de>
  */
 
 #include "pseudoterminal.h"
@@ -13,7 +13,6 @@
 
 #include <stdlib.h>
 #include <fcntl.h>
-#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>

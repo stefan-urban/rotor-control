@@ -2,9 +2,8 @@
  * gs232-interface.c
  *
  *  Created on: 13.06.2014
- *      Author: stefan
+ *      Author: Stefan Urban <stefan.urban@live.de>
  */
-
 
 #include <string.h>
 #include <stdio.h>

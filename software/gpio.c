@@ -1,9 +1,8 @@
-
 /*
  * gpio.c
  *
  *  Created on: 27.06.2014
- *      Author: stefan
+ *      Author: Stefan Urban <stefan.urban@live.de>
  */
 
 #include <stdint.h>
@@ -14,8 +13,8 @@
 #include "debug.h"
 
 
-#define GPIO_UP_NUM (47)
-#define GPIO_DOWN_NUM (27)
+#define GPIO_UP_NUM (27)
+#define GPIO_DOWN_NUM (47)
 #define GPIO_LEFT_NUM (45)
 #define GPIO_RIGHT_NUM (23)
 
@@ -118,7 +117,7 @@ int gpio_set(int pin, int value)
 	return 0;
 }
 
-uint8_t gpio_init()
+int gpio_init()
 {
 	debug_msg(LOG_DEBUG, "GPIO: Initializing");
 
@@ -130,7 +129,7 @@ uint8_t gpio_init()
 	return 0;
 }
 
-uint8_t gpio_clean()
+int gpio_clean()
 {
 	debug_msg(LOG_DEBUG, "GPIO: Cleaning up");
 

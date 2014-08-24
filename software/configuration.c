@@ -2,7 +2,7 @@
  * config.c
  *
  *  Created on: 24.08.2014
- *      Author: stefan
+ *      Author: Stefan Urban <stefan.urban@live.de>
  */
 
 #include <unistd.h>

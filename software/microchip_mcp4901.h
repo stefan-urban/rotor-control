@@ -2,7 +2,7 @@
  * microchip_mcp4901.h
  *
  *  Created on: 24.06.2014
- *      Author: Stefan Urban
+ *      Author: Stefan Urban <stefan.urban@live.de>
  */
 
 #ifndef MICROCHIP_MCP4901_H_
@@ -34,7 +34,7 @@ void mcp4901_disable(void);
  *
  * @param new_dac_value: 12-bit!
  */
-void mcp4901_set_value(uint16_t new_dac_value);
+void mcp4901_set_value(int new_dac_value);
 
 
 

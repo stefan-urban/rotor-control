@@ -2,7 +2,7 @@
  * gs232-interface.h
  *
  *  Created on: 13.06.2014
- *      Author: stefan
+ *      Author: Stefan Urban <stefan.urban@live.de>
  */
 
 #ifndef GS232_INTERFACE_H_

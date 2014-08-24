@@ -2,7 +2,7 @@
  * main.c
  *
  *  Created on: 26.05.2014
- *      Author: stefan
+ *      Author: Stefan Urban <stefan.urban@live.de>
  *
  *  Sources:
  *      - https://github.com/cymait/virtual-serial-port-example

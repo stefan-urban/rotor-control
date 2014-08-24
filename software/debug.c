@@ -2,7 +2,7 @@
  * debug.c
  *
  *  Created on: 24.08.2014
- *      Author: stefan
+ *      Author: Stefan Urban <stefan.urban@live.de>
  */
 
 #include <stdio.h>
@@ -11,7 +11,7 @@
 #include <syslog.h>
 
 
-void debug_setmask(uint8_t log_level)
+void debug_setmask(int log_level)
 {
 	setlogmask (LOG_UPTO (log_level));
 }

@@ -2,7 +2,7 @@
  * microchip_mcp4901.c
  *
  *  Created on: 26.06.2014
- *      Author: Stefan Urban
+ *      Author: Stefan Urban <stefan.urban@live.de>
  */
 
 /**
@@ -40,13 +40,13 @@
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
 
 static const char *device = "/dev/spidev1.0";
-static uint8_t mode;
-static uint8_t bits = 16;
-static uint32_t speed = 500000;
-static uint16_t delay;
+static int mode;
+static int bits = 16;
+static int speed = 500000;
+static int delay;
 
 
-void mcp4901_set_value(uint16_t new_dac_value)
+void mcp4901_set_value(int new_dac_value)
 {
 	int fd, ret;
 
@@ -57,7 +57,7 @@ void mcp4901_set_value(uint16_t new_dac_value)
 	// Sample: 0011 1000 0000 0000 = 0.5 * Vref
 	//          3    8    0    0
 	//uint8_t tx_data[] = {0x00, 0x3C};
-	uint8_t tx_data[] = {0xD0, 0x34};
+	int tx_data[] = {0xD0, 0x34};
 
 	// Fill in dav value
 	new_dac_value = 0x00FF & new_dac_value;

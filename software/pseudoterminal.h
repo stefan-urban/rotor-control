@@ -2,7 +2,7 @@
  * pseudoterminal.h
  *
  *  Created on: 13.06.2014
- *      Author: stefan
+ *      Author: Stefan Urban <stefan.urban@live.de>
  */
 
 #ifndef PSEUDOTERMINAL_H_

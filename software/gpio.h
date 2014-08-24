@@ -2,7 +2,7 @@
  * gpio.h
  *
  *  Created on: 27.06.2014
- *      Author: stefan
+ *      Author: Stefan Urban <stefan.urban@live.de>
  */
 
 #ifndef GPIO_H_
@@ -14,8 +14,8 @@
 /**
  * Initialization performs exports on all required GPIOs
  */
-uint8_t gpio_init();
-uint8_t gpio_clean();
+int gpio_init();
+int gpio_clean();
 
 /**
  * Rotor GPIOs
