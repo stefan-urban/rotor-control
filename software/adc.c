@@ -13,6 +13,10 @@
 
 int read_adc_ain3()
 {
+	char debug_str[100];
+
+	debugmsg(LOG_ERR, "Reading ADC / AIN3");
+
 	FILE *fp = NULL;
 	int adc_value = 0;
 
@@ -26,16 +30,18 @@ int read_adc_ain3()
 	fscanf(fp, "%d", &adc_value);
 	fclose(fp);
 
-	// Convert to string for debugging
-	char adc_value_str[5];
-	sprintf(adc_value_str, "%d", adc_value);
-	debugmsg(LOG_DEBUG, strcat("ADC value of AIN3 is: ", adc_value_str));
+	sprintf(debug_str, "ADC value of AIN3 is: %d", adc_value);
+	debugmsg(LOG_DEBUG, debug_str);
 
 	return adc_value;
 }
 
 int read_adc_ain5()
 {
+	char debug_str[100];
+
+	debugmsg(LOG_ERR, "Reading ADC / AIN5");
+
 	FILE *fp = NULL;
 	int adc_value = 0;
 
@@ -49,10 +55,8 @@ int read_adc_ain5()
 	fscanf(fp, "%d", &adc_value);
 	fclose(fp);
 
-	// Convert to string for debugging
-	char adc_value_str[5];
-	sprintf(adc_value_str, "%d", adc_value);
-	debugmsg(LOG_DEBUG, strcat("ADC value of AIN3 is: ", adc_value_str));
+	sprintf(debug_str, "ADC value of AIN5 is: %d", adc_value);
+	debugmsg(LOG_DEBUG, debug_str);
 
 	return adc_value;
 }

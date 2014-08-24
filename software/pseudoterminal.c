@@ -20,12 +20,16 @@
 #include <termios.h>
 #include <unistd.h>
 
+#include "debug.h"
+
 #define BAUDRATE (B9600)
 
 
 void pts_setupterminal(pseudoterminal_t pts)
 {
-    // Setup serial port
+	debugmsg(LOG_DEBUG, "PTS: Setup terminal configuration");
+
+	// Setup serial port
     struct termios newtio;
     memset(&newtio, 0, sizeof(newtio)); /* clear struct for new port settings */
 
@@ -90,15 +94,20 @@ pseudoterminal_t pts_open(void)
 {
 	pseudoterminal_t pts;
 
-    // Open pseudo terminal master
+	debugmsg(LOG_DEBUG, "PTS: Opening pseudoterminal");
+
+	// Open pseudo terminal master
     pts.fd = open("/dev/ptmx", O_RDWR | O_NOCTTY);
 
     // Stop on error
     if (pts.fd == -1) {
-        return pts;
+    	debugmsg(LOG_DEBUG, "PTS: Could not create pseudoterminal!");
+
+    	return pts;
     }
 
     // Set permissions
+	debugmsg(LOG_DEBUG, "PTS: Setup permissions");
     grantpt(pts.fd);
     unlockpt(pts.fd);
 
@@ -107,6 +116,9 @@ pseudoterminal_t pts_open(void)
 
     // Get the serial port the right configuration
     pts_setupterminal(pts);
+
+	debugmsg(LOG_DEBUG, "PTS: Name of new pseudoterminal is ");
+//	debugmsg(LOG_DEBUG, strcat("PTS: Name of new pseudoterminal is ", pts.name));
 
 	return pts;
 }

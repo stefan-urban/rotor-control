@@ -14,13 +14,13 @@
 void debugmsg(uint8_t log_level, const char *msg)
 {
 	// Always hand it over to syslog
-	setlogmask (LOG_UPTO (LOG_NOTICE));
+	setlogmask (LOG_UPTO (LOG_DEBUG));
 
 	openlog("rotor_control", LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
 	syslog(log_level, "%s", msg);
 	closelog();
 
-	// Fatal error aborts program
+	// An error (and worse) aborts program
 	if (log_level < 4)
 	{
 		abort();

@@ -9,6 +9,10 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+#include "debug.h"
+
 
 #define GPIO_UP_NUM (47)
 #define GPIO_DOWN_NUM (27)
@@ -18,11 +22,18 @@
 
 int gpio_export(int pin)
 {
+	char debug_str[100];
+
+	sprintf(debug_str, "GPIO: Export pin %d", pin);
+	debugmsg(LOG_DEBUG, debug_str);
+
+
 	FILE *fp = NULL;
 
 	if ((fp = fopen("/sys/class/gpio/export", "w")) == NULL)
 	{
-		perror("Problem exporting GPIO!\n");
+			sprintf(debug_str, "GPIO: Could not export pin %d. Export file not found!", pin);
+			debugmsg(LOG_ERR, debug_str);
 		return -1;
 	}
 
@@ -33,11 +44,16 @@ int gpio_export(int pin)
 	// Set direction to out
 	char gpio_direction[50];
 
+	sprintf(debug_str, "GPIO: Setting direction of pin %d to 'out'.", pin);
+	debugmsg(LOG_DEBUG, debug_str);
+
 	sprintf(gpio_direction, "/sys/class/gpio/gpio%d/direction", pin); 
 
 	if ((fp = fopen(gpio_direction, "w")) == NULL)
 	{
-		perror("Problem setting direction!\n");
+		sprintf(debug_str, "GPIO: Setting direction failed %d", pin);
+		debugmsg(LOG_ERR, debug_str);
+
 		return -1;
 	}
 
@@ -49,11 +65,19 @@ int gpio_export(int pin)
 
 int gpio_unexport(int pin)
 {
+	char debug_str[100];
+
+	sprintf(debug_str, "GPIO: Unexport pin %d", pin);
+	debugmsg(LOG_DEBUG, debug_str);
+
+
 	FILE *fp = NULL;
 
 	if ((fp = fopen("/sys/class/gpio/unexport", "w")) == NULL)
 	{
-		perror("Problem unexporting GPIO!\n");
+		sprintf(debug_str, "GPIO: Could not unexport pin %d. Unexport file not found!", pin);
+		debugmsg(LOG_DEBUG, debug_str);
+
 		return -1;
 	}
 
@@ -65,6 +89,12 @@ int gpio_unexport(int pin)
 
 int gpio_set(int pin, int value)
 {
+	char debug_str[100];
+
+	sprintf(debug_str, "GPIO: Set pin %d value to %d", pin, value);
+	debugmsg(LOG_DEBUG, debug_str);
+
+
 	FILE *fp = NULL;
 	char gpio_value[50];
 
@@ -72,7 +102,9 @@ int gpio_set(int pin, int value)
 
 	if ((fp = fopen(gpio_value, "w")) == NULL)
 	{
-		perror("Problem setting value!\n");
+		sprintf(debug_str, "GPIO: Setting pin %d value failed. File does not exist!", pin);
+		debugmsg(LOG_ERR, debug_str);
+
 		return -1;
 	}
 
@@ -84,6 +116,8 @@ int gpio_set(int pin, int value)
 
 uint8_t gpio_init()
 {
+	debugmsg(LOG_DEBUG, "GPIO: Initializing");
+
 	gpio_export(GPIO_UP_NUM);
 	gpio_export(GPIO_DOWN_NUM);
 	gpio_export(GPIO_LEFT_NUM);
@@ -94,6 +128,8 @@ uint8_t gpio_init()
 
 uint8_t gpio_clean()
 {
+	debugmsg(LOG_DEBUG, "GPIO: Cleaning up");
+
 	gpio_unexport(GPIO_UP_NUM);
 	gpio_unexport(GPIO_DOWN_NUM);
 	gpio_unexport(GPIO_LEFT_NUM);
