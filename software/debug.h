@@ -25,7 +25,13 @@
  * 	        7 = LOG_DEBUG
  * @param msg: debug message
  */
-void debugmsg(uint8_t log_level, const char *msg);
+void debug_msg(int log_level, const char *msg);
+
+/**
+ * Set log mask
+ */
+void debug_setmask(uint8_t log_level);
+
 
 
 #endif /* DEBUG_H_ */

@@ -47,7 +47,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Set speed to "Low" (horizontal)
 	if (strcmp(cmd_str, "X1" HAMLIB_EOM) == 0) {
-		debugmsg(LOG_INFO, "GS232-INTERFACE: Set speed 1");
+		debug_msg(LOG_INFO, "GS232-INTERFACE: Set speed 1");
 
 		dac_set_voltage(rot_a_dac, (uint16_t) SPEED_1);
 
@@ -56,7 +56,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Set speed to "Middle 1" (horizontal)
 	if (strcmp(cmd_str, "X2" HAMLIB_EOM) == 0) {
-		debugmsg(LOG_INFO, "GS232-INTERFACE: Set speed 2");
+		debug_msg(LOG_INFO, "GS232-INTERFACE: Set speed 2");
 
 		dac_set_voltage(rot_a_dac, (uint16_t) SPEED_2);
 
@@ -65,7 +65,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Set speed to "Middle 2" (horizontal)
 	if (strcmp(cmd_str, "X3" HAMLIB_EOM) == 0) {
-		debugmsg(LOG_INFO, "GS232-INTERFACE: Set speed 3");
+		debug_msg(LOG_INFO, "GS232-INTERFACE: Set speed 3");
 
 		dac_set_voltage(rot_a_dac, (uint16_t) SPEED_3);
 
@@ -74,7 +74,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Set speed to "High" (horizontal)
 	if (strcmp(cmd_str, "X4" HAMLIB_EOM) == 0) {
-		debugmsg(LOG_INFO, "GS232-INTERFACE: Set speed 4");
+		debug_msg(LOG_INFO, "GS232-INTERFACE: Set speed 4");
 
 		dac_set_voltage(rot_a_dac, (uint16_t) SPEED_4);
 
@@ -83,7 +83,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Get the current rotor position
 	if (strcmp(cmd_str, "C2" HAMLIB_EOM) == 0) {
-		debugmsg(LOG_INFO, "GS232-INTERFACE: Get the current rotor position");
+		debug_msg(LOG_INFO, "GS232-INTERFACE: Get the current rotor position");
 
 		char *retstr = malloc(sizeof(char) * 10);
 
@@ -92,14 +92,14 @@ char* gs232_command(char *cmd_str) {
 		sprintf(retstr, "+0%03d+0%03d", read_adc_ain3()/12, read_adc_ain5()/12);
 
 		sprintf(debug_str, "GS232-INTERFACE: Current rotor position is %s", retstr);
-		debugmsg(LOG_INFO, debug_str);
+		debug_msg(LOG_INFO, debug_str);
 
 		return retstr; // HAMLIB_REPLY_EOM;
 	}
 
 	// Up
 	if (strcmp(cmd_str, "U" HAMLIB_EOM) == 0) {
-		debugmsg(LOG_INFO, "GS232-INTERFACE: Go UP");
+		debug_msg(LOG_INFO, "GS232-INTERFACE: Go UP");
 
 		gpio_up_set();
 		gpio_down_reset();
@@ -109,7 +109,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Down
 	if (strcmp(cmd_str, "D" HAMLIB_EOM) == 0) {
-		debugmsg(LOG_INFO, "GS232-INTERFACE: Go DOWN");
+		debug_msg(LOG_INFO, "GS232-INTERFACE: Go DOWN");
 
 		gpio_down_set();
 		gpio_up_reset();
@@ -119,7 +119,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Left (Counter Clockwise / CCW)
 	if (strcmp(cmd_str, "L" HAMLIB_EOM) == 0) {
-		debugmsg(LOG_INFO, "GS232-INTERFACE: Go LEFT");
+		debug_msg(LOG_INFO, "GS232-INTERFACE: Go LEFT");
 
 		gpio_left_set();
 		gpio_right_reset();
@@ -129,7 +129,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Right (Clockwise / CW)
 	if (strcmp(cmd_str, "R" HAMLIB_EOM) == 0) {
-		debugmsg(LOG_INFO, "GS232-INTERFACE: Go RIGHT");
+		debug_msg(LOG_INFO, "GS232-INTERFACE: Go RIGHT");
 
 		gpio_right_set();
 		gpio_left_reset();
@@ -139,7 +139,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Azimuth stop
 	if (strcmp(cmd_str, "A" HAMLIB_EOM) == 0) {
-		debugmsg(LOG_INFO, "GS232-INTERFACE: Stopping azimuth rotor!");
+		debug_msg(LOG_INFO, "GS232-INTERFACE: Stopping azimuth rotor!");
 
 		gpio_left_reset();
 		gpio_right_reset();
@@ -149,7 +149,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Elevation stop
 	if (strcmp(cmd_str, "E" HAMLIB_EOM) == 0) {
-		debugmsg(LOG_INFO, "GS232-INTERFACE: Stopping elevation rotor!");
+		debug_msg(LOG_INFO, "GS232-INTERFACE: Stopping elevation rotor!");
 
 		gpio_up_reset();
 		gpio_down_reset();
@@ -158,7 +158,7 @@ char* gs232_command(char *cmd_str) {
 	}
 	// Stop
 	if (strcmp(cmd_str, "S" HAMLIB_EOM) == 0) {
-		debugmsg(LOG_INFO, "GS232-INTERFACE: Stopping all rotors!");
+		debug_msg(LOG_INFO, "GS232-INTERFACE: Stopping all rotors!");
 
 		gpio_up_reset();
 		gpio_down_reset();
@@ -169,7 +169,7 @@ char* gs232_command(char *cmd_str) {
 	}
 
 	sprintf(debug_str, "GS232-INTERFACE: Did not understand: %s", cmd_str);
-	debugmsg(LOG_WARNING, debug_str);
+	debug_msg(LOG_WARNING, debug_str);
 
 	return "?"; // HAMLIB_REPLY_EOM;
 }

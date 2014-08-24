@@ -27,7 +27,7 @@
 
 void pts_setupterminal(pseudoterminal_t pts)
 {
-	debugmsg(LOG_DEBUG, "PTS: Setup terminal configuration");
+	debug_msg(LOG_DEBUG, "PTS: Setup terminal configuration");
 
 	// Setup serial port
     struct termios newtio;
@@ -94,20 +94,20 @@ pseudoterminal_t pts_open(void)
 {
 	pseudoterminal_t pts;
 
-	debugmsg(LOG_DEBUG, "PTS: Opening pseudoterminal");
+	debug_msg(LOG_DEBUG, "PTS: Opening pseudoterminal");
 
 	// Open pseudo terminal master
     pts.fd = open("/dev/ptmx", O_RDWR | O_NOCTTY);
 
     // Stop on error
     if (pts.fd == -1) {
-    	debugmsg(LOG_DEBUG, "PTS: Could not create pseudoterminal!");
+    	debug_msg(LOG_DEBUG, "PTS: Could not create pseudoterminal!");
 
     	return pts;
     }
 
     // Set permissions
-	debugmsg(LOG_DEBUG, "PTS: Setup permissions");
+	debug_msg(LOG_DEBUG, "PTS: Setup permissions");
     grantpt(pts.fd);
     unlockpt(pts.fd);
 
@@ -117,7 +117,7 @@ pseudoterminal_t pts_open(void)
     // Get the serial port the right configuration
     pts_setupterminal(pts);
 
-	debugmsg(LOG_DEBUG, "PTS: Name of new pseudoterminal is ");
+	debug_msg(LOG_DEBUG, "PTS: Name of new pseudoterminal is ");
 //	debugmsg(LOG_DEBUG, strcat("PTS: Name of new pseudoterminal is ", pts.name));
 
 	return pts;
