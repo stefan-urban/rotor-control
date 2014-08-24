@@ -26,7 +26,6 @@ static int log_level = LOG_INFO;
 void get_configuration_file_options()
 {
 	config_t cfg;
-	const char *str;
 	char debug_str[100];
 
 	config_init(&cfg);
@@ -36,7 +35,8 @@ void get_configuration_file_options()
 	{
 		char debug_str[100];
 
-		sprintf(debug_str, "CONFIGURATON: file: Could not open file. %s:%d - %s", config_error_file(&cfg), config_error_line(&cfg), config_error_text(&cfg));
+		sprintf(debug_str, "CONFIGURATON: file: Could not open file. %s:%d - %s", config_error_file(&cfg),
+					config_error_line(&cfg), config_error_text(&cfg));
 		config_destroy(&cfg);
 
 		debug_msg(LOG_ERR, debug_str);
