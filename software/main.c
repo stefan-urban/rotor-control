@@ -19,6 +19,7 @@
 
 #include "pseudoterminal.h"
 #include "gs232-interface.h"
+#include "debug.h"
 
 
 #include "gpio.h"
@@ -32,13 +33,12 @@ int main(int argc, char** argv) {
     pseudoterminal_t pts = pts_open();
 
     if (pts.fd < 0) {
-    	fprintf(stderr, "Could not open pseudo terminal");
+    	debugmsg(LOG_ERR, "Could not open pseudo terminal");
     	return -1;
     }
 
-    fprintf(stdout, "%s\n", pts.name);
-    fflush(stdout);
 
+    debugmsg(LOG_NOTICE, strcat("Pseudoterminal is open at: ", pts.name));
 
     // Read line by line from serial port
     char buffer[255], *ret_str;
@@ -50,24 +50,31 @@ int main(int argc, char** argv) {
     	size = read (pts.fd, buffer, sizeof buffer);
     	buffer[size] = '\0';
 
+    	debugmsg(LOG_INFO, strcat("Did receive command: ", buffer));
+
     	// Hand the command string over to the gs232 interface, which will interpret
     	// the command and return a string to write back to the pts
     	ret_str = gs232_command(buffer);
+
+    	debugmsg(LOG_INFO, strcat("Answering: ", ret_str));
 
     	// Write answer back to serial port
     	size = strlen(ret_str);
     	write(pts.fd, ret_str, size);
 
-	// Quit
-	if( buffer[0] == 'q' )
-	{
-		break;
-	}
+		// Quit
+		if( buffer[0] == 'q' )
+		{
+			debugmsg(LOG_NOTICE, "Quit command detected!");
+			break;
+		}
     }
 
 
     gpio_clean();
     pts_close(pts);
+
+    debugmsg(LOG_NOTICE, "Shutting down now!");
 
     return 0;
 }

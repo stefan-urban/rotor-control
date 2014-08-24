@@ -8,10 +8,12 @@
 
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "dac.h"
 #include "gpio.h"
 #include "adc.h"
+#include "debug.h"
 
 
 /**
@@ -43,8 +45,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Set speed to "Low" (horizontal)
 	if (strcmp(cmd_str, "X1" HAMLIB_EOM) == 0) {
-		fprintf(stdout, "Set speed 1\n");
-		fflush(stdout);
+		debugmsg(LOG_INFO, "Set speed 1");
 
 		dac_set_voltage(rot_a_dac, (uint16_t) SPEED_1);
 
@@ -53,8 +54,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Set speed to "Middle 1" (horizontal)
 	if (strcmp(cmd_str, "X2" HAMLIB_EOM) == 0) {
-		fprintf(stdout, "Set speed 2\n");
-		fflush(stdout);
+		debugmsg(LOG_INFO, "Set speed 2");
 
 		dac_set_voltage(rot_a_dac, (uint16_t) SPEED_2);
 
@@ -63,8 +63,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Set speed to "Middle 2" (horizontal)
 	if (strcmp(cmd_str, "X3" HAMLIB_EOM) == 0) {
-		fprintf(stdout, "Set speed 3\n");
-		fflush(stdout);
+		debugmsg(LOG_INFO, "Set speed 3");
 
 		dac_set_voltage(rot_a_dac, (uint16_t) SPEED_3);
 
@@ -73,8 +72,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Set speed to "High" (horizontal)
 	if (strcmp(cmd_str, "X4" HAMLIB_EOM) == 0) {
-		fprintf(stdout, "Set speed 4\n");
-		fflush(stdout);
+		debugmsg(LOG_INFO, "Set speed 4");
 
 		dac_set_voltage(rot_a_dac, (uint16_t) SPEED_4);
 
@@ -83,24 +81,22 @@ char* gs232_command(char *cmd_str) {
 
 	// Get the current rotor position
 	if (strcmp(cmd_str, "C2" HAMLIB_EOM) == 0) {
-		fprintf(stdout, "Get the current rotor position\n");
-		fflush(stdout);
+		debugmsg(LOG_INFO, "Get the current rotor position");
 
-		char retstr[50];
+		char *retstr = malloc(sizeof(char) * 10);
 
 		// AIN3 = Azimuth
 		// AIN5 = Elevation
 		sprintf(retstr, "+0%03d+0%03d", read_adc_ain3()/12, read_adc_ain5()/12);
-		fprintf(stdout, retstr);
-		fprintf(stdout, "\n");
+
+		debugmsg(LOG_INFO, strcat("Current rotor position is: ", retstr));
 
 		return retstr; // HAMLIB_REPLY_EOM;
 	}
 
 	// Up
 	if (strcmp(cmd_str, "U" HAMLIB_EOM) == 0) {
-		fprintf(stdout, "Go UP\n");
-		fflush(stdout);
+		debugmsg(LOG_INFO, "Go UP");
 
 		gpio_up_set();
 		gpio_down_reset();
@@ -110,8 +106,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Down
 	if (strcmp(cmd_str, "D" HAMLIB_EOM) == 0) {
-		fprintf(stdout, "Go DOWN\n");
-		fflush(stdout);
+		debugmsg(LOG_INFO, "Go DOWN");
 
 		gpio_down_set();
 		gpio_up_reset();
@@ -121,8 +116,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Left (Counter Clockwise / CCW)
 	if (strcmp(cmd_str, "L" HAMLIB_EOM) == 0) {
-		fprintf(stdout, "Go LEFT\n");
-		fflush(stdout);
+		debugmsg(LOG_INFO, "Go LEFT");
 
 		gpio_left_set();
 		gpio_right_reset();
@@ -132,8 +126,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Right (Clockwise / CW)
 	if (strcmp(cmd_str, "R" HAMLIB_EOM) == 0) {
-		fprintf(stdout, "Go RIGHT\n");
-		fflush(stdout);
+		debugmsg(LOG_INFO, "Go RIGHT");
 
 		gpio_right_set();
 		gpio_left_reset();
@@ -143,8 +136,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Azimuth stop
 	if (strcmp(cmd_str, "A" HAMLIB_EOM) == 0) {
-		fprintf(stdout, "Stopping azimuth rotor!\n");
-		fflush(stdout);
+		debugmsg(LOG_INFO, "Stopping azimuth rotor!");
 
 		gpio_left_reset();
 		gpio_right_reset();
@@ -154,8 +146,7 @@ char* gs232_command(char *cmd_str) {
 
 	// Elevation stop
 	if (strcmp(cmd_str, "E" HAMLIB_EOM) == 0) {
-		fprintf(stdout, "Stopping elevation rotor!\n");
-		fflush(stdout);
+		debugmsg(LOG_INFO, "Stopping elevation rotor!");
 
 		gpio_up_reset();
 		gpio_down_reset();
@@ -164,8 +155,7 @@ char* gs232_command(char *cmd_str) {
 	}
 	// Stop
 	if (strcmp(cmd_str, "S" HAMLIB_EOM) == 0) {
-		fprintf(stdout, "Stopping all rotors!\n");
-		fflush(stdout);
+		debugmsg(LOG_INFO, "Stopping all rotors!");
 
 		gpio_up_reset();
 		gpio_down_reset();
@@ -175,8 +165,7 @@ char* gs232_command(char *cmd_str) {
 		return "?" HAMLIB_REPLY_EOM;
 	}
 
-	fprintf(stdout, "Did not understand %s\n", cmd_str);
-	fflush(stdout);
+	debugmsg(LOG_INFO, strcat("Did not understand: ", cmd_str));
 
 	return "?" HAMLIB_REPLY_EOM;
 }
