@@ -8,6 +8,7 @@
 #ifndef ADC_H_
 #define ADC_H_
 
+int read_adc(int adc_channel);
 
 int read_adc_ain5(void);
 int read_adc_ain3(void);

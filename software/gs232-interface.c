@@ -89,7 +89,7 @@ char* gs232_command(char *cmd_str) {
 
 		// AIN3 = Azimuth
 		// AIN5 = Elevation
-		sprintf(retstr, "+0%03d+0%03d", read_adc_ain3()/12, read_adc_ain5()/12);
+		sprintf(retstr, "+0%03d+0%03d", read_adc(3)/12, read_adc(5)/12);
 
 		sprintf(debug_str, "GS232-INTERFACE: Current rotor position is %s", retstr);
 		debug_msg(LOG_INFO, debug_str);
