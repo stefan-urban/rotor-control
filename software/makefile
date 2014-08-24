@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-c -Wall
-LDFLAGS=
+LDFLAGS=-lconfig
 SOURCES=$(wildcard *.c)
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE=rotor_control
@@ -9,7 +9,7 @@ EXECUTABLE=rotor_control
 all: clean $(SOURCES) $(EXECUTABLE)
 	
 $(EXECUTABLE): $(OBJECTS) 
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+	$(CC) $(OBJECTS) -o $@ $(LDFLAGS)
 
 .c.o:
 	$(CC) $(CFLAGS) $< -o $@
