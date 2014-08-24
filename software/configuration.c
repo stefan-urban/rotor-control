@@ -30,7 +30,7 @@ void get_configuration_file_options()
 
 	config_init(&cfg);
 
-	/* Read the file. If there is an error, report it and exit. */
+	/* Read the file. If there is an error, report it and continue */
 	if (!config_read_file(&cfg, configuration_file_path))
 	{
 		char debug_str[100];
@@ -39,7 +39,9 @@ void get_configuration_file_options()
 					config_error_line(&cfg), config_error_text(&cfg));
 		config_destroy(&cfg);
 
-		debug_msg(LOG_ERR, debug_str);
+		debug_msg(LOG_INFO, debug_str);
+
+		return;
 	}
 
 	/* Get log_level */

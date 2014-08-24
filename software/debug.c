@@ -27,7 +27,7 @@ void debug_msg(int log_level, const char *msg)
 	closelog();
 
 	// An error (and worse) aborts program
-	if (log_level < 4)
+	if (log_level <= LOG_ERR)
 	{
 		openlog("rotor_control", LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
 		syslog(LOG_ERR, "Stopping program due to unrecoverable error!");
