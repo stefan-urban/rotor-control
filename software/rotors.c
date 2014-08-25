@@ -14,7 +14,7 @@
 #include "yaesu_g2800dxc.h"
 
 
-//#define DEBUG_SWITCH
+#define DEBUG_SWITCH
 
 #ifdef DEBUG_SWITCH
 
@@ -61,6 +61,7 @@ void* rotor_debug_loop(void* ptr)
 			azimuth = azimuth <= azimuth_speed ? 0 : (azimuth - azimuth_speed);
 		}
 
+		// Syslog filters the excat same messages in a row and only saves the first one
 		sprintf(debug_str, "ROTOR-DEBUG: Position now at Azimuth %d, Elevation %d", azimuth, elevation);
 		debug_msg(LOG_DEBUG, debug_str);
 	}

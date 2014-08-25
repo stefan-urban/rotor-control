@@ -19,7 +19,6 @@ int gpio_export(int pin)
 	sprintf(debug_str, "GPIO: Export pin %d", pin);
 	debug_msg(LOG_DEBUG, debug_str);
 
-	return 0;
 
 	FILE *fp = NULL;
 
@@ -32,7 +31,6 @@ int gpio_export(int pin)
 
 	fprintf(fp, "%d", pin);
 	fclose(fp);
-
 
 	// Set direction to out
 	char gpio_direction[50];
@@ -63,8 +61,6 @@ int gpio_unexport(int pin)
 	sprintf(debug_str, "GPIO: Unexport pin %d", pin);
 	debug_msg(LOG_DEBUG, debug_str);
 
-	return 0;
-
 
 	FILE *fp = NULL;
 
@@ -89,7 +85,6 @@ int gpio_set(int pin, int value)
 	sprintf(debug_str, "GPIO: Set pin %d value to %d", pin, value);
 	debug_msg(LOG_DEBUG, debug_str);
 
-	return 0;
 
 	FILE *fp = NULL;
 	char gpio_value[50];

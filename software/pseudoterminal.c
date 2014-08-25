@@ -14,12 +14,12 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <stdio.h>
-#include <stdint.h>
 #include <string.h>
 #include <termios.h>
 #include <unistd.h>
 
 #include "debug.h"
+
 
 #define BAUDRATE (B9600)
 
