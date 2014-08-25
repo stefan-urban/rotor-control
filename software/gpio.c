@@ -5,18 +5,11 @@
  *      Author: Stefan Urban <stefan.urban@live.de>
  */
 
-#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "debug.h"
-
-
-#define GPIO_UP_NUM (27)
-#define GPIO_DOWN_NUM (47)
-#define GPIO_LEFT_NUM (45)
-#define GPIO_RIGHT_NUM (23)
 
 
 int gpio_export(int pin)
@@ -67,10 +60,10 @@ int gpio_unexport(int pin)
 {
 	char debug_str[100];
 
-	return 0;
-
 	sprintf(debug_str, "GPIO: Unexport pin %d", pin);
 	debug_msg(LOG_DEBUG, debug_str);
+
+	return 0;
 
 
 	FILE *fp = NULL;
@@ -116,69 +109,3 @@ int gpio_set(int pin, int value)
 
 	return 0;
 }
-
-int gpio_init()
-{
-	debug_msg(LOG_DEBUG, "GPIO: Initializing");
-
-	gpio_export(GPIO_UP_NUM);
-	gpio_export(GPIO_DOWN_NUM);
-	gpio_export(GPIO_LEFT_NUM);
-	gpio_export(GPIO_RIGHT_NUM);
-
-	return 0;
-}
-
-int gpio_clean()
-{
-	debug_msg(LOG_DEBUG, "GPIO: Cleaning up");
-
-	gpio_unexport(GPIO_UP_NUM);
-	gpio_unexport(GPIO_DOWN_NUM);
-	gpio_unexport(GPIO_LEFT_NUM);
-	gpio_unexport(GPIO_RIGHT_NUM);
-
-	return 0;
-}
-
-
-void gpio_up_set()
-{
-	gpio_set(GPIO_UP_NUM, 1);
-}
-
-void gpio_up_reset()
-{
-	gpio_set(GPIO_UP_NUM, 0);
-}
-
-void gpio_down_set()
-{
-	gpio_set(GPIO_DOWN_NUM, 1);
-}
-
-void gpio_down_reset()
-{
-	gpio_set(GPIO_DOWN_NUM, 0);
-}
-
-void gpio_left_set()
-{
-	gpio_set(GPIO_LEFT_NUM, 1);
-}
-
-void gpio_left_reset()
-{
-	gpio_set(GPIO_LEFT_NUM, 0);
-}
-
-void gpio_right_set()
-{
-	gpio_set(GPIO_RIGHT_NUM, 1);
-}
-
-void gpio_right_reset()
-{
-	gpio_set(GPIO_RIGHT_NUM, 0);
-}
-

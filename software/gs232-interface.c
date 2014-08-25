@@ -9,27 +9,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "dac.h"
-#include "gpio.h"
-#include "adc.h"
 #include "debug.h"
-
-
-/**
- * The DAC can only provide a maximum voltage of 3.3V. Therefore a non-inverting amplifier
- * is used to be able to output 5V signals. This macro converts the demanded voltage levels
- * to the DAC's levels.
- */
-#define DAC_OUTPUT(voltage) (voltage / 1.5)
-
-/**
- * The rotor speed is controlled by an analog signal from 0 to 5 V, the rotor contol unit
- * then converts it to 4 speed steps, steps in mV
- */
-#define SPEED_1 DAC_OUTPUT(1000)
-#define SPEED_2 DAC_OUTPUT(2000)
-#define SPEED_3 DAC_OUTPUT(3000)
-#define SPEED_4 DAC_OUTPUT(4000)
+#include "rotors.h"
 
 
 /**
@@ -48,7 +29,8 @@ char* gs232_command(char *cmd_str) {
 	if (strcmp(cmd_str, "X1" HAMLIB_EOM) == 0) {
 		debug_msg(LOG_INFO, "GS232-INTERFACE: Set speed 1");
 
-		dac_set_voltage(rot_a_dac, (uint16_t) SPEED_1);
+		rotor.set_elevation_speed(1);
+		rotor.set_azimuth_speed(1);
 
 		return "ok"; // HAMLIB_REPLY_EOM;
 	}
@@ -57,7 +39,8 @@ char* gs232_command(char *cmd_str) {
 	if (strcmp(cmd_str, "X2" HAMLIB_EOM) == 0) {
 		debug_msg(LOG_INFO, "GS232-INTERFACE: Set speed 2");
 
-		dac_set_voltage(rot_a_dac, (uint16_t) SPEED_2);
+		rotor.set_elevation_speed(2);
+		rotor.set_azimuth_speed(2);
 
 		return "ok"; // HAMLIB_REPLY_EOM;
 	}
@@ -66,7 +49,8 @@ char* gs232_command(char *cmd_str) {
 	if (strcmp(cmd_str, "X3" HAMLIB_EOM) == 0) {
 		debug_msg(LOG_INFO, "GS232-INTERFACE: Set speed 3");
 
-		dac_set_voltage(rot_a_dac, (uint16_t) SPEED_3);
+		rotor.set_elevation_speed(3);
+		rotor.set_azimuth_speed(3);
 
 		return "ok"; // HAMLIB_REPLY_EOM;
 	}
@@ -75,7 +59,8 @@ char* gs232_command(char *cmd_str) {
 	if (strcmp(cmd_str, "X4" HAMLIB_EOM) == 0) {
 		debug_msg(LOG_INFO, "GS232-INTERFACE: Set speed 4");
 
-		dac_set_voltage(rot_a_dac, (uint16_t) SPEED_4);
+		rotor.set_elevation_speed(4);
+		rotor.set_azimuth_speed(4);
 
 		return "ok"; // HAMLIB_REPLY_EOM;
 	}
@@ -86,9 +71,7 @@ char* gs232_command(char *cmd_str) {
 
 		char *retstr = malloc(sizeof(char) * 10);
 
-		// AIN3 = Azimuth
-		// AIN5 = Elevation
-		sprintf(retstr, "+0%03d+0%03d", read_adc(3)/12, read_adc(5)/12);
+		sprintf(retstr, "+0%03d+0%03d", rotor.get_azimuth_position(), rotor.get_elevation_position());
 
 		sprintf(debug_str, "GS232-INTERFACE: Current rotor position is %s", retstr);
 		debug_msg(LOG_INFO, debug_str);
@@ -100,8 +83,7 @@ char* gs232_command(char *cmd_str) {
 	if (strcmp(cmd_str, "U" HAMLIB_EOM) == 0) {
 		debug_msg(LOG_INFO, "GS232-INTERFACE: Go UP");
 
-		gpio_up_set();
-		gpio_down_reset();
+		rotor.go_up();
 
 		return "?"; // HAMLIB_REPLY_EOM;
 	}
@@ -110,8 +92,7 @@ char* gs232_command(char *cmd_str) {
 	if (strcmp(cmd_str, "D" HAMLIB_EOM) == 0) {
 		debug_msg(LOG_INFO, "GS232-INTERFACE: Go DOWN");
 
-		gpio_down_set();
-		gpio_up_reset();
+		rotor.go_down();
 
 		return "?"; // HAMLIB_REPLY_EOM;
 	}
@@ -120,8 +101,7 @@ char* gs232_command(char *cmd_str) {
 	if (strcmp(cmd_str, "L" HAMLIB_EOM) == 0) {
 		debug_msg(LOG_INFO, "GS232-INTERFACE: Go LEFT");
 
-		gpio_left_set();
-		gpio_right_reset();
+		rotor.go_left();
 
 		return "?"; // HAMLIB_REPLY_EOM;
 	}
@@ -130,8 +110,7 @@ char* gs232_command(char *cmd_str) {
 	if (strcmp(cmd_str, "R" HAMLIB_EOM) == 0) {
 		debug_msg(LOG_INFO, "GS232-INTERFACE: Go RIGHT");
 
-		gpio_right_set();
-		gpio_left_reset();
+		rotor.go_right();
 
 		return "?"; // HAMLIB_REPLY_EOM;
 	}
@@ -140,8 +119,7 @@ char* gs232_command(char *cmd_str) {
 	if (strcmp(cmd_str, "A" HAMLIB_EOM) == 0) {
 		debug_msg(LOG_INFO, "GS232-INTERFACE: Stopping azimuth rotor!");
 
-		gpio_left_reset();
-		gpio_right_reset();
+		rotor.stop_azimuth();
 
 		return "?"; // HAMLIB_REPLY_EOM;
 	}
@@ -150,19 +128,17 @@ char* gs232_command(char *cmd_str) {
 	if (strcmp(cmd_str, "E" HAMLIB_EOM) == 0) {
 		debug_msg(LOG_INFO, "GS232-INTERFACE: Stopping elevation rotor!");
 
-		gpio_up_reset();
-		gpio_down_reset();
+		rotor.stop_elevation();
 
 		return "?" HAMLIB_REPLY_EOM;
 	}
+
 	// Stop
 	if (strcmp(cmd_str, "S" HAMLIB_EOM) == 0) {
 		debug_msg(LOG_INFO, "GS232-INTERFACE: Stopping all rotors!");
 
-		gpio_up_reset();
-		gpio_down_reset();
-		gpio_left_reset();
-		gpio_right_reset();
+		rotor.stop_azimuth();
+		rotor.stop_elevation();
 
 		return "?"; // HAMLIB_REPLY_EOM;
 	}
@@ -173,3 +149,18 @@ char* gs232_command(char *cmd_str) {
 	return "?"; // HAMLIB_REPLY_EOM;
 }
 
+void gs232_init()
+{
+	rotor.init_elevation();
+	rotor.init_azimuth();
+
+	gs232_command("S" HAMLIB_EOM);
+}
+
+void gs232_destroy()
+{
+	gs232_command("S" HAMLIB_EOM);
+
+	rotor.destroy_elevation();
+	rotor.destroy_azimuth();
+}

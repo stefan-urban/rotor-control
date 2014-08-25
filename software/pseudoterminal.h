@@ -8,7 +8,8 @@
 #ifndef PSEUDOTERMINAL_H_
 #define PSEUDOTERMINAL_H_
 
-#include "stdint.h"
+#include <stdint.h>
+
 
 /**
  * Pseudoterminal handle type

@@ -11,7 +11,6 @@
 
 
 #include <string.h>
-#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -32,8 +31,7 @@ int main(int argc, char** argv) {
 	debug_msg(LOG_NOTICE, "Starting rotor_control!");
 
 	configuration_init(argc, argv);
-
-    gpio_init();
+	gs232_init();
 
     // Setup pseudoterminal
     pseudoterminal_t pts = pts_open();
@@ -79,8 +77,8 @@ int main(int argc, char** argv) {
     }
 
 
-    gpio_clean();
     pts_close(pts);
+    gs232_destroy();
 
     debug_msg(LOG_NOTICE, "Shutting down now!");
 

@@ -10,9 +10,15 @@
 
 
 /**
- * Execute given command from serial port
+ * Initialization and destruction
  */
-extern char* gs232_command(char *cmd_str);
+void gs232_init(void);
+void gs232_destroy(void);
+
+/**
+ * Execute command from serial port
+ */
+char* gs232_command(char *cmd_str);
 
 
 #endif /* GS232_INTERFACE_H_ */

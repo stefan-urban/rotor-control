@@ -9,28 +9,16 @@
 #define GPIO_H_
 
 
-#include <stdint.h>
+/**
+ * Create and destroy GPIO
+ */
+int gpio_export(int pin);
+int gpio_unexport(int pin);
 
 /**
- * Initialization performs exports on all required GPIOs
+ * Set output value
  */
-int gpio_init();
-int gpio_clean();
-
-/**
- * Rotor GPIOs
- */
-void gpio_up_set();
-void gpio_up_reset();
-
-void gpio_down_set();
-void gpio_down_reset();
-
-void gpio_left_set();
-void gpio_left_reset();
-
-void gpio_right_set();
-void gpio_right_reset();
+int gpio_set(int pin, int value);
 
 #endif /* GPIO_H_ */
 

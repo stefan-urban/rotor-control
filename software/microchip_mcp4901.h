@@ -8,9 +8,6 @@
 #ifndef MICROCHIP_MCP4901_H_
 #define MICROCHIP_MCP4901_H_
 
-
-#include <stdint.h>
-
 #include "dac.h"
 
 

@@ -8,8 +8,8 @@
 #ifndef DEBUG_H_
 #define DEBUG_H_
 
-#include <stdint.h>
 #include <syslog.h>
+
 
 /**
  * Handles debug messages

@@ -5,9 +5,6 @@
  *      Author: Stefan Urban <stefan.urban@live.de>
  */
 
-/**
- * todo: move spi code to seperate file
- */
 
 /**
  * SPECIFICATION:
@@ -31,11 +28,11 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdint.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <linux/spi/spidev.h>
+
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
 
@@ -56,7 +53,6 @@ void mcp4901_set_value(int new_dac_value)
 
 	// Sample: 0011 1000 0000 0000 = 0.5 * Vref
 	//          3    8    0    0
-	//uint8_t tx_data[] = {0x00, 0x3C};
 	int tx_data[] = {0xD0, 0x34};
 
 	// Fill in dav value
@@ -65,8 +61,8 @@ void mcp4901_set_value(int new_dac_value)
 	tx_data[0] = (new_dac_value & 0x0F) << 4;
 	tx_data[1] = ((new_dac_value & 0xF0) >> 4) | 0x30;
 
-        fprintf(stdout, "Did set: %x %x \n\n", tx_data[0], tx_data[1]);
-        fflush(stdout);
+	fprintf(stdout, "Did set: %x %x \n\n", tx_data[0], tx_data[1]);
+	fflush(stdout);
 
 	struct spi_ioc_transfer msg = {
 		.tx_buf = (unsigned long) tx_data,
@@ -86,7 +82,6 @@ void mcp4901_set_value(int new_dac_value)
 	}
 
 	// Set to SPI mode
-//	ret = ioctl(fd, SPI_IOC_WR_MODE, &mode);
 	ret = ioctl(fd, SPI_IOC_WR_LSB_FIRST, &mode);
 
 	if (ret == -1)
