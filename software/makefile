@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-c -Wall
-LDFLAGS=-lconfig -lpthread
+LDFLAGS=-lconfig -lpthread -lpcre
 SOURCES=$(wildcard *.c)
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE=rotor_control

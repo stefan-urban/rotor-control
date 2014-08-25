@@ -8,6 +8,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <pcre.h>
 
 #include "debug.h"
 #include "rotors.h"
@@ -20,6 +21,46 @@
 #define HAMLIB_EOM "\r"
 #define HAMLIB_REPLY_EOM "\r\n"
 
+
+int regex_match(char *subject, char *pattern)
+{
+	const char *error;
+	int erroffset;
+
+	pcre *re;
+	int rc, subject_length;
+
+
+	re = pcre_compile(
+		pattern,              /* the pattern */
+		0,                    /* default options */
+		&error,               /* for error message */
+		&erroffset,           /* for error offset */
+		NULL);                /* use default character tables */
+
+	if (re == NULL)
+	{
+		printf("PCRE compilation failed at offset %d: %s\n", erroffset, error);
+		return 1;
+	}
+
+	subject_length = (int)strlen(subject);
+
+	rc = pcre_exec(
+		re,					/* the compiled pattern */
+		NULL,				/* no extra data - we didn't study the pattern */
+		subject,			/* the subject string */
+		subject_length,		/* the length of the subject */
+		0,					/* start at offset 0 in the subject */
+		0,					/* default options */
+		NULL,			/* output vector for substring information */
+		0			/* number of elements in the output vector */
+	);
+
+	pcre_free(re);
+
+	return (rc < 0) ? 0 : 1;
+}
 
 char* gs232_command(char *cmd_str) {
 
@@ -143,6 +184,23 @@ char* gs232_command(char *cmd_str) {
 		return "?"; // HAMLIB_REPLY_EOM;
 	}
 
+	// Set position
+	if (regex_match(cmd_str, "^W(\\d{3}) (\\d{3})")) {
+
+		int azimuth, elevation;
+
+		sscanf(cmd_str, "W %d %d", &azimuth, &elevation);
+
+		rotor.set_azimuth_position(azimuth);
+		rotor.set_elevation_position(elevation);
+
+		sprintf(debug_str, "GS232-INTERFACE: Set position %d %d", azimuth, elevation);
+		debug_msg(LOG_INFO, debug_str);
+
+		return "?"; // HAMLIB_REPLY_EOM;
+	}
+
+	// Command could not be interpreted!
 	sprintf(debug_str, "GS232-INTERFACE: Did not understand: %s", cmd_str);
 	debug_msg(LOG_WARNING, debug_str);
 
