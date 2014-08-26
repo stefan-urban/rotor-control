@@ -18,6 +18,9 @@ Software
 - Debian 7.x mit
  - libpcre3-dev
  - libconfig-dev
+ - libhamlib-utils (beinhaltet rotctl, rotctld)
+- Auf dem Host-PC
+ - Gpredict
 
 
 Installation & Inbetriebnahme
@@ -74,7 +77,7 @@ gcc adc.o configuration.o debug.o gpio.o gs232-interface.o main.o microchip_mcp4
 
 8. Verbindung mit gPredict aufbauen
 
- 8.1. gPredict starten
+ 8.1. Gpredict starten
  
  8.2. Unter _Bearbeiten_ > _Einstellungen_ > _Interfaces_ > _Rotators_ einen neuen Rotor hinzufügen.
  
