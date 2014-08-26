@@ -27,11 +27,6 @@
  */
 void debug_msg(int log_level, const char *msg);
 
-/**
- * Set log mask
- */
-void debug_setmask(int log_level);
-
 
 
 #endif /* DEBUG_H_ */

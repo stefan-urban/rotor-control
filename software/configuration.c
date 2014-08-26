@@ -18,9 +18,71 @@
 static char configuration_file_path[] = "/etc/rotor_control.conf";
 
 /**
- * Default configuration
+ * Logging level
  */
 static int log_level = LOG_INFO;
+
+int configuration_get_log_level()
+{
+	return log_level;
+}
+
+/**
+ * Yaesu G2800DXC position sensor
+ */
+static float yaesu_2800dxc_position_gain = 0.08;
+static float yaesu_2800dxc_position_offset = 0.;
+static int yaesu_2800dxc_position_angle_max = 360;
+static int yaesu_2800dxc_position_angle_min = 0;
+
+float configuration_get_yaesu_2800dxc_position_gain()
+{
+	return yaesu_2800dxc_position_gain;
+}
+
+float configuration_get_yaesu_2800dxc_position_offset()
+{
+	return yaesu_2800dxc_position_offset;
+}
+
+int configuration_get_yaesu_2800dxc_position_angle_max()
+{
+	return yaesu_2800dxc_position_angle_max;
+}
+
+int configuration_get_yaesu_2800dxc_position_angle_min()
+{
+	return yaesu_2800dxc_position_angle_min;
+}
+
+/**
+ * Create ERC5-A position sensor
+ */
+static float create_erc5a_position_gain = 0.08;
+static float create_erc5a_position_offset = 0.;
+static int create_erc5a_position_angle_max = 360;
+static int create_erc5a_position_angle_min = 0;
+
+float configuration_get_create_erc5a_position_gain()
+{
+	return create_erc5a_position_gain;
+}
+
+float configuration_get_create_erc5a_position_offset()
+{
+	return create_erc5a_position_offset;
+}
+
+int configuration_get_create_erc5a_position_angle_max()
+{
+	return create_erc5a_position_angle_max;
+}
+
+int configuration_get_create_erc5a_position_angle_min()
+{
+	return create_erc5a_position_angle_min;
+}
+
 
 
 void get_configuration_file_options()
@@ -77,6 +139,4 @@ void configuration_init(int argc, char** argv)
 {
 	get_configuration_file_options();
 	get_command_line_options(argc, argv);
-
-	debug_setmask(log_level);
 }

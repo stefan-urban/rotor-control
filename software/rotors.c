@@ -58,7 +58,7 @@ rotor_t rotor = {
 
 		.get_elevation_position	= &create_erc5a_get_position,
 		.set_elevation_speed	= &create_erc5a_set_speed,
-		.set_elecation_position	= NULL,
+		.set_elevation_position	= NULL,
 
 
 		.init_azimuth			= &yaesu_g2800dxc_init,
@@ -70,7 +70,7 @@ rotor_t rotor = {
 
 		.get_azimuth_position	= &yaesu_g2800dxc_get_position,
 		.set_azimuth_speed		= &yaesu_g2800dxc_set_speed,
-		.set_azimuth_position	= NULL,
+		.set_azimuth_position	= &yaesu_g2800dxc_set_position,
 };
 
 #endif /* DEBUG_SWTICH */

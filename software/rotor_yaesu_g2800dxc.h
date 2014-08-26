@@ -32,5 +32,10 @@ int yaesu_g2800dxc_get_position(void);
  */
 void yaesu_g2800dxc_set_speed(int speed);
 
+/**
+ * Set moving speed
+ */
+void yaesu_g2800dxc_set_position(int azimuth);
+
 
 #endif /* YAESU_G2800DXC_H_ */

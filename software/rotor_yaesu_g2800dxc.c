@@ -5,40 +5,179 @@
  *      Author: Stefan Urban <stefan.urban@live.de>
  */
 
+#include <pthread.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+
 #include "adc.h"
 #include "gpio.h"
+#include "configuration.h"
 
 
+/**
+ * Pins for left and right control
+ */
 #define YAESU_G2800DXC_LEFT_PIN (45)
 #define YAESU_G2800DXC_RIGHT_PIN (23)
 
+/**
+ * ADC channel for position sensor
+ */
+#define YAESU_G2800DXC_POSITION_ADC_CHANNEL (5)
 
-void yaesu_g2800dxc_go_left()
+/**
+ * Minimum distances for speed control
+ */
+#define YAESU_G2800DXC_DISTANCE_SPEED_2 (10)
+#define YAESU_G2800DXC_DISTANCE_SPEED_3 (20)
+#define YAESU_G2800DXC_DISTANCE_SPEED_4 (30)
+
+/**
+ * Distance from setpoint from which on rotor will not be activated, in degree
+ */
+#define YAESU_G2800DXC_THRESOLD (3)
+
+
+static int automatic_mode = 0;
+static int setpoint = 0;
+
+static pthread_t setpoint_thread;
+static int thread_run = 1;
+
+
+inline static void go_left()
 {
 	gpio_set(YAESU_G2800DXC_LEFT_PIN, 1);
 	gpio_set(YAESU_G2800DXC_RIGHT_PIN, 0);
 }
 
-void yaesu_g2800dxc_go_right()
+inline static void go_right()
 {
 	gpio_set(YAESU_G2800DXC_LEFT_PIN, 0);
 	gpio_set(YAESU_G2800DXC_RIGHT_PIN, 1);
 }
 
-void yaesu_g2800dxc_stop()
+inline static void stop()
 {
 	gpio_set(YAESU_G2800DXC_LEFT_PIN, 0);
 	gpio_set(YAESU_G2800DXC_RIGHT_PIN, 0);
 }
 
+inline static void set_speed()
+{
+	//todo: dac_set_voltage(rot_a_dac, (uint16_t) SPEED_4);
+}
+
+
+void yaesu_g2800dxc_go_left()
+{
+	automatic_mode = 0;
+	go_left();
+}
+
+void yaesu_g2800dxc_go_right()
+{
+	automatic_mode = 0;
+	go_right();
+}
+
+void yaesu_g2800dxc_stop()
+{
+	automatic_mode = 0;
+	stop();
+}
+
 int yaesu_g2800dxc_get_position()
 {
-	return read_adc(5) / 12;
+	float adc_value = (float) read_adc(YAESU_G2800DXC_POSITION_ADC_CHANNEL);
+
+	// Convert adc value to degrees
+	float gain = configuration_get_yaesu_2800dxc_position_gain();
+	float offset = configuration_get_yaesu_2800dxc_position_offset();
+
+	int angle = (int) ((adc_value * gain) + offset);
+
+	// Check for value limits
+	int max = configuration_get_yaesu_2800dxc_position_angle_max();
+	int min = configuration_get_yaesu_2800dxc_position_angle_min();
+
+	if (angle > max)
+	{
+		angle = max;
+	}
+	else if (angle < min)
+	{
+		angle = min;
+	}
+
+	return angle;
 }
 
 void yaesu_g2800dxc_set_speed(int speed)
 {
-	//dac_set_voltage(rot_a_dac, (uint16_t) SPEED_4);
+	automatic_mode = 0;
+	set_speed();
+}
+
+void yaesu_g2800dxc_set_position(int azimuth)
+{
+	setpoint = azimuth;
+
+	automatic_mode = 1;
+}
+
+static void* setpoint_loop()
+{
+	while (thread_run)
+	{
+		usleep(100);
+
+		// Only do something in automatic mode
+		if (automatic_mode)
+		{
+			int current_position = yaesu_g2800dxc_get_position();
+			int distance = abs(setpoint - current_position);
+
+			// Set direction
+			if (distance < YAESU_G2800DXC_THRESOLD)
+			{
+				stop();
+			}
+			if (setpoint < current_position)
+			{
+				go_left();
+			}
+			else if (setpoint > current_position)
+			{
+				go_right();
+			}
+			else
+			{
+				stop();
+			}
+
+			// Set speed
+			if (distance > YAESU_G2800DXC_DISTANCE_SPEED_4)
+			{
+				set_speed(4);
+			}
+			else if (distance > YAESU_G2800DXC_DISTANCE_SPEED_3)
+			{
+				set_speed(3);
+			}
+			else if (distance > YAESU_G2800DXC_DISTANCE_SPEED_2)
+			{
+				set_speed(2);
+			}
+			else
+			{
+				set_speed(1);
+			}
+		}
+	}
+
+	return (void*) 0;
 }
 
 void yaesu_g2800dxc_init()
@@ -46,11 +185,21 @@ void yaesu_g2800dxc_init()
 	gpio_export(YAESU_G2800DXC_LEFT_PIN);
 	gpio_export(YAESU_G2800DXC_RIGHT_PIN);
 
+	// Make sure rotor is in stop mode
 	yaesu_g2800dxc_stop();
+
+	// Start setpoint thread
+	automatic_mode = 0;
+	thread_run = 1;
+	pthread_create(&setpoint_thread, NULL, &setpoint_loop, NULL);
 }
 
 void yaesu_g2800dxc_destroy()
 {
+	// Stop setpoint thread
+	thread_run = 0;
+
+	// Make sure rotor is in stop mode
 	yaesu_g2800dxc_stop();
 
 	gpio_unexport(YAESU_G2800DXC_LEFT_PIN);
