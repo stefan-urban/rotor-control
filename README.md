@@ -47,7 +47,7 @@ gcc adc.o configuration.o debug.o gpio.o gs232-interface.o main.o microchip_mcp4
 
 4. (Optional) Rsyslogd konfigurieren.
 
- Standardmäßig werden alle Logging-Meldungen in `/var/log/syslog` mit allen anderen Meldungen vom System vermischt. Wie unser Programm ein eigene Logging-Datei erhält wird im beiliegenen Dokument `syslog.md` erklärt.
+ Standardmäßig werden alle Logging-Meldungen in `/var/log/syslog` mit allen anderen Meldungen vom System vermischt. Wie unser Programm ein eigene Logging-Datei erhält wird im beiliegenen Dokument [syslog.md](docs/syslog.md) erklärt.
 
 5. Programm mit root-Rechten starten
  ```
@@ -66,7 +66,6 @@ gcc adc.o configuration.o debug.o gpio.o gs232-interface.o main.o microchip_mcp4
 
 7. Hamlib rotctld starten.
  - `-m 602` bedeutet wie verwenden ein GS232 kompatibles Interface
- 
  - `-r /dev/pts/1` bedeutet wir verwenden das Pseudoterminal `pts/1` zur Kommunikation mit unserem Programm (wie oben in der Logging-Datei ersichtlich, kann abweichen!)
  
  ```
