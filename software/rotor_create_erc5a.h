@@ -32,6 +32,11 @@ int create_erc5a_get_position(void);
  */
 void create_erc5a_set_speed(int speed);
 
+/**
+ * Set position
+ */
+void create_erc5a_set_position(int speed);
+
 
 
 #endif /* CREATE_ERC5A_H_ */
