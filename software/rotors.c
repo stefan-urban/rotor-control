@@ -15,7 +15,7 @@
 #include "rotor_debug.h"
 
 
-//#define DEBUG_SWITCH
+#define DEBUG_SWITCH
 
 #ifdef DEBUG_SWITCH
 

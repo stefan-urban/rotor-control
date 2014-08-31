@@ -23,6 +23,10 @@
 #include "gpio.h"
 
 
+#define RUN_PATH(x) "/var/run/rotor_control/" x;
+const char* runtime_pts = RUN_PATH("pts");
+
+
 int main(int argc, char** argv) {
 
 	char debug_str[100];
@@ -40,6 +44,17 @@ int main(int argc, char** argv) {
     	debug_msg(LOG_ERR, "Could not open pseudo terminal");
     	return -1;
     }
+
+    // Save pseudoterminal name in /var/run
+    FILE *f = fopen(runtime_pts, "w");
+    if (f == NULL)
+    {
+        sprintf(debug_str, "Could not open: %s", runtime_pts);
+        debug_msg(LOG_ERR, debug_str);
+    }
+
+    fputs(pts.name, f);
+    fclose(f);
 
     sprintf(debug_str, "Pseudoterminal is open at: %s", pts.name);
     debug_msg(LOG_INFO, debug_str);
@@ -75,6 +90,17 @@ int main(int argc, char** argv) {
 			break;
 		}
     }
+
+    // Delete everything from /var/run
+    f = fopen(runtime_pts, "w");
+    if (f == NULL)
+    {
+        sprintf(debug_str, "Could not open: %s", runtime_pts);
+        debug_msg(LOG_ERR, debug_str);
+    }
+
+    fputs("", f);
+    fclose(f);
 
 
     pts_close(pts);
