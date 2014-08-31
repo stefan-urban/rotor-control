@@ -1,0 +1,63 @@
+Stückliste exportiert aus /home/stefan/Repositories/rotor-control/hardware/eagle-project/beaglebone_rotor_control_cape.sch am 31.08.14 10:45
+
+Part Value              Device             Package           Description                                      
+C1   100n               C-EUC0603          C0603             CAPACITOR, European symbol                       
+C2   100n               C-EUC0603          C0603             CAPACITOR, European symbol                       
+C3   100n               C-EUC0603          C0603             CAPACITOR, European symbol                       
+C4   100n               C-EUC0603          C0603             CAPACITOR, European symbol                       
+C5   100n               C-EUC0603          C0603             CAPACITOR, European symbol                       
+C6   100n               C-EUC0603          C0603             CAPACITOR, European symbol                       
+C7   100n               C-EUC0603          C0603             CAPACITOR, European symbol                       
+C8   100n               C-EUC0603          C0603             CAPACITOR, European symbol                       
+C9   100n               C-EUC0603          C0603             CAPACITOR, European symbol                       
+C10  100n               C-EUC0603          C0603             CAPACITOR, European symbol                       
+D1   BAS40-04           BAS40-04           SOT23             Silicon Schottky Diodes                          
+D2   5V1                ZENER-DIODESOT23   SOT23             Z-Diode                                          
+D3   BAS40-04           BAS40-04           SOT23             Silicon Schottky Diodes                          
+D4   5V1                ZENER-DIODESOT23   SOT23             Z-Diode                                          
+IC1  TLC2264CDU         TLC2264CDU         SO14              Quad Operational Amplifier                       
+IC2  MCP4901            MCP4901            SO-08             8-Bit Voltage Output                             
+IC3  MAX3232ESE         MAX3232ESE         SO16              True RS-232 Transceivers 3.0V to 5.5V, Low-Power 
+IC6  TLC2264CDU         TLC2264CDU         SO14              Quad Operational Amplifier                       
+Q1   SQ2348ES-T1-GE3    SQ2348ES-T1-GE3    SOT23             Automotive N-Channel MOSFET                      
+Q2   SQ2348ES-T1-GE3    SQ2348ES-T1-GE3    SOT23             Automotive N-Channel MOSFET                      
+Q3   SQ2348ES-T1-GE3    SQ2348ES-T1-GE3    SOT23             Automotive N-Channel MOSFET                      
+Q4   SQ2348ES-T1-GE3    SQ2348ES-T1-GE3    SOT23             Automotive N-Channel MOSFET                      
+Q5   SQ2348ES-T1-GE3    SQ2348ES-T1-GE3    SOT23             Automotive N-Channel MOSFET                      
+Q6   SQ2348ES-T1-GE3    SQ2348ES-T1-GE3    SOT23             Automotive N-Channel MOSFET                      
+R1   100                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R2   1M                 R-EU_R0805         R0805             RESISTOR, European symbol                        
+R3   1M                 R-EU_R0805         R0805             RESISTOR, European symbol                        
+R4   10k                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R5   5k6                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R6   100                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R7   100                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R8   100                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R9   100                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R10  10k                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R11  0                  R-EU_R0805         R0805             RESISTOR, European symbol                        
+R12  5k                 R-EU_R0805         R0805             RESISTOR, European symbol                        
+R13  10k                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R18  100                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R19  100                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R20  100                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R26  10k                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R27  5k6                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R28  10k                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R29  1M                 R-EU_R0805         R0805             RESISTOR, European symbol                        
+R30  1M                 R-EU_R0805         R0805             RESISTOR, European symbol                        
+R31  100                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R32  100                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R33  1M                 R-EU_R0805         R0805             RESISTOR, European symbol                        
+R34  100                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R35  1M                 R-EU_R0805         R0805             RESISTOR, European symbol                        
+R36  100                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R37  10k                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R38  10k                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R39  10k                R-EU_R0805         R0805             RESISTOR, European symbol                        
+R40  10k                R-EU_R0805         R0805             RESISTOR, European symbol                        
+U1   TMH0512S           TMH0512S           SIP               DC/DC Converter - TMH Series, 2 Watt             
+X1   BEAGLEBONE_OUTLINE BEAGLEBONE_OUTLINE BEAGLEBONE_SHIELD BeagleBone Black Reference Layout                
+X2                      F09VP              F09VP             SUB-D                                            
+X4   DSUB9              DSUB9              DSUB9             3-1634222-2                                      
+X5   USBDEV             USBDEV             USB               USB Buchse - Typ A, abgewinkelt                  

@@ -679,7 +679,9 @@ DIN A4, landscape with location and doc. field</description>
 </symbols>
 <devicesets>
 <deviceset name="BEAGLEBONE_OUTLINE">
-<description>Source: Adafruit (&lt;a href="https://github.com/adafruit/Adafruit-Eagle-Library"&gt;Github&lt;/a&gt;)
+<description>BeagleBone Black Reference Layout
+&lt;br&gt;&lt;br&gt;
+Source: Adafruit (&lt;a href="https://github.com/adafruit/Adafruit-Eagle-Library"&gt;Github&lt;/a&gt;)
 &lt;br&gt;&lt;br&gt;
 Should match A3 pinout - but not completely tested</description>
 <gates>
@@ -6625,6 +6627,7 @@ reflow soldering</description>
 </symbols>
 <devicesets>
 <deviceset name="SQ2348ES-T1-GE3" prefix="Q">
+<description>Automotive N-Channel MOSFET</description>
 <gates>
 <gate name="G$1" symbol="MFNS" x="0" y="0"/>
 </gates>
@@ -7556,6 +7559,9 @@ General-purpose diode for high-speed switching</description>
 </symbols>
 <devicesets>
 <deviceset name="MCP4901" prefix="IC">
+<description>8-Bit Voltage Output
+Digital-to-Analog Converter
+with SPI Interface</description>
 <gates>
 <gate name="G$1" symbol="MCP49X1" x="0" y="0"/>
 </gates>
@@ -7695,7 +7701,9 @@ General-purpose diode for high-speed switching</description>
 </symbols>
 <devicesets>
 <deviceset name="USBDEV" prefix="X">
-<description>http://www.conrad.de/ce/de/product/738805/USB-Steckverbinder-20-Buchse-Einbau-2410-02-Einbaukupplung-Typ-A-abgewinkelt-Lumberg-Inhalt-1-St?</description>
+<description>USB Buchse - Typ A, abgewinkelt
+
+http://www.conrad.de/ce/de/product/738805/USB-Steckverbinder-20-Buchse-Einbau-2410-02-Einbaukupplung-Typ-A-abgewinkelt-Lumberg-Inhalt-1-St?</description>
 <gates>
 <gate name="G$1" symbol="USBSYM" x="0" y="0"/>
 </gates>
@@ -7745,6 +7753,7 @@ General-purpose diode for high-speed switching</description>
 </symbols>
 <devicesets>
 <deviceset name="TMH0512S" prefix="U">
+<description>DC/DC Converter - TMH Series, 2 Watt</description>
 <gates>
 <gate name="G$1" symbol="DCDC" x="0" y="0"/>
 </gates>

@@ -141,6 +141,7 @@ reflow soldering</description>
 </symbols>
 <devicesets>
 <deviceset name="SQ2348ES-T1-GE3" prefix="Q">
+<description>Automotive N-Channel MOSFET</description>
 <gates>
 <gate name="G$1" symbol="MFNS" x="0" y="0"/>
 </gates>

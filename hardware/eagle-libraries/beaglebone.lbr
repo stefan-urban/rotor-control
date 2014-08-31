@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
@@ -618,7 +618,9 @@
 </symbols>
 <devicesets>
 <deviceset name="BEAGLEBONE_OUTLINE">
-<description>Source: Adafruit (&lt;a href="https://github.com/adafruit/Adafruit-Eagle-Library"&gt;Github&lt;/a&gt;)
+<description>BeagleBone Black Reference Layout
+&lt;br&gt;&lt;br&gt;
+Source: Adafruit (&lt;a href="https://github.com/adafruit/Adafruit-Eagle-Library"&gt;Github&lt;/a&gt;)
 &lt;br&gt;&lt;br&gt;
 Should match A3 pinout - but not completely tested</description>
 <gates>
