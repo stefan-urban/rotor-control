@@ -2198,7 +2198,7 @@ Use 0.85mm drill for vias.</description>
 <attribute name="NAME" x="60.095" y="39.595" size="1.27" layer="25" rot="R90"/>
 <attribute name="VALUE" x="65.175" y="39.595" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="R9" library="rcl" package="R0805" value="100" x="56" y="36" smashed="yes">
+<element name="R9" library="rcl" package="R0805" value="300" x="56" y="36" smashed="yes">
 <attribute name="NAME" x="57.635" y="34.73" size="1.27" layer="25" rot="R180"/>
 <attribute name="VALUE" x="55.365" y="33.46" size="1.27" layer="27"/>
 </element>

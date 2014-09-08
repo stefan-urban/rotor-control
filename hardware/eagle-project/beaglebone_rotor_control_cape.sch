@@ -8855,7 +8855,7 @@ D = Direct mounting &lt;p&gt;
 <part name="P+4" library="supply1" deviceset="+5V" device=""/>
 <part name="P+5" library="supply1" deviceset="+5V" device=""/>
 <part name="+3V2" library="supply1" deviceset="+3V3" device=""/>
-<part name="R9" library="rcl" deviceset="R-EU_" device="R0805" value="100"/>
+<part name="R9" library="rcl" deviceset="R-EU_" device="R0805" value="300"/>
 <part name="R7" library="rcl" deviceset="R-EU_" device="R0805" value="100"/>
 <part name="R6" library="rcl" deviceset="R-EU_" device="R0805" value="100"/>
 <part name="C7" library="rcl" deviceset="C-EU" device="C0603" value="100n"/>
