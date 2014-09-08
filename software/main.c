@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
     pseudoterminal_t pts = pts_open();
 
     if (pts.fd < 0) {
-    	debug_msg(LOG_ERR, "Could not open pseudo terminal");
+    	debug_msg(LOG_ERR, "Could not open pseudoterminal");
     	return -1;
     }
 
