@@ -34,6 +34,10 @@ static int stop_thread = 0;
 #define ROTOR_DEBUG_ELEVATION_MAX (5000)
 #define ROTOR_DEBUG_AZIMUTH_MAX (5000)
 
+static int elevation_setpoint = 0;
+static int azimuth_setpoint = 0;
+
+
 void* rotor_debug_loop(void* ptr)
 {
 	char debug_str[100];
@@ -63,7 +67,7 @@ void* rotor_debug_loop(void* ptr)
 		sprintf(debug_str, "ROTOR-DEBUG: Position now at Azimuth %d, Elevation %d", azimuth, elevation);
 		debug_msg(LOG_DEBUG, debug_str);
 
-		printf("elevation: %d \t\t azimuth: %d\n", elevation, azimuth);
+		printf("elevation: %d (sp: %d) \t\t azimuth: %d (sp: %d)\n", elevation, elevation_setpoint, azimuth, azimuth_setpoint);
 	}
 
 	return ptr;
@@ -73,7 +77,6 @@ void* rotor_debug_loop(void* ptr)
 // Elevation rotor
 
 static int elevation_automatic_mode = 0;
-static int elevation_setpoint = 0;
 
 static pthread_t elevation_position_thread;
 static int elevation_thread_run = 0;
@@ -187,7 +190,6 @@ void rotor_debug_destroy_elevation()
 #define ROTOR_DEBUG_AZIMUTH_THRESOLD (3)
 
 static int azimuth_automatic_mode = 0;
-static int azimuth_setpoint = 0;
 
 static pthread_t azimuth_position_thread;
 static int azimuth_thread_run = 1;
@@ -243,7 +245,8 @@ int rotor_debug_get_azimuth_position()
 void rotor_debug_set_azimuth_speed(int speed)
 {
 	azimuth_automatic_mode = 0;
-	azimuth_set_speed(speed);
+
+	azimuth_set_speed(speed * 4);
 }
 
 static void* azimuth_position_loop()

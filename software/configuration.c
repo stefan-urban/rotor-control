@@ -32,8 +32,10 @@ int configuration_get_log_level()
 /**
  * Debug Rotor - Interpolation tables
  */
-static interpolation_table_t rotor_debug_elevation_interpolation_table;
-static interpolation_table_t rotor_debug_azimuth_interpolation_table;
+static interpolation_table_point_t default_points[] = { {1.0, 2.0}, {5000.0, 360.0} };
+static interpolation_table_t rotor_debug_elevation_interpolation_table = {default_points, sizeof(default_points) / sizeof(default_points[0])};
+static interpolation_table_t rotor_debug_azimuth_interpolation_table = {default_points, sizeof(default_points) / sizeof(default_points[0])};
+
 
 interpolation_table_t configuration_get_rotor_debug_elevation_interpolation_table()
 {
@@ -235,7 +237,7 @@ int get_configuration_file_yaesu_g2800dxc_interpolation_table(config_t cfg)
 		return -1;
 	}
 
-	rotor_debug_elevation_interpolation_table = tmp_table;
+	rotor_yaesu_g2800dxc_interpolation_table = tmp_table;
 
 	return 0;
 }
