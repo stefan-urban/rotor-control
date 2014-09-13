@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-c -Wall
+CFLAGS=-c -Wall -ggdb
 LDFLAGS=-lconfig -lpthread -lpcre
 SOURCES=$(wildcard *.c)
 OBJECTS=$(SOURCES:.c=.o)
