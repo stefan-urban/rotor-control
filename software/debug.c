@@ -27,6 +27,9 @@ void debug_msg(int log_level, const char *msg)
 	syslog(log_level, "%s", msg);
 	closelog();
 
+	//fputs(msg, stdout);
+	//fputs("\n", stdout);
+
 	// An error (and worse) aborts program
 	if (log_level <= LOG_ERR)
 	{

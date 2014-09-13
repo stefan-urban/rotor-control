@@ -46,6 +46,9 @@ static pthread_t setpoint_thread;
 static int thread_run = 1;
 
 
+// todo: endschalter in software!
+
+
 inline static void go_left()
 {
 	gpio_set(YAESU_G2800DXC_LEFT_PIN, 1);

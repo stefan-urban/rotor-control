@@ -11,7 +11,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "configuration.h"
 #include "debug.h"
+#include "interpolation_table.h"
 
 
 static int up = 0;
@@ -29,17 +31,20 @@ pthread_t rotor_debug_thread;
 static int stop_thread = 0;
 
 
+#define ROTOR_DEBUG_ELEVATION_MAX (5000)
+#define ROTOR_DEBUG_AZIMUTH_MAX (5000)
+
 void* rotor_debug_loop(void* ptr)
 {
 	char debug_str[100];
 
 	while(stop_thread == 0)
 	{
-		sleep(1);
+		usleep(100000);
 
 		if (up == 1)
 		{
-			elevation = elevation >= (90 - elevation_speed) ? 90 : (elevation + elevation_speed);
+			elevation = elevation >= (ROTOR_DEBUG_ELEVATION_MAX - elevation_speed) ? ROTOR_DEBUG_ELEVATION_MAX : (elevation + elevation_speed);
 		}
 		if (down == 1)
 		{
@@ -47,7 +52,7 @@ void* rotor_debug_loop(void* ptr)
 		}
 		if (left == 1)
 		{
-			azimuth = azimuth >= (360 - azimuth_speed) ? 360 : (azimuth + azimuth_speed);
+			azimuth = azimuth >= (ROTOR_DEBUG_AZIMUTH_MAX - azimuth_speed) ? ROTOR_DEBUG_AZIMUTH_MAX : (azimuth + azimuth_speed);
 		}
 		if (right == 1)
 		{
@@ -57,6 +62,8 @@ void* rotor_debug_loop(void* ptr)
 		// Syslog filters the excat same messages in a row and only saves the first one
 		sprintf(debug_str, "ROTOR-DEBUG: Position now at Azimuth %d, Elevation %d", azimuth, elevation);
 		debug_msg(LOG_DEBUG, debug_str);
+
+		printf("elevation: %d \t\t azimuth: %d\n", elevation, azimuth);
 	}
 
 	return ptr;
@@ -109,7 +116,7 @@ void rotor_debug_stop_elevation()
 
 int rotor_debug_get_elevation_position()
 {
-	return elevation;
+	return (int) interpolate_2d(configuration_get_rotor_debug_elevation_interpolation_table(), (double) elevation);
 }
 
 void rotor_debug_set_elevation_speed(int speed)
@@ -130,11 +137,11 @@ static void* elevation_position_loop()
 
 		if (elevation_automatic_mode)
 		{
-			if (elevation < elevation_setpoint)
+			if (rotor_debug_get_elevation_position() < elevation_setpoint)
 			{
 				go_up();
 			}
-			else if (elevation > elevation_setpoint)
+			else if (rotor_debug_get_elevation_position() > elevation_setpoint)
 			{
 				go_down();
 			}
@@ -230,7 +237,7 @@ void rotor_debug_stop_azimuth()
 
 int rotor_debug_get_azimuth_position()
 {
-	return azimuth;
+	return interpolate_2d(configuration_get_rotor_debug_azimuth_interpolation_table(), (double) azimuth);
 }
 
 void rotor_debug_set_azimuth_speed(int speed)
@@ -247,18 +254,18 @@ static void* azimuth_position_loop()
 
 		if (azimuth_automatic_mode)
 		{
-			int current_position = azimuth;
+			int current_position = rotor_debug_get_azimuth_position();
 			int distance = abs(azimuth_setpoint - current_position);
 
 			if (distance < ROTOR_DEBUG_AZIMUTH_THRESOLD)
 			{
 				azimuth_stop();
 			}
-			else if (azimuth < azimuth_setpoint)
+			else if (current_position < azimuth_setpoint)
 			{
 				go_left();
 			}
-			else if (azimuth > azimuth_setpoint)
+			else if (current_position > azimuth_setpoint)
 			{
 				go_right();
 			}

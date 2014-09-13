@@ -8,9 +8,10 @@
 #ifndef ROTOR_DEBUG_H_
 #define ROTOR_DEBUG_H_
 
+#include "interpolation_table.h"
+
 
 void* rotor_debug_loop(void* ptr);
-
 
 void rotor_debug_init_elevation(void);
 void rotor_debug_destroy_elevation(void);
@@ -20,6 +21,7 @@ void rotor_debug_stop_elevation(void);
 int rotor_debug_get_elevation_position(void);
 void rotor_debug_set_elevation_speed(int speed);
 void rotor_debug_set_elevation_position(int elevation);
+
 
 
 void rotor_debug_init_azimuth(void);
