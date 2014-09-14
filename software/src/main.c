@@ -50,6 +50,18 @@ int main(int argc, char** argv) {
 		sigaction (SIGINT, &new_action, NULL);
 	}
 
+	sigaction (SIGKILL, NULL, &old_action);
+	if (old_action.sa_handler != SIG_IGN)
+	{
+		sigaction (SIGKILL, &new_action, NULL);
+	}
+
+	sigaction (SIGTERM, NULL, &old_action);
+	if (old_action.sa_handler != SIG_IGN)
+	{
+		sigaction (SIGTERM, &new_action, NULL);
+	}
+
 
 	char debug_str[100];
 
