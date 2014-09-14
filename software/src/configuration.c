@@ -258,6 +258,25 @@ int get_configuration_file_create_erc5a_interpolation_table(config_t cfg)
 	return 0;
 }
 
+int get_configuration_file_listen_console_path(config_t cfg)
+{
+	char debug_str[100];
+	const char *path;
+
+	/* Get log_level */
+	if (config_lookup_string(&cfg, "listen_console_path", &path))
+	{
+		strcpy(listen_console_path, path);
+
+		sprintf(debug_str, "CONFIGURATON: file: listen console path = %s", listen_console_path);
+		debug_msg(LOG_INFO, debug_str);
+
+		listen_console_enabled = 1;
+	}
+
+	return 0;
+}
+
 void get_configuration_file_options()
 {
 	config_t cfg;
@@ -285,6 +304,7 @@ void get_configuration_file_options()
 	get_configuration_file_yaesu_g2800dxc_interpolation_table(cfg);
 	get_configuration_file_create_erc5a_interpolation_table(cfg);
 
+	get_configuration_file_listen_console_path(cfg);
 
 	config_destroy(&cfg);
 }

@@ -1,0 +1,74 @@
+#
+# Logging level
+#
+#  0 = LOG_EMERG
+#  1 = LOG_ALERT
+#  2 = LOG_CRIT
+#  3 = LOG_ERR
+#  4 = LOG_WARNING
+#  5 = LOG_NOTICE
+#  6 = LOG_INFO
+#  7 = LOG_DEBUG
+#
+log_level = 6;
+
+
+#
+# Rotor Simulation
+#
+#  true  = simulation on
+#  false = simulation off
+#
+simulation=true;
+
+
+#
+# Do not create pseudoterminal, listen to existing terminal
+#
+#listen_console_path="/dev/ttyUSB4"
+
+
+#
+# Interpolation table for position sensor
+#   => Yaesu G-2800DXC
+#
+#  Array of (millivolt, degree) values, values must be in float format
+#
+rotor_yaesu_g2800dxc_interpolation_table =
+(
+        (0.0, 0.0),
+        (5000.0, 360.0)
+);
+
+
+#
+# Interpolation table for position sensor
+#   => Creative Design ERC5-A
+#
+#  Array of (millivolt, degree) values, values must be in float format
+#
+rotor_create_erc5a_interpolation_table =
+(
+        (0.0, 0.0),
+        (5000.0, 360.0)
+);
+
+
+#
+# Interpolation table for position sensor
+#   => Yaesu G-2800DXC
+#
+#  Array of (millivolt, degree) values, values must be in float format
+#
+rotor_debug_elevation_interpolation_table =
+(
+        (0.0, 0.0),
+        (1000.0, 90.0)
+);
+
+rotor_debug_azimuth_interpolation_table =
+(
+        (0.0, 0.0),
+        (5000.0, 360.0)
+);
+
