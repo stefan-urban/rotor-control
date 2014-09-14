@@ -13,6 +13,7 @@
 #include "adc.h"
 #include "gpio.h"
 #include "configuration.h"
+#include "interpolation_table.h"
 
 
 /**
@@ -78,28 +79,15 @@ void create_erc5a_stop()
 
 int create_erc5a_get_position()
 {
-	float adc_value = (float) read_adc(CREATE_ERC5A_POSITION_ADC_CHANNEL);
+	int adc_value = read_adc(CREATE_ERC5A_POSITION_ADC_CHANNEL);
 
-	// Convert adc value to degrees
-	float gain = configuration_get_create_erc5a_position_gain();
-	float offset = configuration_get_create_erc5a_position_offset();
+	// Voltage at controller pin = adc_value / 4096 * 1800 mV
+	double adc_voltage = adc_value / 2.275555556;
 
-	int angle = (int) ((adc_value * gain) + offset);
+	// Voltage at sensor input
+	double sensor_voltage = adc_voltage * 3.6;
 
-	// Check for value limits
-	int max = configuration_get_create_erc5a_position_angle_max();
-	int min = configuration_get_create_erc5a_position_angle_min();
-
-	if (angle > max)
-	{
-		angle = max;
-	}
-	else if (angle < min)
-	{
-		angle = min;
-	}
-
-	return angle;
+	return interpolate_2d(configuration_get_rotor_create_erc5a_interpolation_table(), sensor_voltage);
 }
 
 void create_erc5a_set_speed(int speed)

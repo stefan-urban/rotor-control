@@ -27,6 +27,11 @@
  */
 void debug_msg(int log_level, const char *msg);
 
+/**
+ * Set verbose mode
+ */
+void debug_set_verbose_mode(void);
+
 
 
 #endif /* DEBUG_H_ */

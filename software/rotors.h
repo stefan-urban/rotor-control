@@ -42,5 +42,6 @@ typedef struct {
 
 extern rotor_t rotor;
 
+void rotors_init(void);
 
 #endif /* ROTORS_C_ */

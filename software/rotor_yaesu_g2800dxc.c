@@ -93,28 +93,13 @@ void yaesu_g2800dxc_stop()
 
 int yaesu_g2800dxc_get_position()
 {
-	float adc_value = (float) read_adc(YAESU_G2800DXC_POSITION_ADC_CHANNEL);
+	int adc_value = read_adc(YAESU_G2800DXC_POSITION_ADC_CHANNEL);
 
-	// Convert adc value to degrees
-	float gain = configuration_get_yaesu_2800dxc_position_gain();
-	float offset = configuration_get_yaesu_2800dxc_position_offset();
+	// Voltage at controller pin = adc_value / 4096 * 1800 mV
+	// Voltage at sensor input is pin voltage * 3.6
+	double sensor_voltage = adc_value * (1 / 4096 * 1800 * 3.6);
 
-	int angle = (int) ((adc_value * gain) + offset);
-
-	// Check for value limits
-	int max = configuration_get_yaesu_2800dxc_position_angle_max();
-	int min = configuration_get_yaesu_2800dxc_position_angle_min();
-
-	if (angle > max)
-	{
-		angle = max;
-	}
-	else if (angle < min)
-	{
-		angle = min;
-	}
-
-	return angle;
+	return interpolate_2d(configuration_get_rotor_yaesu_g2800dxc_interpolation_table(), sensor_voltage);
 }
 
 void yaesu_g2800dxc_set_speed(int speed)

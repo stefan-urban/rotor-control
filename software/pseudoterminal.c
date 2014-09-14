@@ -116,12 +116,6 @@ pseudoterminal_t pts_open(void)
 	// Get the serial port the right configuration
 	pts_setupterminal(pts);
 
-
-	char debug_str[100];
-
-	sprintf(debug_str, "PTS: Name of new pseudoterminal is %s", pts.name);
-	debug_msg(LOG_DEBUG, debug_str);
-
 	return pts;
 }
 

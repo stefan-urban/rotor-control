@@ -21,15 +21,15 @@ void configuration_init(int argc, char** argv);
  */
 int configuration_get_log_level(void);
 
-interpolation_table_t configuration_get_rotor_debug_elevation_interpolation_table();
-interpolation_table_t configuration_get_rotor_debug_azimuth_interpolation_table();
-float configuration_get_yaesu_2800dxc_position_gain();
-float configuration_get_yaesu_2800dxc_position_offset();
-int configuration_get_yaesu_2800dxc_position_angle_max();
-int configuration_get_yaesu_2800dxc_position_angle_min();
-float configuration_get_create_erc5a_position_gain();
-float configuration_get_create_erc5a_position_offset();
-int configuration_get_create_erc5a_position_angle_max();
-int configuration_get_create_erc5a_position_angle_min();
+int configuration_get_rotor_simulation(void);
+interpolation_table_t configuration_get_rotor_debug_elevation_interpolation_table(void);
+interpolation_table_t configuration_get_rotor_debug_azimuth_interpolation_table(void);
+interpolation_table_t configuration_get_rotor_yaesu_g2800dxc_interpolation_table(void);
+interpolation_table_t configuration_get_rotor_create_erc5a_interpolation_table(void);
+
+
+int configuration_get_listen_console_enabled(void);
+char* configuration_get_listen_console_path(void);
+
 
 #endif /* CONFIG_H_ */

@@ -209,6 +209,8 @@ char* gs232_command(char *cmd_str) {
 
 void gs232_init()
 {
+	rotors_init();
+
 	rotor.init_elevation();
 	rotor.init_azimuth();
 

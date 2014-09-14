@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <libconfig.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "debug.h"
 #include "rotor_debug.h"
@@ -32,80 +33,58 @@ int configuration_get_log_level()
 /**
  * Debug Rotor - Interpolation tables
  */
-static interpolation_table_point_t default_points[] = { {1.0, 2.0}, {5000.0, 360.0} };
-static interpolation_table_t rotor_debug_elevation_interpolation_table = {default_points, sizeof(default_points) / sizeof(default_points[0])};
-static interpolation_table_t rotor_debug_azimuth_interpolation_table = {default_points, sizeof(default_points) / sizeof(default_points[0])};
+static int rotor_simulation = 0;
 
-
-interpolation_table_t configuration_get_rotor_debug_elevation_interpolation_table()
+int configuration_get_rotor_simulation()
 {
-	return rotor_debug_elevation_interpolation_table;
+	return rotor_simulation ? 1 : 0;
 }
+
+static interpolation_table_point_t default_points_azimuth[] = { {1.0, 2.0}, {5000.0, 90.0} };
+static interpolation_table_point_t default_points_elevation[] = { {1.0, 2.0}, {5000.0, 360.0} };
+
+static interpolation_table_t rotor_debug_azimuth_interpolation_table = {default_points_azimuth, sizeof(default_points_azimuth) / sizeof(default_points_azimuth[0])};
+static interpolation_table_t rotor_debug_elevation_interpolation_table = {default_points_elevation, sizeof(default_points_elevation) / sizeof(default_points_elevation[0])};
 
 interpolation_table_t configuration_get_rotor_debug_azimuth_interpolation_table()
 {
 	return rotor_debug_azimuth_interpolation_table;
 }
 
-static interpolation_table_t rotor_yaesu_g2800dxc_interpolation_table;
-static interpolation_table_t rotor_create_erc5a_interpolation_table;
-
-
-/**
- * Yaesu G2800DXC position sensor
- */
-static float yaesu_2800dxc_position_gain = 0.08;
-static float yaesu_2800dxc_position_offset = 0.;
-static int yaesu_2800dxc_position_angle_max = 360;
-static int yaesu_2800dxc_position_angle_min = 0;
-
-float configuration_get_yaesu_2800dxc_position_gain()
+interpolation_table_t configuration_get_rotor_debug_elevation_interpolation_table()
 {
-	return yaesu_2800dxc_position_gain;
+	return rotor_debug_elevation_interpolation_table;
 }
 
-float configuration_get_yaesu_2800dxc_position_offset()
+static interpolation_table_t rotor_yaesu_g2800dxc_interpolation_table = {default_points_azimuth, sizeof(default_points_azimuth) / sizeof(default_points_azimuth[0])};
+static interpolation_table_t rotor_create_erc5a_interpolation_table = {default_points_elevation, sizeof(default_points_elevation) / sizeof(default_points_elevation[0])};
+
+interpolation_table_t configuration_get_rotor_yaesu_g2800dxc_interpolation_table()
 {
-	return yaesu_2800dxc_position_offset;
+	return rotor_yaesu_g2800dxc_interpolation_table;
 }
 
-int configuration_get_yaesu_2800dxc_position_angle_max()
+interpolation_table_t configuration_get_rotor_create_erc5a_interpolation_table()
 {
-	return yaesu_2800dxc_position_angle_max;
-}
-
-int configuration_get_yaesu_2800dxc_position_angle_min()
-{
-	return yaesu_2800dxc_position_angle_min;
+	return rotor_create_erc5a_interpolation_table;
 }
 
 /**
- * Create ERC5-A position sensor
+ * Alternative serial console to listen to
  */
-static float create_erc5a_position_gain = 0.048;
-static float create_erc5a_position_offset = -6.9;
-static int create_erc5a_position_angle_max = 90;
-static int create_erc5a_position_angle_min = 0;
+int listen_console_enabled = 0;
+char listen_console_path[100];
 
-float configuration_get_create_erc5a_position_gain()
+int configuration_get_listen_console_enabled()
 {
-	return create_erc5a_position_gain;
+	return listen_console_enabled ? 1 : 0;
 }
 
-float configuration_get_create_erc5a_position_offset()
+char* configuration_get_listen_console_path()
 {
-	return create_erc5a_position_offset;
+	return listen_console_path;
 }
 
-int configuration_get_create_erc5a_position_angle_max()
-{
-	return create_erc5a_position_angle_max;
-}
-
-int configuration_get_create_erc5a_position_angle_min()
-{
-	return create_erc5a_position_angle_min;
-}
 
 /* ----------------------------------------------------------------------------------------------- */
 /* Configuration file */
@@ -119,8 +98,28 @@ int get_configuration_file_log_level(config_t cfg)
 	{
 		sprintf(debug_str, "CONFIGURATON: file: found log_level = %d", log_level);
 		debug_msg(LOG_INFO, debug_str);
+	}
 
-		return -1;
+	return 0;
+}
+
+int get_configuration_file_simulation(config_t cfg)
+{
+	char debug_str[100];
+
+	/* Get log_level */
+	if (config_lookup_bool(&cfg, "simulation", &rotor_simulation))
+	{
+		if (rotor_simulation)
+		{
+			sprintf(debug_str, "CONFIGURATON: file: enabled simulation mode");
+			debug_msg(LOG_INFO, debug_str);
+		}
+		else
+		{
+			sprintf(debug_str, "CONFIGURATON: file: disabled simulation mode");
+			debug_msg(LOG_INFO, debug_str);
+		}
 	}
 
 	return 0;
@@ -280,6 +279,8 @@ void get_configuration_file_options()
 	}
 
 	get_configuration_file_log_level(cfg);
+
+	get_configuration_file_simulation(cfg);
 	get_configuration_file_rotor_debug_interpolation_table(cfg);
 	get_configuration_file_yaesu_g2800dxc_interpolation_table(cfg);
 	get_configuration_file_create_erc5a_interpolation_table(cfg);
@@ -294,18 +295,55 @@ void get_configuration_file_options()
 void get_command_line_options(int argc, char** argv)
 {
 	char debug_str[100];
+	char scan_buf[50];
 	int c;
 
-	while ((c = getopt(argc, argv, "v:")) != -1)
+	while ((c = getopt(argc, argv, "vd:s:c:")) != -1)
 	{
 		switch (c)
 		{
-		case 'v':
+		case 'd':
 			sscanf(optarg, "%d", &log_level);
 
-			sprintf(debug_str, "CONFIGURATON: args set: log_level = %d", log_level);
+			sprintf(debug_str, "CONFIGURATON: args: log_level = %d", log_level);
 			debug_msg(LOG_INFO, debug_str);
 			break;
+
+		case 'v':
+			debug_set_verbose_mode();
+
+			sprintf(debug_str, "CONFIGURATON: args: enabled verbose mode");
+			debug_msg(LOG_INFO, debug_str);
+			break;
+
+		case 's':
+
+			sscanf(optarg, "%s", scan_buf);
+
+			if (strcmp(scan_buf, "on") == 0)
+			{
+				rotor_simulation = 1;
+
+				sprintf(debug_str, "CONFIGURATON: args: enabled simulation mode");
+				debug_msg(LOG_INFO, debug_str);
+			}
+			else
+			{
+				rotor_simulation = 0;
+
+				sprintf(debug_str, "CONFIGURATON: args: disabled simulation mode");
+				debug_msg(LOG_INFO, debug_str);
+			}
+
+			break;
+
+		case 'c':
+			sscanf(optarg, "%s", listen_console_path);
+
+			listen_console_enabled = 1;
+
+			break;
+
 		default:
 			break;
 		}
@@ -320,3 +358,4 @@ void configuration_init(int argc, char** argv)
 	get_configuration_file_options();
 	get_command_line_options(argc, argv);
 }
+

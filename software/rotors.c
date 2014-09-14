@@ -8,19 +8,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "debug.h"
 #include "rotors.h"
+
+#include "configuration.h"
+#include "debug.h"
 #include "rotor_create_erc5a.h"
 #include "rotor_yaesu_g2800dxc.h"
 #include "rotor_debug.h"
 
 
-#define DEBUG_SWITCH
+rotor_t rotor;
 
-#ifdef DEBUG_SWITCH
+void rotors_init()
+{
+	char debug_str[100];
 
-
-rotor_t rotor = {
+	rotor_t rotor_debug = {
 		.init_elevation			= &rotor_debug_init_elevation,
 		.destroy_elevation		= &rotor_debug_destroy_elevation,
 
@@ -43,12 +46,9 @@ rotor_t rotor = {
 		.get_azimuth_position	= &rotor_debug_get_azimuth_position,
 		.set_azimuth_speed		= &rotor_debug_set_azimuth_speed,
 		.set_azimuth_position	= &rotor_debug_set_azimuth_position,
-};
+	};
 
-
-#else /* DEBUG_SWTICH */
-
-rotor_t rotor = {
+	rotor_t rotor_real = {
 		.init_elevation			= &create_erc5a_init,
 		.destroy_elevation		= &create_erc5a_destroy,
 
@@ -71,6 +71,20 @@ rotor_t rotor = {
 		.get_azimuth_position	= &yaesu_g2800dxc_get_position,
 		.set_azimuth_speed		= &yaesu_g2800dxc_set_speed,
 		.set_azimuth_position	= &yaesu_g2800dxc_set_position,
-};
+	};
 
-#endif /* DEBUG_SWTICH */
+	if (configuration_get_rotor_simulation())
+	{
+		sprintf(debug_str, "using simulation model");
+		debug_msg(LOG_INFO, debug_str);
+
+		rotor = rotor_debug;
+	}
+	else
+	{
+		sprintf(debug_str, "using real rotors");
+		debug_msg(LOG_INFO, debug_str);
+
+		rotor = rotor_real;
+	}
+}

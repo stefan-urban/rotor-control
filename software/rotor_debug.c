@@ -34,9 +34,6 @@ static int stop_thread = 0;
 #define ROTOR_DEBUG_ELEVATION_MAX (5000)
 #define ROTOR_DEBUG_AZIMUTH_MAX (5000)
 
-static int elevation_setpoint = 0;
-static int azimuth_setpoint = 0;
-
 
 void* rotor_debug_loop(void* ptr)
 {
@@ -66,8 +63,6 @@ void* rotor_debug_loop(void* ptr)
 		// Syslog filters the excat same messages in a row and only saves the first one
 		sprintf(debug_str, "ROTOR-DEBUG: Position now at Azimuth %d, Elevation %d", azimuth, elevation);
 		debug_msg(LOG_DEBUG, debug_str);
-
-		printf("elevation: %d (sp: %d) \t\t azimuth: %d (sp: %d)\n", elevation, elevation_setpoint, azimuth, azimuth_setpoint);
 	}
 
 	return ptr;
@@ -76,7 +71,14 @@ void* rotor_debug_loop(void* ptr)
 // ------------------------------------------------------------------------
 // Elevation rotor
 
+#define ROTOR_DEBUG_ELEVATION_DISTANCE_SPEED_2 (10)
+#define ROTOR_DEBUG_ELEVATION_DISTANCE_SPEED_3 (20)
+#define ROTOR_DEBUG_ELEVATION_DISTANCE_SPEED_4 (30)
+
+#define ROTOR_DEBUG_ELEVATION_THRESOLD (0)
+
 static int elevation_automatic_mode = 0;
+static int elevation_setpoint = 0;
 
 static pthread_t elevation_position_thread;
 static int elevation_thread_run = 0;
@@ -97,6 +99,12 @@ static inline void elevation_stop()
 {
 	up = 0;
 	down = 0;
+}
+
+static inline void elevation_set_speed(int speed)
+{
+	if (speed < 1 || speed > 4) return;
+	elevation_speed = speed * 4;
 }
 
 void rotor_debug_go_up()
@@ -125,10 +133,7 @@ int rotor_debug_get_elevation_position()
 void rotor_debug_set_elevation_speed(int speed)
 {
 	elevation_automatic_mode = 0;
-
-	if (speed < 1 || speed > 4) return;
-
-	elevation_speed = speed;
+	elevation_set_speed(speed);
 }
 
 
@@ -140,17 +145,42 @@ static void* elevation_position_loop()
 
 		if (elevation_automatic_mode)
 		{
-			if (rotor_debug_get_elevation_position() < elevation_setpoint)
+			int current_position = rotor_debug_get_elevation_position();
+			int distance = current_position - elevation_setpoint;
+
+			if (distance < ROTOR_DEBUG_ELEVATION_THRESOLD)
+			{
+				elevation_stop();
+			}
+			if (current_position < elevation_setpoint)
 			{
 				go_up();
 			}
-			else if (rotor_debug_get_elevation_position() > elevation_setpoint)
+			else if (current_position > elevation_setpoint)
 			{
 				go_down();
 			}
 			else
 			{
 				elevation_stop();
+			}
+
+			// Speed
+			if (distance > ROTOR_DEBUG_ELEVATION_DISTANCE_SPEED_4)
+			{
+				elevation_set_speed(4);
+			}
+			else if (distance > ROTOR_DEBUG_ELEVATION_DISTANCE_SPEED_3)
+			{
+				elevation_set_speed(3);
+			}
+			else if (distance > ROTOR_DEBUG_ELEVATION_DISTANCE_SPEED_2)
+			{
+				elevation_set_speed(2);
+			}
+			else
+			{
+				elevation_set_speed(1);
 			}
 		}
 	}
@@ -184,12 +214,13 @@ void rotor_debug_destroy_elevation()
 // Azimuth rotor
 
 #define ROTOR_DEBUG_AZIMUTH_DISTANCE_SPEED_2 (10)
-#define ROTOR_DEBUG_AZIMUTH_DISTANCE_SPEED_3 (20)
-#define ROTOR_DEBUG_AZIMUTH_DISTANCE_SPEED_4 (30)
+#define ROTOR_DEBUG_AZIMUTH_DISTANCE_SPEED_3 (25)
+#define ROTOR_DEBUG_AZIMUTH_DISTANCE_SPEED_4 (50)
 
-#define ROTOR_DEBUG_AZIMUTH_THRESOLD (3)
+#define ROTOR_DEBUG_AZIMUTH_THRESOLD (0)
 
 static int azimuth_automatic_mode = 0;
+static int azimuth_setpoint = 0;
 
 static pthread_t azimuth_position_thread;
 static int azimuth_thread_run = 1;
@@ -216,7 +247,7 @@ static inline void azimuth_stop()
 static inline void azimuth_set_speed(int speed)
 {
 	if (speed < 1 || speed > 4) return;
-	azimuth_speed = speed;
+	azimuth_speed = speed * 4;
 }
 
 void rotor_debug_go_left()
@@ -245,8 +276,7 @@ int rotor_debug_get_azimuth_position()
 void rotor_debug_set_azimuth_speed(int speed)
 {
 	azimuth_automatic_mode = 0;
-
-	azimuth_set_speed(speed * 4);
+	azimuth_set_speed(speed);
 }
 
 static void* azimuth_position_loop()
