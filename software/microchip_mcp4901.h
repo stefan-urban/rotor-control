@@ -8,8 +8,6 @@
 #ifndef MICROCHIP_MCP4901_H_
 #define MICROCHIP_MCP4901_H_
 
-#include "dac.h"
-
 
 /**
  * Initialize chip, bus leaves it disabled, call mcp4901_enable() before using

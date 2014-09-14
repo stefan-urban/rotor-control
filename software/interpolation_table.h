@@ -9,11 +9,17 @@
 #define INTERPOLATION_TABLE_H_
 
 
+/**
+ * Defined point in interpolation table
+ */
 typedef struct {
 	double x;
 	double y;
 } interpolation_table_point_t;
 
+/**
+ * Table of points for interpolation
+ */
 typedef struct {
 	/**
 	 * Interpolation points
@@ -29,7 +35,9 @@ typedef struct {
 /**
  * Interpolate 2D table
  *
- * Returns interpolated y value
+ * @param interpolation table
+ * @param input x-value
+ * @return interpolated y-value
  */
 double interpolate_2d(interpolation_table_t table, double x);
 

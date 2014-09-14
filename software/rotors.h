@@ -42,6 +42,11 @@ typedef struct {
 
 extern rotor_t rotor;
 
+
+/**
+ * Selects which rotor (real/simulated) to use
+ */
 void rotors_init(void);
+
 
 #endif /* ROTORS_C_ */

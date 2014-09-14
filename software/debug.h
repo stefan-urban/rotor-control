@@ -28,7 +28,7 @@
 void debug_msg(int log_level, const char *msg);
 
 /**
- * Set verbose mode
+ * Set verbose mode, output all messages also on stdout
  */
 void debug_set_verbose_mode(void);
 

@@ -11,6 +11,9 @@
 #include "debug.h"
 
 
+#define ADC_FILE_PATH "/sys/bus/iio/devices/iio:device0/in_voltage%d_raw"
+
+
 int read_adc(int adc_channel)
 {
 	if (adc_channel < 0 || adc_channel > 6)
@@ -24,7 +27,7 @@ int read_adc(int adc_channel)
 
 	// Generate file path
 	char adc_file_path[100];
-	sprintf(adc_file_path, "/sys/bus/iio/devices/iio:device0/in_voltage%d_raw", adc_channel);
+	sprintf(adc_file_path, ADC_FILE_PATH, adc_channel);
 
 	FILE *fp = NULL;
 	if ((fp = fopen(adc_file_path, "r")) == NULL)

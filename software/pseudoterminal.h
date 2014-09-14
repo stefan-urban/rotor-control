@@ -27,12 +27,12 @@ typedef struct {
 /**
  * Creates and setups a new pseudo terminal master
  */
-extern pseudoterminal_t pts_open(void);
+pseudoterminal_t pts_open(void);
 
 /**
  * Closes a pseudo terminal
  */
-extern void pts_close(pseudoterminal_t pts);
+void pts_close(pseudoterminal_t pts);
 
 
 #endif /* PSEUDOTERMINAL_H_ */

@@ -12,6 +12,15 @@
 #include "debug.h"
 
 
+#define GPIO_BASE_PATH  "/sys/class/gpio/"
+
+#define GPIO_EXPORT     GPIO_BASE_PATH "export"
+#define GPIO_UNEXPORT   GPIO_BASE_PATH "unexport"
+
+#define GPIO_DIRECTION  GPIO_BASE_PATH "gpio%d/direction"
+#define GPIO_VALUE      GPIO_BASE_PATH "gpio%d/value"
+
+
 int gpio_export(int pin)
 {
 	char debug_str[100];
@@ -22,7 +31,7 @@ int gpio_export(int pin)
 
 	FILE *fp = NULL;
 
-	if ((fp = fopen("/sys/class/gpio/export", "w")) == NULL)
+	if ((fp = fopen(GPIO_EXPORT, "w")) == NULL)
 	{
 			sprintf(debug_str, "GPIO: Could not export pin %d. Export file not found!", pin);
 			debug_msg(LOG_ERR, debug_str);
@@ -38,7 +47,7 @@ int gpio_export(int pin)
 	sprintf(debug_str, "GPIO: Setting direction of pin %d to 'out'.", pin);
 	debug_msg(LOG_DEBUG, debug_str);
 
-	sprintf(gpio_direction, "/sys/class/gpio/gpio%d/direction", pin); 
+	sprintf(gpio_direction, GPIO_DIRECTION, pin);
 
 	if ((fp = fopen(gpio_direction, "w")) == NULL)
 	{
@@ -64,7 +73,7 @@ int gpio_unexport(int pin)
 
 	FILE *fp = NULL;
 
-	if ((fp = fopen("/sys/class/gpio/unexport", "w")) == NULL)
+	if ((fp = fopen(GPIO_UNEXPORT, "w")) == NULL)
 	{
 		sprintf(debug_str, "GPIO: Could not unexport pin %d. Unexport file not found!", pin);
 		debug_msg(LOG_DEBUG, debug_str);
@@ -89,7 +98,7 @@ int gpio_set(int pin, int value)
 	FILE *fp = NULL;
 	char gpio_value[50];
 
-	sprintf(gpio_value, "/sys/class/gpio/gpio%d/value", pin); 
+	sprintf(gpio_value, GPIO_VALUE, pin);
 
 	if ((fp = fopen(gpio_value, "w")) == NULL)
 	{

@@ -10,7 +10,6 @@
 #include "interpolation_table.h"
 
 
-
 double interpolate_2d(interpolation_table_t table, double x)
 {
 	int i;

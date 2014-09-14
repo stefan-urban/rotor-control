@@ -10,9 +10,13 @@
 
 
 /**
- * Initialization and destruction
+ * Initialization
  */
 void gs232_init(void);
+
+/**
+ * Destruction
+ */
 void gs232_destroy(void);
 
 /**
