@@ -126,7 +126,7 @@ char* gs232_command(char *cmd_str) {
 
 		rotor.go_up();
 
-		return "?"; // HAMLIB_REPLY_EOM;
+		return "ok"; // HAMLIB_REPLY_EOM;
 	}
 
 	// Down
@@ -135,7 +135,7 @@ char* gs232_command(char *cmd_str) {
 
 		rotor.go_down();
 
-		return "?"; // HAMLIB_REPLY_EOM;
+		return "ok"; // HAMLIB_REPLY_EOM;
 	}
 
 	// Left (Counter Clockwise / CCW)
@@ -144,7 +144,7 @@ char* gs232_command(char *cmd_str) {
 
 		rotor.go_left();
 
-		return "?"; // HAMLIB_REPLY_EOM;
+		return "ok"; // HAMLIB_REPLY_EOM;
 	}
 
 	// Right (Clockwise / CW)
@@ -153,7 +153,7 @@ char* gs232_command(char *cmd_str) {
 
 		rotor.go_right();
 
-		return "?"; // HAMLIB_REPLY_EOM;
+		return "ok"; // HAMLIB_REPLY_EOM;
 	}
 
 	// Azimuth stop
@@ -162,7 +162,7 @@ char* gs232_command(char *cmd_str) {
 
 		rotor.stop_azimuth();
 
-		return "?"; // HAMLIB_REPLY_EOM;
+		return "ok"; // HAMLIB_REPLY_EOM;
 	}
 
 	// Elevation stop
@@ -171,7 +171,7 @@ char* gs232_command(char *cmd_str) {
 
 		rotor.stop_elevation();
 
-		return "?" HAMLIB_REPLY_EOM;
+		return "ok" HAMLIB_REPLY_EOM;
 	}
 
 	// Stop
@@ -181,7 +181,7 @@ char* gs232_command(char *cmd_str) {
 		rotor.stop_azimuth();
 		rotor.stop_elevation();
 
-		return "?"; // HAMLIB_REPLY_EOM;
+		return "ok"; // HAMLIB_REPLY_EOM;
 	}
 
 	// Set position
@@ -197,7 +197,7 @@ char* gs232_command(char *cmd_str) {
 		sprintf(debug_str, "GS232-INTERFACE: Set position %d %d", azimuth, elevation);
 		debug_msg(LOG_INFO, debug_str);
 
-		return "?"; // HAMLIB_REPLY_EOM;
+		return "ok"; // HAMLIB_REPLY_EOM;
 	}
 
 	// Command could not be interpreted!
