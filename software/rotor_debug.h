@@ -2,7 +2,7 @@
  * rotor_debug.h
  *
  *  Created on: 25.08.2014
- *      Author: stefan
+ *      Author: Stefan Urban <stefan.urban@live.de>
  */
 
 #ifndef ROTOR_DEBUG_H_

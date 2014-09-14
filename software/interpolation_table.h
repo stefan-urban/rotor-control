@@ -2,7 +2,7 @@
  * interpolation_table.h
  *
  *  Created on: 08.09.2014
- *      Author: stefan
+ *      Author: Stefan Urban <stefan.urban@live.de>
  */
 
 #ifndef INTERPOLATION_TABLE_H_

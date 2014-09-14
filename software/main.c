@@ -66,16 +66,16 @@ int main(int argc, char** argv) {
 
 	if (configuration_get_listen_console_enabled())
 	{
-	    sprintf(debug_str, "Using terminal: %s", configuration_get_listen_console_path());
-	    debug_msg(LOG_INFO, debug_str);
+		sprintf(debug_str, "Using terminal: %s", configuration_get_listen_console_path());
+		debug_msg(LOG_INFO, debug_str);
 
-	    f = open(configuration_get_listen_console_path(), O_RDWR | O_NOCTTY);
+		f = open(configuration_get_listen_console_path(), O_RDWR | O_NOCTTY);
 
-	    if (f < 0)
-	    {
-		    sprintf(debug_str, "Could not open terminal: %s",configuration_get_listen_console_path());
-		    debug_msg(LOG_INFO, debug_str);
-	    }
+		if (f < 0)
+		{
+			sprintf(debug_str, "Could not open terminal: %s",configuration_get_listen_console_path());
+			debug_msg(LOG_INFO, debug_str);
+		}
 	}
 	else
 	{
@@ -89,43 +89,43 @@ int main(int argc, char** argv) {
 
 		f = pts.fd;
 
-	    sprintf(debug_str, "Pseudoterminal is open at: %s", pts.name);
-	    debug_msg(LOG_INFO, debug_str);
+		sprintf(debug_str, "Pseudoterminal is open at: %s", pts.name);
+		debug_msg(LOG_INFO, debug_str);
 
-	    // Create symlink on pseudoterminal
-	    unlink(PTS_SYMLINK_PATH);
+		// Create symlink on pseudoterminal
+		unlink(PTS_SYMLINK_PATH);
 
-	    if (symlink(pts.name, PTS_SYMLINK_PATH) < 0)
-	    {
-		    sprintf(debug_str, "Pseudoterminal symlink could not be created");
-		    debug_msg(LOG_INFO, debug_str);
-	    }
+		if (symlink(pts.name, PTS_SYMLINK_PATH) < 0)
+		{
+			sprintf(debug_str, "Pseudoterminal symlink could not be created");
+			debug_msg(LOG_INFO, debug_str);
+		}
 	}
 
 
-    // Read line by line from serial port
-    char buffer[255], *ret_str;
-    ssize_t size;
+	// Read line by line from serial port
+	char buffer[255], *ret_str;
+	ssize_t size;
 
-    while (stop == 0)
-    {
-    	// Read from serial port and make sure the string is terminated
-    	size = read (pts.fd, buffer, sizeof buffer);
-    	buffer[size] = '\0';
+	while (stop == 0)
+	{
+		// Read from serial port and make sure the string is terminated
+		size = read (pts.fd, buffer, sizeof buffer);
+		buffer[size] = '\0';
 
-    	sprintf(debug_str, "Did receive command: %s", buffer);
-    	debug_msg(LOG_INFO, debug_str);
+		sprintf(debug_str, "Did receive command: %s", buffer);
+		debug_msg(LOG_INFO, debug_str);
 
-    	// Hand the command string over to the gs232 interface, which will interpret
-    	// the command and return a string to write back to the pts
-    	ret_str = gs232_command(buffer);
+		// Hand the command string over to the gs232 interface, which will interpret
+		// the command and return a string to write back to the pts
+		ret_str = gs232_command(buffer);
 
-    	sprintf(debug_str, "Answering: %s", ret_str);
-    	debug_msg(LOG_INFO, debug_str);
+		sprintf(debug_str, "Answering: %s", ret_str);
+		debug_msg(LOG_INFO, debug_str);
 
-    	// Write answer back to serial port
-    	size = strlen(ret_str);
-    	write(pts.fd, ret_str, size);
+		// Write answer back to serial port
+		size = strlen(ret_str);
+		write(pts.fd, ret_str, size);
 
 		// Quit
 		if( buffer[0] == 'q' )
@@ -136,24 +136,24 @@ int main(int argc, char** argv) {
 		}
 
 		usleep(10000);
-    }
+	}
 
 
-    if (configuration_get_listen_console_enabled() == 0)
-    {
-    	pts_close(pts);
+	if (configuration_get_listen_console_enabled() == 0)
+	{
+		pts_close(pts);
 
-    	unlink(PTS_SYMLINK_PATH);
-    }
-    else
-    {
-    	close(f);
-    }
+		unlink(PTS_SYMLINK_PATH);
+	}
+	else
+	{
+		close(f);
+	}
 
-    gs232_destroy();
+	gs232_destroy();
 
-    debug_msg(LOG_NOTICE, "Shutting down now!");
+	debug_msg(LOG_NOTICE, "Shutting down now!");
 
-    return 0;
+	return 0;
 }
 

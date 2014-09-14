@@ -2,7 +2,7 @@
  * interpolation_table.c
  *
  *  Created on: 08.09.2014
- *      Author: stefan
+ *      Author: Stefan Urban <stefan.urban@live.de>
  */
 
 #include <stdio.h>
