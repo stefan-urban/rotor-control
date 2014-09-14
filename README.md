@@ -39,9 +39,9 @@ Installation & Inbetriebnahme
  debian@beaglebone:~/code/rotor-control/software$ sudo ./scripts/install.sh
  ```
 
-Jetzt werden alle erforderlichen Dateien in die entsprechenden Verzeichnise kopiert:
-- Programm und Start/Stop-Skripte nach `/opt/rotor-control/`
-- Daemon nach `/etc/init.d/`
+ Jetzt werden alle erforderlichen Dateien in die entsprechenden Verzeichnise kopiert:
+ - Programm und Start/Stop-Skripte nach `/opt/rotor-control/`
+ - Daemon nach `/etc/init.d/`
 
 6. Dienst starten
  ```
