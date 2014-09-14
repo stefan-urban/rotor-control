@@ -28,51 +28,24 @@ Installation & Inbetriebnahme
 
 1. Software (unter `/software/`) aus diesem Repository in beliebigen Ordner auf dem BBB speichern.
 
-2. Software kompilieren:
-```
-debian@beaglebone:~/code/rotor-control/software$ make
-rm -f rotor_control *.o
-gcc -c -Wall adc.c -o adc.o
-gcc -c -Wall configuration.c -o configuration.o
-gcc -c -Wall debug.c -o debug.o
-gcc -c -Wall gpio.c -o gpio.o
-gcc -c -Wall gs232-interface.c -o gs232-interface.o
-gcc -c -Wall main.c -o main.o
-gcc -c -Wall microchip_mcp4901.c -o microchip_mcp4901.o
-gcc -c -Wall pseudoterminal.c -o pseudoterminal.o
-gcc -c -Wall rotor_create_erc5a.c -o rotor_create_erc5a.o
-gcc -c -Wall rotor_debug.c -o rotor_debug.o
-gcc -c -Wall rotors.c -o rotors.o
-gcc -c -Wall rotor_yaesu_g2800dxc.c -o rotor_yaesu_g2800dxc.o
-gcc adc.o configuration.o debug.o gpio.o gs232-interface.o main.o microchip_mcp4901.o pseudoterminal.o rotor_create_erc5a.o rotor_debug.o rotors.o rotor_yaesu_g2800dxc.o -o rotor_control -lconfig -lpthread -lpcre
-```
-3. (Optional) Konfigurationsfile unter `/etc/rotor_control.conf` anlegen. Eine Beispielkonfiguration ist beigelegt.
+2. (Optional) Konfigurationsfile unter `/etc/rotor_control.conf` anlegen. Eine Beispielkonfiguration ist im Ornder `docs` beigelegt.
 
-4. (Optional) Rsyslogd konfigurieren.
+3. (Optional) Rsyslogd konfigurieren.
 
  Standardmäßig werden alle Logging-Meldungen in `/var/log/syslog` mit allen anderen Meldungen vom System vermischt. Wie unser Programm ein eigene Logging-Datei erhält wird im beiliegenen Dokument [syslog.md](docs/syslog.md) erklärt.
 
-5. Programm mit root-Rechten starten
+5. Installieren
  ```
- debian@beaglebone:~/code/rotor-control/software$ sudo ./rotor_control &
- ```
-
-6. Logging-Datei ansehen
- ```
- debian@beaglebone:~/code/rotor-control/software$ tail /var/log/rotor_control.log 
- 
- May 15 04:40:29 beaglebone rotor_control[1452]: --------------------------------------------------
- May 15 04:40:29 beaglebone rotor_control[1452]: Starting rotor_control!
- May 15 04:40:29 beaglebone rotor_control[1452]: GS232-INTERFACE: Stopping all rotors!
- May 15 04:40:29 beaglebone rotor_control[1452]: Pseudoterminal is open at: /dev/pts/1
+ debian@beaglebone:~/code/rotor-control/software$ sudo ./scripts/install.sh
  ```
 
-7. Hamlib rotctld starten.
- - `-m 602` bedeutet wie verwenden ein GS232 kompatibles Interface
- - `-r /dev/pts/1` bedeutet wir verwenden das Pseudoterminal `pts/1` zur Kommunikation mit unserem Programm (wie oben in der Logging-Datei ersichtlich, kann abweichen!)
- 
+Jetzt werden alle erforderlichen Dateien in die entsprechenden Verzeichnise kopiert:
+- Programm und Start/Stop-Skripte nach `/opt/rotor-control/`
+- Daemon nach `/etc/init.d/`
+
+6. Dienst starten
  ```
- debian@beaglebone:~/code/rotor-control/software$ sudo rotctld -m 602 -r /dev/pts/1
+ debian@beaglebone:~/code/rotor-control/software$ sudo service rotor-control start
  ```
 
 8. Verbindung mit gPredict aufbauen
@@ -92,6 +65,6 @@ gcc adc.o configuration.o debug.o gpio.o gs232-interface.o main.o microchip_mcp4
 Verwendung ohne Rotoren
 -----------------------
 
-Zum Debugging ist es oft hilfreich das Programm __ohne__ die Rotorenanbindung zu betreiben. Dies ist möglich wenn in der Datei `rotors.c` `//#define DEBUG_SWITCH` einkommentiert wird. Dann wie oben beschrieben vorgehen.
+Zum Debugging ist es oft hilfreich das Programm __ohne__ die Rotorenanbindung zu betreiben. Dies ist möglich wenn in der Konfiguration die Simulation eingeschaltet wird. Dann wie oben beschrieben vorgehen.
 
 Hintergrund: Als Rotorenansteuerung kommen jetzt nicht diverse GPIOs und ADCs zum Einsatz, welche es auf PCs gar nicht gibt, sondern ein Simulator.
