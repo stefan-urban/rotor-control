@@ -58,7 +58,7 @@ Installation & Inbetriebnahme
  
  8.4 Es erscheint folgendes Fenster:
 
- ![gpredict_rotor_control](docs/images/gpredict_rotor_control.png)
+ ![gpredict_rotor_control](software/docs/images/gpredict_rotor_control.png)
  
  8.5 Mit Drücken von _Kontakt_ wird die Verbindung zum BBB hergestellt und versucht die eingestellt Position anzufahren.
 
