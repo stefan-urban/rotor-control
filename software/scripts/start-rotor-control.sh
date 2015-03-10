@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 DEVICE_FILE="/dev/rotor_control"
 
@@ -9,7 +9,8 @@ DEVICE_FILE="/dev/rotor_control"
 printf "Starting rotor-control: "
 /opt/rotor-control/rotor-control -s on &
 
-printf "... OK!\n"
+printf "... "
+printf '\e[32m%-6s\e[m\n' "OK"
 
 
 #
@@ -19,20 +20,35 @@ printf "... OK!\n"
 printf "Waiting to pseudoterminal file: "
 
 # Wait for pseudoterminal device
-while : ; do
+i="0"
+
+while [ $i -lt 2 ] ; do
 	if [ -e "$DEVICE_FILE" ]
 	then
-		printf "... OK!\n"
+		i="10"
+		printf "... "
+		printf '\e[32m%-6s\e[m\n' "OK"
 		break;
 	else
 		printf "."
 	fi
 
+	i=$((i+1))
 	sleep 1
 done
 
+if [ $i != "10" ]
+then
+	printf '\e[31m%-6s\e[m\n' " Failed"
+	exit
+fi
 
-printf "Starting hamlib: ... OK!"
-rotctld -m 602 -r $DEVICE_FILE &
+# Set permissions for dialout group
+chown root:dialout $DEVICE_FILE
+chmod 660 $DEVICE_FILE
 
-printf "\n"
+
+printf "Starting hamlib: ... "
+rotctld --model=602 --rot-file=$DEVICE_FILE --serial-speed=115200 &
+printf '\e[32m%-6s\e[m\n' "OK"
+
