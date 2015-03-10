@@ -21,7 +21,7 @@
 #include "debug.h"
 
 
-#define BAUDRATE (B9600)
+#define BAUDRATE (B115200)
 
 
 void pts_setupterminal(pseudoterminal_t pts)
@@ -40,7 +40,7 @@ void pts_setupterminal(pseudoterminal_t pts)
 		CLOCAL  : local connection, no modem contol
 		CREAD   : enable receiving characters
 	*/
-	newtio.c_cflag = BAUDRATE | CS8 | CLOCAL | CREAD;
+	newtio.c_cflag = BAUDRATE | CS8 | CREAD; // | CLOCAL;
 
 	/*
 		IGNPAR  : ignore bytes with parity errors
