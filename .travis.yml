@@ -2,6 +2,4 @@ language: c
 
 compiler: gcc
 
-script:
-    cd software/src/
-    make
+script:	./software/scripts/compile-travis.sh
