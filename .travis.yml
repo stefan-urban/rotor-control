@@ -7,6 +7,7 @@ compiler:
 before_install:
     - sudo apt-get update -qq
     - sudo apt-get install -y libpcre3-dev libconfig-dev libhamlib-utils
+    - head -n 50 /usr/include/libconfig.h
 
 script:
     - ./software/scripts/compile-travis.sh
