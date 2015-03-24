@@ -7,7 +7,7 @@ printf " -----------------------------------------------------------------------
 printf "  Install dependencies ..."
 printf "\n"
 
-apt-get install libpcre3-dev libconfig-dev libhamlib-utils > /dev/null
+apt-get install libpcre3-dev libconfig9-dev libhamlib-utils > /dev/null
 printf "       ... Finished!\n"
 
 printf " ------------------------------------------------------------------------------------------------- \n"
