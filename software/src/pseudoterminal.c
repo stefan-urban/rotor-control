@@ -17,12 +17,14 @@
 #include <string.h>
 #include <termios.h>
 #include <unistd.h>
+#include <pthread.h>
 
 #include "debug.h"
 
 
 #define BAUDRATE (B115200)
 
+static pthread_mutex_t cs_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 void pts_setupterminal(pseudoterminal_t pts)
 {
@@ -91,6 +93,8 @@ void pts_setupterminal(pseudoterminal_t pts)
 
 pseudoterminal_t pts_open(void)
 {
+	pthread_mutex_lock( &cs_mutex );
+
 	pseudoterminal_t pts;
 
 	debug_msg(LOG_DEBUG, "PTS: Opening pseudoterminal");
@@ -115,6 +119,9 @@ pseudoterminal_t pts_open(void)
 
 	// Get the serial port the right configuration
 	pts_setupterminal(pts);
+
+	// Unlock
+	pthread_mutex_unlock( &cs_mutex );
 
 	return pts;
 }

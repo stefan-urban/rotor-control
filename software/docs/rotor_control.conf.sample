@@ -23,12 +23,12 @@ simulation=true;
 
 
 #
-# List of pseudoterminals which will be created
+# List of pseudoterminals which will be created, resulting file will be "/dev/name"
 #
 pseudoterminals =
 (
-	"/dev/rotor_control",
-	"/dev/rotor_control2"
+	"rotor_control",
+	"rotor_control2"
 )
 
 

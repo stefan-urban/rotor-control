@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "configuration.h"
 #include "debug.h"
 #include "rotor_debug.h"
 #include "interpolation_table.h"
@@ -76,8 +77,6 @@ interpolation_table_t configuration_get_rotor_create_erc5a_interpolation_table()
 /**
  * Get list of pseudoterminals which shoulb be created
  */
-#define MAX_PSEUDOTERMINAL (10)
-
 char pseudoterminals[MAX_PSEUDOTERMINAL][100] = {
 	"/dev/rotor_control"
 };
