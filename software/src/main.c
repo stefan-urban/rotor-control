@@ -72,6 +72,17 @@ int main(int argc, char** argv) {
 	gs232_init();
 
 
+//	int i;
+//	char path[100];
+//
+//	for (i = 0; i < configuration_get_pseudoterminals_num(); i++)
+//	{
+//		strcpy(path, configuration_get_pseudoterminal(i));
+//
+//		sprintf(debug_str, "PTS_a: %s", path);
+//		debug_msg(LOG_INFO, debug_str);
+//	}
+
 	// Open terminal to listen from
 	intptr_t f;
 	pseudoterminal_t pts;

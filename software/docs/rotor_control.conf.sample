@@ -23,6 +23,16 @@ simulation=true;
 
 
 #
+# List of pseudoterminals which will be created
+#
+pseudoterminals =
+(
+	"/dev/rotor_control",
+	"/dev/rotor_control2"
+)
+
+
+#
 # Do not create pseudoterminal, listen to existing terminal
 #
 #listen_console_path="/dev/ttyUSB4"

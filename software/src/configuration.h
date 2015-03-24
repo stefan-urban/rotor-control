@@ -36,6 +36,16 @@ interpolation_table_t configuration_get_rotor_yaesu_g2800dxc_interpolation_table
 interpolation_table_t configuration_get_rotor_create_erc5a_interpolation_table(void);
 
 /**
+ * Get one pseudoterminals out of configuration array
+ */
+char* configuration_get_pseudoterminal(int i);
+
+/**
+ * Get amount of used pseudoterminals
+ */
+int configuration_get_pseudoterminals_num(void);
+
+/**
  * State of using optional terminal
  */
 int configuration_get_listen_console_enabled(void);

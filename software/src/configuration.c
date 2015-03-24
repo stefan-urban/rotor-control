@@ -70,6 +70,26 @@ interpolation_table_t configuration_get_rotor_create_erc5a_interpolation_table()
 }
 
 /**
+ * Get list of pseudoterminals which shoulb be created
+ */
+#define MAX_PSEUDOTERMINAL (10)
+
+char pseudoterminals[MAX_PSEUDOTERMINAL][100] = {
+	"/dev/rotor_control"
+};
+static int pseudoterminals_num = 1;
+
+char* configuration_get_pseudoterminal(int i)
+{
+	return (pseudoterminals[i]);
+}
+
+int configuration_get_pseudoterminals_num()
+{
+	return pseudoterminals_num;
+}
+
+/**
  * Alternative serial console to listen to
  */
 int listen_console_enabled = 0;
@@ -258,6 +278,39 @@ int get_configuration_file_create_erc5a_interpolation_table(config_t cfg)
 	return 0;
 }
 
+int get_configuration_file_pseudoterminals(config_t cfg)
+{
+	int i;
+	config_setting_t *setting;
+
+	char debug_str[100];
+
+	/* Get log_level */
+	setting = config_lookup(&cfg, "pseudoterminals");
+
+	if (setting)
+	{
+		if (MAX_PSEUDOTERMINAL < config_setting_length(setting))
+		{
+			sprintf(debug_str, "CONFIGURATON: file: number of pseudoterminals can be a maximum of %d", MAX_PSEUDOTERMINAL);
+			debug_msg(LOG_ERR, debug_str);
+		}
+
+		for (i = 0; i < config_setting_length(setting); i++)
+		{
+			strcpy(pseudoterminals[i], config_setting_get_string_elem(setting, i));
+
+			sprintf(debug_str, "CONFIGURATON: file: pseudoterminal = %s", pseudoterminals[i]);
+			debug_msg(LOG_DEBUG, debug_str);
+		}
+
+		pseudoterminals_num = config_setting_length(setting);
+	}
+
+
+	return 0;
+}
+
 int get_configuration_file_listen_console_path(config_t cfg)
 {
 	char debug_str[100];
@@ -304,6 +357,7 @@ void get_configuration_file_options()
 	get_configuration_file_yaesu_g2800dxc_interpolation_table(cfg);
 	get_configuration_file_create_erc5a_interpolation_table(cfg);
 
+	get_configuration_file_pseudoterminals(cfg);
 	get_configuration_file_listen_console_path(cfg);
 
 	config_destroy(&cfg);
