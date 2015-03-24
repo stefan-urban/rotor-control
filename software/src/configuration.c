@@ -120,7 +120,7 @@ int get_configuration_file_log_level(config_t cfg)
 	/* Get log_level */
 	if (config_lookup_int(&cfg, "log_level", &log_level))
 	{
-		sprintf(debug_str, "CONFIGURATON: file: found log_level = %d", log_level);
+		sprintf(debug_str, "CONFIGURATON: file: found log_level = %d", configuration_get_log_level());
 		debug_msg(LOG_INFO, debug_str);
 	}
 
@@ -378,16 +378,17 @@ void get_command_line_options(int argc, char** argv)
 {
 	char debug_str[100];
 	char scan_buf[50];
-	int c;
+	int c, log_level_tmp;
 
 	while ((c = getopt(argc, argv, "vd:s:c:")) != -1)
 	{
 		switch (c)
 		{
 		case 'd':
-			sscanf(optarg, "%d", &log_level);
+			sscanf(optarg, "%d", &log_level_tmp);
+			log_level = (long) log_level_tmp;
 
-			sprintf(debug_str, "CONFIGURATON: args: log_level = %d", log_level);
+			sprintf(debug_str, "CONFIGURATON: args: log_level = %d", configuration_get_log_level());
 			debug_msg(LOG_INFO, debug_str);
 			break;
 
