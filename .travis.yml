@@ -4,6 +4,10 @@ language:
 compiler:
     gcc
 
+before_install:
+    sudo apt-get update -qq
+    sudo apt-get install -y libpcre3-dev libconfig-dev libhamlib-utils
+
 script:
     ./software/scripts/compile-travis.sh
 

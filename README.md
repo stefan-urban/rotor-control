@@ -3,6 +3,7 @@ Rotor control with BeagleBone Black
 
 Dieses Projekt entstand als Teil meiner Bachelorarbeit. Es zielt darauf ab ein Interface für zwei Antennenrotoren (unterschiedlicher Hersteller) zu bauen. Dieses soll eine Schnittstelle zu hamlib besitzen.
 
+[![Build Status](https://travis-ci.org/stefan-urban/rotor-control.svg?branch=master)](https://travis-ci.org/stefan-urban/rotor-control)
 
 Vorraussetzungen
 ----------------
