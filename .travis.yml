@@ -1,5 +1,9 @@
-language: c
+language:
+    c
 
-compiler: gcc
+compiler:
+    gcc
 
-script:	./software/scripts/compile-travis.sh
+script:
+    ./software/scripts/compile-travis.sh
+
