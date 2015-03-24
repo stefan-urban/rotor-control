@@ -5,9 +5,8 @@ compiler:
     - gcc
 
 before_install:
-    - sudo add-apt-repository ppa:jon-severinsson/libconfig -y
     - sudo apt-get update -qq
-    - sudo apt-get install -y libpcre3-dev libconfig9-dev libhamlib-utils
+    - sudo apt-get install -y libpcre3-dev libconfig-dev libhamlib-utils
 
 script:
     - ./software/scripts/compile-travis.sh
