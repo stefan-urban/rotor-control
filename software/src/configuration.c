@@ -23,11 +23,15 @@ static char configuration_file_path[] = "/etc/rotor_control.conf";
 /**
  * Logging level
  */
-static int log_level = LOG_DEBUG;
+#if defined(LIBCONFIG_VER_MAJOR) // Only since libconfig 1.4
+	static int log_level = LOG_DEBUG;
+#else
+	static long log_level = LOG_DEBUG;
+#endif
 
 int configuration_get_log_level()
 {
-	return log_level;
+	return (int) log_level;
 }
 
 /**
@@ -341,8 +345,12 @@ void get_configuration_file_options()
 	/* Read the file. If there is an error, report it and continue */
 	if (!config_read_file(&cfg, configuration_file_path))
 	{
+#if defined(LIBCONFIG_VER_MAJOR) // Only since libconfig 1.4
 		sprintf(debug_str, "CONFIGURATON: file: Could not open file. %s:%d - %s", config_error_file(&cfg),
 					config_error_line(&cfg), config_error_text(&cfg));
+#else
+		sprintf(debug_str, "CONFIGURATON: file: Could not open file.");
+#endif
 		debug_msg(LOG_NOTICE, debug_str);
 
 		config_destroy(&cfg);
