@@ -1,13 +1,13 @@
 language:
-    c
+    - c
 
 compiler:
-    gcc
+    - gcc
 
 before_install:
-    sudo apt-get update
-    sudo apt-get install -y libpcre3-dev libconfig-dev libhamlib-utils
+    - sudo apt-get update
+    - sudo apt-get install -y libpcre3-dev libconfig-dev libhamlib-utils
 
 script:
-    ./software/scripts/compile-travis.sh
+    - ./software/scripts/compile-travis.sh
 
