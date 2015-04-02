@@ -1,13 +1,32 @@
-#!/bin/sh
+#!/bin/bash
 
 CONFIG_FILE=/etc/rotor_control.conf
-DIRECTORY=/opt/rotor-control
+DAEMON_FILE=/etc/init.d/rotor-control
+
+DIRECTORY=/opt/rotor-control/
+ROTOR_CONTROL_FILE=rotor-control
+START_SCRIPT_FILE=start-rotor-control.sh
+STOP_SCRIPT_FILE=start-rotor-control.sh
+
+printf " ------------------------------------------------------------------------------------------------- \n"
+printf "  Make sure all instances of the relevant applications are closed"
+printf "\n"
+
+# Only needed if rotor control folder already exists
+if [ -f rotor-control ];
+then
+	printf "       ... Finished!\n"
+else
+	printf "       ... Build failed!\n"
+	exit
+fi
+
 
 printf " ------------------------------------------------------------------------------------------------- \n"
 printf "  Install dependencies ..."
 printf "\n"
 
-apt-get install libpcre3-dev libconfig-dev libhamlib-utils > /dev/null
+apt-get install libpcre3-dev libconfig-dev libhamlib-utils -qq > /dev/null
 printf "       ... Finished!\n"
 
 printf " ------------------------------------------------------------------------------------------------- \n"
@@ -38,13 +57,13 @@ else
 	printf "       Directory $DIRECTORY created!\n"
 fi
 
-if [ -f $DIRECTORY/rotor-control ];
+if [ -f $DIRECTORY$ROTOR_CONTROL_FILE ];
 then 
 	while true; do
 	    read -p "       Executable already exists. Do you wish to overwrite it? (y/n) " yn
 	    case $yn in
 		[Yy]* )
-                    cp rotor-control $DIRECTORY/
+                    cp ./rotor-control $DIRECTORY$ROTOR_CONTROL_FILE
                     printf "       ... Executable copied!\n"
                     break;;
 		[Nn]* ) break;;
@@ -52,7 +71,7 @@ then
 	    esac
 	done
 else
-	cp rotor-control $DIRECTORY/
+	cp ./rotor-control $DIRECTORY$ROTOR_CONTROL_FILE
 	printf "       ... Executable copied!\n"
 fi
 
@@ -61,14 +80,14 @@ fi
 printf " ------------------------------------------------------------------------------------------------- \n"
 printf "  Copy start/stop scripts to /opt/rotor-control/ ...\n"
 
-if [ -f $DIRECTORY/start-rotor-control.sh ];
+if [ -f $DIRECTORY$START_SCRIPT_FILE ];
 then 
 	while true; do
 	    read -p "       Start/Stop scripts already exist. Do you wish to overwrite them? (y/n) " yn
 	    case $yn in
 		[Yy]* )
-                    sudo cp ../scripts/start-rotor-control.sh $DIRECTORY
-                    sudo cp ../scripts/stop-rotor-control.sh $DIRECTORY
+                    sudo cp ../scripts/start-rotor-control.sh $DIRECTORY$START_SCRIPT_FILE
+                    sudo cp ../scripts/stop-rotor-control.sh $DIRECTORY$STOP_SCRIPT_FILE
                     printf "       ... Scripts copied!\n"
                     break;;
 		[Nn]* ) break;;
@@ -76,8 +95,8 @@ then
 	    esac
 	done
 else
-	sudo cp ../scripts/start-rotor-control.sh $DIRECTORY
-	sudo cp ../scripts/stop-rotor-control.sh $DIRECTORY
+	sudo cp ../scripts/start-rotor-control.sh $DIRECTORY$START_SCRIPT_FILE
+	sudo cp ../scripts/stop-rotor-control.sh $DIRECTORY$STOP_SCRIPT_FILE
 	printf "       ... Scripts copied!\n"
 fi
 
@@ -85,13 +104,13 @@ fi
 printf " ------------------------------------------------------------------------------------------------- \n"
 printf "  Install daemon script to /etc/init.d/rotor-control ...\n"
 
-if [ -f $DIRECTORY/rotor-control ];
+if [ -f $DAEMON_FILE ];
 then 
 	while true; do
 	    read -p "       Daemon script already exists. Do you wish to overwrite it? (y/n) " yn
 	    case $yn in
 		[Yy]* )
-                    sudo cp ../scripts/rotor-control /etc/init.d/rotor-control
+                    sudo cp ../scripts/rotor-control $DAEMON_FILE
                     printf "       ... Daemon script installed!\n"
                     break;;
 		[Nn]* ) break;;
@@ -99,7 +118,7 @@ then
 	    esac
 	done
 else
-	sudo cp ../scripts/rotor-control /etc/init.d/rotor-control
+	sudo cp ../scripts/rotor-control $DAEMON_FILE
 	printf "       ... Daemon script installed!\n"
 fi
 
